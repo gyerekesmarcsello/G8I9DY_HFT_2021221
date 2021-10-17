@@ -24,7 +24,7 @@ namespace G8I9DY_HFT_2021221.Models
         public string Label { get; set; }
 
         [NotMapped]
-        public virtual Tracks Track { get; set; }
+        public virtual Artists Artist { get; set; }
 
         [NotMapped]
         public virtual ICollection<Tracks> Tracks { get; set; }

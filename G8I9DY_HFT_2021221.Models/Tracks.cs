@@ -12,10 +12,10 @@ namespace G8I9DY_HFT_2021221.Models
     public class Tracks
     {
         [Key]
-        public int BattleID { get; set; }
+        public int TrackID { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string Title { get; set; }
 
         [ForeignKey(nameof(Albums))]
         public int AlbumID { get; set; }
