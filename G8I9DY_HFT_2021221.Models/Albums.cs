@@ -22,5 +22,20 @@ namespace G8I9DY_HFT_2021221.Models
 
         [Required]
         public string Label { get; set; }
+
+        [NotMapped]
+        public virtual Tracks Track { get; set; }
+
+        [NotMapped]
+        public virtual ICollection<Tracks> Tracks { get; set; }
+
+
+        public Albums()
+        {
+            Tracks = new HashSet<Tracks>();
+        }
+
+
+
     }
 }
