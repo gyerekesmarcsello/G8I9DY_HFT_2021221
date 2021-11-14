@@ -1,4 +1,5 @@
 ﻿using G8I9DY_HFT_2021221.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,41 +8,43 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Repository
 {
-    class AlbumRepository : IRepository<Albums>, IAlbumRepository
+    class AlbumRepository : Repository<Albums>, IAlbumRepository
     {
+        public AlbumRepository(DbContext context) : base(context)
+        {
+
+        }
         public void CreateAlbum(int albumID, string Title, int ArtistID, string Label)
         {
             Albums album = new Albums() { AlbumID = albumID, Title = Title, ArtistID = ArtistID, Label = Label };
+            context.SaveChanges();
         }
 
         public void DeleteAlbum(int albumID)
         {
-            throw new NotImplementedException();
+            Delete(GetOne(albumID));
+            context.SaveChanges();
         }
 
-        public IQueryable<Albums> GetAll()
+        public override Albums GetOne(int id)
         {
-            throw new NotImplementedException();
+            return GetAll().SingleOrDefault(x => x.AlbumID == id);
         }
-
-        public Albums GetOne(int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public Albums ReadAlbum(int albumID)
         {
-            throw new NotImplementedException();
+            return GetOne(albumID);
         }
 
         public HashSet<Albums> ReadAllAlbums()
         {
-            throw new NotImplementedException();
+            return (HashSet<Albums>)GetAll();
         }
 
         public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label)
         {
-            throw new NotImplementedException();
+            DeleteAlbum(albumID);
+            CreateAlbum(albumID,Title,ArtistID,Label);
+            context.SaveChanges();
         }
     }
 }
