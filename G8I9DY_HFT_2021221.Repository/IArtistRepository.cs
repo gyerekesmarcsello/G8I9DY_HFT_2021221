@@ -12,7 +12,7 @@ namespace G8I9DY_HFT_2021221.Repository
         //create
         void CreateArtist(int ArtistID, string Name, string Birthday, string Country);
         //read
-        Albums ReadArtist(int ArtistID);
+        Artists ReadArtist(int ArtistID);
         //readall
         HashSet<Artists> ReadAllArtist();
         //update
