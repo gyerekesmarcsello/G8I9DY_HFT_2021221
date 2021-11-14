@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Repository
 {
-    class AlbumRepository : Repository<Albums>, IAlbumRepository
+    public class AlbumRepository : Repository<Albums>, IAlbumRepository
     {
         public AlbumRepository(DbContext context) : base(context)
         {

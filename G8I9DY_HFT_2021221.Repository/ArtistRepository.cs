@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Repository
 {
-    class ArtistRepository : Repository<Artists>, IArtistRepository
+    public class ArtistRepository : Repository<Artists>, IArtistRepository
     {
         public ArtistRepository(DbContext context) : base(context)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Repository
 {
-    class TrackRepository : Repository<Tracks>, ITrackRepository
+    public class TrackRepository : Repository<Tracks>, ITrackRepository
     {
         public TrackRepository(DbContext context) : base(context)
         {
