@@ -12,9 +12,9 @@ namespace G8I9DY_HFT_2021221.Repository
         //create
         void CreateTrack(int TrackID, string Title, int AlbumID, string Genre, int ArtistID, string ReleaseDate);
         //read
-        Albums ReadTrack(int TrackID);
+        Tracks ReadTrack(int TrackID);
         //readall
-        HashSet<Artists> ReadAllTracks();
+        HashSet<Tracks> ReadAllTracks();
         //update
         void UpdateTrack(int TrackID, string Title, int AlbumID, string Genre, int ArtistID, string ReleaseDate);
         //delete
