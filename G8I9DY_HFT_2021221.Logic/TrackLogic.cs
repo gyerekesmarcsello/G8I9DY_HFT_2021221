@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Logic
 {
-    internal class TrackLogic
+    public class TrackLogic
     {
     }
 }
