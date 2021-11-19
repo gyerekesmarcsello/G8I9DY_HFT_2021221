@@ -18,37 +18,37 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void CreateAlbum(int albumID, string Title, int ArtistID, string Label)
         {
-            throw new NotImplementedException();
+            albumRepo.CreateAlbum(albumID, Title, ArtistID, Label);
         }
 
         public void DeleteAlbum(int albumID)
         {
-            throw new NotImplementedException();
+            albumRepo.DeleteAlbum(albumID);
         }
 
         public IEnumerable<Albums> GetAll()
         {
-            throw new NotImplementedException();
+            return albumRepo.GetAll();
         }
 
         public Albums GetOne(int id)
         {
-            throw new NotImplementedException();
+            return albumRepo.GetOne(id);
         }
 
         public Albums ReadAlbum(int albumID)
         {
-            throw new NotImplementedException();
+            return albumRepo.ReadAlbum(albumID);
         }
 
         public IEnumerable<Albums> ReadAllAlbums()
         {
-            throw new NotImplementedException();
+            return albumRepo.ReadAllAlbums();
         }
 
         public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label)
         {
-            throw new NotImplementedException();
+            albumRepo.UpdateAlbum(albumID, Title, ArtistID, Label);
         }
     }
 }

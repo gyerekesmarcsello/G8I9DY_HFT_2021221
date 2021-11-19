@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Logic
 {
-    public interface IAlbumLogic : ILogic<Albums>
+    public interface IAlbumLogic
     {
         //create
         void CreateAlbum(int albumID, string Title, int ArtistID, string Label);

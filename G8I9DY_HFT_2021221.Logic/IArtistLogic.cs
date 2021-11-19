@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Logic
 {
-    public interface IArtistLogic : ILogic<Artists>
+    public interface IArtistLogic
     {
         //create
         void CreateArtist(int ArtistID, string Name, string Birthday, string Country);

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Logic
 {
-    public interface ITrackLogic : ILogic<Tracks>
+    public interface ITrackLogic
     {
         //create
         void CreateTrack(int TrackID, string Title, int AlbumID, string Genre, int ArtistID, string ReleaseDate);
