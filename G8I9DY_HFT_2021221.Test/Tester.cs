@@ -23,7 +23,7 @@ namespace G8I9DY_HFT_2021221.Test
             var mockArtistRepository = new Mock<IArtistRepository>();
             var mockTrackRepository= new Mock<ITrackRepository>();
             Albums fakealbum = new Albums() { AlbumID = 1, Title = "Call Me If You Get Lost", ArtistID = 1, Label = "Columbia Records", Length = new TimeSpan(00, 52, 41), ReleaseDate = new DateTime(2020, 06, 25) };
-            Artists fakeartist= new Artists() { ArtistID = 1, Name = "Tyler, The Creator", Birthday = "March 6, 1991", Nationality = "United States", GrammyWinner = true };
+            Artists fakeartist= new Artists() { ArtistID = 1, Name = "Tyler, The Creator", Birthday = new DateTime(1991, 03, 06), Nationality = "United States", GrammyWinner = true };
             var tracks = new List<Tracks>()
             {
                 new Tracks()
@@ -59,13 +59,13 @@ namespace G8I9DY_HFT_2021221.Test
             artistLogic = new ArtistLogic(mockArtistRepository.Object);
             trackLogic = new TrackLogic(mockTrackRepository.Object);
         }
-        [TestCase(1,"ValamiAlbum",1,"ValamiLabel",null,null)]
+        [TestCase(1,"Álomkép",1,"Universal Music", null,null)]
         public void AlbumCreateTest(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
         {
             Assert.That(() => albumLogic.CreateAlbum(albumID, Title, ArtistID,Label, length, releasedate),Throws.TypeOf<ArgumentException>());
 
         }
-        [TestCase(1,"Teszt Tamás",null,"zedország", false)]
+        [TestCase(1,"Bereczki Zoltán",null,"Magyarország", false)]
         public void ArtistCreateTest(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
         {
             Assert.That(() => artistLogic.CreateArtist(ArtistID, Name, Birthday, nationality, grammywinner), Throws.TypeOf<ArgumentException>());
@@ -76,6 +76,7 @@ namespace G8I9DY_HFT_2021221.Test
         {
             Assert.That(() => trackLogic.CreateTrack(TrackID, Title, AlbumID, Genre, plays, duration, ArtistID), Throws.TypeOf<ArgumentException>());
         }
+
 
 
 
