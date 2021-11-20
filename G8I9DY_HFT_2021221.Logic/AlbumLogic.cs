@@ -16,26 +16,22 @@ namespace G8I9DY_HFT_2021221.Logic
         {
             this.albumRepo = albumRepo;
         }
-        public void CreateAlbum(int albumID, string Title, int ArtistID, string Label)
+        public void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
         {
-            albumRepo.CreateAlbum(albumID, Title, ArtistID, Label);
+            albumRepo.CreateAlbum(albumID, Title, ArtistID, Label, length, releasedate);
         }
-
         public void DeleteAlbum(int albumID)
         {
             albumRepo.DeleteAlbum(albumID);
         }
-
         public IEnumerable<Albums> GetAll()
         {
             return albumRepo.GetAll();
         }
-
         public Albums GetOne(int id)
         {
             return albumRepo.GetOne(id);
         }
-
         public Albums ReadAlbum(int albumID)
         {
             return albumRepo.ReadAlbum(albumID);
@@ -45,10 +41,9 @@ namespace G8I9DY_HFT_2021221.Logic
         {
             return albumRepo.ReadAllAlbums();
         }
-
-        public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label)
+        public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
         {
-            albumRepo.UpdateAlbum(albumID, Title, ArtistID, Label);
+            albumRepo.UpdateAlbum(albumID, Title, ArtistID, Label, length, releasedate);
         }
     }
 }

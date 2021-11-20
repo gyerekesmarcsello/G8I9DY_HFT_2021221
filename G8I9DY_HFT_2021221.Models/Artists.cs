@@ -21,7 +21,10 @@ namespace G8I9DY_HFT_2021221.Models
         public string Birthday { get; set; }
 
         [Required]
-        public string Country { get; set; }
+        public string Nationality { get; set; }
+
+        [Required]
+        public bool GrammyWinner { get; set; }
 
         [NotMapped]
         public virtual Albums Album { get; set; }

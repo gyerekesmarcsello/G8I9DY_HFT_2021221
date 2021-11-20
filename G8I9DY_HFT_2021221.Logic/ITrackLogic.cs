@@ -10,13 +10,13 @@ namespace G8I9DY_HFT_2021221.Logic
     public interface ITrackLogic
     {
         //create
-        void CreateTrack(int TrackID, string Title, int AlbumID, string Genre, int ArtistID, string ReleaseDate);
+        void CreateTrack(int TrackID, string Title, int AlbumID, string Genre, int plays, TimeSpan duration, int ArtistID);
         //read
         Tracks ReadTrack(int TrackID);
         //readall
         IEnumerable<Tracks> ReadAllTracks();
         //update
-        void UpdateTrack(int TrackID, string Title, int AlbumID, string Genre, int ArtistID, string ReleaseDate);
+        void UpdateTrack(int TrackID, string Title, int AlbumID, string Genre, int plays, TimeSpan duration, int ArtistID);
         //delete
         void DeleteTrack(int TrackID);
     }

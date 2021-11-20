@@ -15,30 +15,25 @@ namespace G8I9DY_HFT_2021221.Logic
         {
             this.artistRepo = artistRepo;
         }
-
-        public void CreateArtist(int ArtistID, string Name, string Birthday, string Country)
+        public void CreateArtist(int ArtistID, string Name, string Birthday, string nationality, bool grammywinner)
         {
-           artistRepo.CreateArtist(ArtistID, Name, Birthday, Country);  
+           artistRepo.CreateArtist(ArtistID, Name, Birthday, nationality,grammywinner);  
         }
-
         public void DeleteArtist(int ArtistID)
         {
             artistRepo.DeleteArtist(ArtistID);
         }
-
         public IEnumerable<Artists> ReadAllArtist()
         {
             return artistRepo.ReadAllArtist();
         }
-
         public Artists ReadArtist(int ArtistID)
         {
             return artistRepo.ReadArtist(ArtistID);
         }
-
-        public void UpdateArtist(int ArtistID, string Name, string Birthday, string Country)
+        public void UpdateArtist(int ArtistID, string Name, string Birthday, string nationality, bool grammywinner)
         {
-            artistRepo.UpdateArtist(ArtistID, Name, Birthday, Country);
+            artistRepo.UpdateArtist(ArtistID, Name, Birthday, nationality,grammywinner);
         }
     }
 }

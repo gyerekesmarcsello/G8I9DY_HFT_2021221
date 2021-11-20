@@ -14,9 +14,9 @@ namespace G8I9DY_HFT_2021221.Repository
         {
 
         }
-        public void CreateArtist(int ArtistID, string Name, string Birthday, string Country)
+        public void CreateArtist(int ArtistID, string Name, string Birthday, string nationality,bool grammywinner)
         {
-            Artists artist = new Artists() { ArtistID = ArtistID, Name = Name, Birthday = Birthday, Country = Country };
+            Artists artist = new Artists() { ArtistID = ArtistID, Name = Name, Birthday = Birthday, Nationality = nationality,GrammyWinner=grammywinner };
             context.SaveChanges();
         }
 
@@ -41,10 +41,10 @@ namespace G8I9DY_HFT_2021221.Repository
             return GetOne(ArtistID);
         }
 
-        public void UpdateArtist(int ArtistID, string Name, string Birthday, string Country)
+        public void UpdateArtist(int ArtistID, string Name, string Birthday, string nationality, bool grammywinner)
         {
             DeleteArtist(ArtistID);
-            CreateArtist(ArtistID, Name, Birthday, Country);
+            CreateArtist(ArtistID, Name, Birthday, nationality,grammywinner);
             context.SaveChanges();
         }
     }

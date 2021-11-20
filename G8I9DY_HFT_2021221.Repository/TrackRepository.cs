@@ -14,9 +14,9 @@ namespace G8I9DY_HFT_2021221.Repository
         {
 
         }
-        public void CreateTrack(int TrackID, string Title, int AlbumID, string Genre, int ArtistID, string ReleaseDate)
+        public void CreateTrack(int TrackID, string Title, int AlbumID, string Genre,int plays,TimeSpan duration, int ArtistID)
         {
-            Tracks artist = new Tracks() { TrackID = TrackID, Title = Title, AlbumID = AlbumID, Genre = Genre,ArtistID=ArtistID,ReleaseDate=ReleaseDate};
+            Tracks artist = new Tracks() { TrackID = TrackID, Title = Title, AlbumID = AlbumID, Genre = Genre,Plays=plays,Duration=duration,ArtistID=ArtistID,};
             context.SaveChanges();
         }
 
@@ -41,10 +41,10 @@ namespace G8I9DY_HFT_2021221.Repository
             return GetOne(TrackID);
         }
 
-        public void UpdateTrack(int TrackID, string Title, int AlbumID, string Genre, int ArtistID, string ReleaseDate)
+        public void UpdateTrack(int TrackID, string Title, int AlbumID, string Genre, int Plays, TimeSpan Duration, int ArtistID)
         {
             DeleteTrack(ArtistID);
-            CreateTrack(TrackID, Title, AlbumID, Genre, ArtistID, ReleaseDate);
+            CreateTrack(TrackID, Title, AlbumID, Genre,Plays,Duration, ArtistID);
             context.SaveChanges();
         }
     }

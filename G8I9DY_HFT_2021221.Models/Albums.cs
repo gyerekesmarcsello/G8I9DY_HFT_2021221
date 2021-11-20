@@ -23,6 +23,12 @@ namespace G8I9DY_HFT_2021221.Models
         [Required]
         public string Label { get; set; }
 
+        [Required]
+        public TimeSpan Length { get; set; }
+
+        [Required]
+        public DateTime ReleaseDate { get; set; }
+
         [NotMapped]
         public virtual Artists Artist { get; set; }
 

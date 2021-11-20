@@ -27,7 +27,10 @@ namespace G8I9DY_HFT_2021221.Models
         public int ArtistID { get; set; }
 
         [Required]
-        public string ReleaseDate { get; set; }
+        public int Plays { get; set; }
+
+        [Required]
+        public TimeSpan Duration { get; set; }
 
         [NotMapped]
         public virtual Albums Album { get; set; }

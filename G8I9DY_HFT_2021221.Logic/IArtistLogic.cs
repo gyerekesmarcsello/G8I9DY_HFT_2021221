@@ -10,13 +10,13 @@ namespace G8I9DY_HFT_2021221.Logic
     public interface IArtistLogic
     {
         //create
-        void CreateArtist(int ArtistID, string Name, string Birthday, string Country);
+        void CreateArtist(int ArtistID, string Name, string Birthday, string nationality, bool grammywinner);
         //read
         Artists ReadArtist(int ArtistID);
         //readall
         IEnumerable<Artists> ReadAllArtist();
         //update
-        void UpdateArtist(int ArtistID, string Name, string Birthday, string Country);
+        void UpdateArtist(int ArtistID, string Name, string Birthday, string nationality, bool grammywinner);
         //delete
         void DeleteArtist(int ArtistID);
     }
