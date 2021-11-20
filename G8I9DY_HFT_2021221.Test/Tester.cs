@@ -59,11 +59,25 @@ namespace G8I9DY_HFT_2021221.Test
             artistLogic = new ArtistLogic(mockArtistRepository.Object);
             trackLogic = new TrackLogic(mockTrackRepository.Object);
         }
-        [TestCase(null)]
+        [TestCase(1,"ValamiAlbum",1,"ValamiLabel",null,null)]
         public void AlbumCreateTest(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
         {
+            Assert.That(() => albumLogic.CreateAlbum(albumID, Title, ArtistID,Label, length, releasedate),Throws.TypeOf<ArgumentException>());
 
         }
+        [TestCase(1,"Teszt Tamás",null,"zedország", false)]
+        public void ArtistCreateTest(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
+        {
+            Assert.That(() => artistLogic.CreateArtist(ArtistID, Name, Birthday, nationality, grammywinner), Throws.TypeOf<ArgumentException>());
+        }
+
+        [TestCase(1, "Kerek Egész", 1, "Hungarian Pop", 525401,null,1)]
+        public void TrackCreateTest(int TrackID, string Title, int AlbumID, string Genre, int plays, TimeSpan duration, int ArtistID)
+        {
+            Assert.That(() => trackLogic.CreateTrack(TrackID, Title, AlbumID, Genre, plays, duration, ArtistID), Throws.TypeOf<ArgumentException>());
+        }
+
+
 
     }
 }

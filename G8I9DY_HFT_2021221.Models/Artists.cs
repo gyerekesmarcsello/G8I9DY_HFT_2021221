@@ -18,7 +18,7 @@ namespace G8I9DY_HFT_2021221.Models
         public string Name { get; set; }
 
         [Required]
-        public string Birthday { get; set; }
+        public DateTime Birthday { get; set; }
 
         [Required]
         public string Nationality { get; set; }

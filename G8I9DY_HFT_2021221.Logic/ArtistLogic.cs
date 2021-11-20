@@ -15,7 +15,7 @@ namespace G8I9DY_HFT_2021221.Logic
         {
             this.artistRepo = artistRepo;
         }
-        public void CreateArtist(int ArtistID, string Name, string Birthday, string nationality, bool grammywinner)
+        public void CreateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
         {
            artistRepo.CreateArtist(ArtistID, Name, Birthday, nationality,grammywinner);  
         }
@@ -31,7 +31,7 @@ namespace G8I9DY_HFT_2021221.Logic
         {
             return artistRepo.ReadArtist(ArtistID);
         }
-        public void UpdateArtist(int ArtistID, string Name, string Birthday, string nationality, bool grammywinner)
+        public void UpdateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
         {
             artistRepo.UpdateArtist(ArtistID, Name, Birthday, nationality,grammywinner);
         }

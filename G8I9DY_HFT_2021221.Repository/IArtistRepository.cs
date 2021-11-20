@@ -10,13 +10,13 @@ namespace G8I9DY_HFT_2021221.Repository
     public interface IArtistRepository : IRepository<Artists>
     {
         //create
-        void CreateArtist(int ArtistID, string Name, string Birthday, string nationality, bool grammywinner);
+        void CreateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner);
         //read
         Artists ReadArtist(int ArtistID);
         //readall
         HashSet<Artists> ReadAllArtist();
         //update
-        void UpdateArtist(int ArtistID, string Name, string Birthday, string nationality, bool grammywinner);
+        void UpdateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner);
         //delete
         void DeleteArtist(int ArtistID);
     }

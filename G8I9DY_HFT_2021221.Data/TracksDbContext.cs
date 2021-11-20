@@ -66,13 +66,13 @@ namespace G8I9DY_HFT_2021221.Data
             Albums album6 = new Albums() { AlbumID = 6, Title = "Nectar", ArtistID = 6, Label = "88rising", Length = new TimeSpan(00, 53, 03), ReleaseDate = new DateTime(2020, 11, 25) };
             Albums album7 = new Albums() { AlbumID = 7, Title = "OK Computer", ArtistID = 7, Label = "Parlophone", Length = new TimeSpan(00, 53, 27), ReleaseDate = new DateTime(1997, 05, 21) };
 
-            Artists artist1 = new Artists() { ArtistID = 1, Name = "Tyler, The Creator", Birthday = "March 6, 1991", Nationality = "United States",GrammyWinner=true };
-            Artists artist2 = new Artists() { ArtistID = 2, Name = "Krúbi", Birthday = "November 17, 1994", Nationality = "Hungary", GrammyWinner = false };
-            Artists artist3 = new Artists() { ArtistID = 3, Name = "Doja Cat", Birthday = "October 21 1995", Nationality = "United States", GrammyWinner = false };
-            Artists artist4 = new Artists() { ArtistID = 4, Name = "Childish Gambino", Birthday = "September 25 1983", Nationality = "United States", GrammyWinner = true };
-            Artists artist5 = new Artists() { ArtistID = 5, Name = "Kanye West", Birthday = "June 8 1977", Nationality = "United States", GrammyWinner = true };
-            Artists artist6 = new Artists() { ArtistID = 6, Name = "Joji", Birthday = "September 18 1992", Nationality = "Japan", GrammyWinner = false };
-            Artists artist7 = new Artists() { ArtistID = 7, Name = "Radiohead", Birthday = "October 7 1968", Nationality = "England", GrammyWinner = true };
+            Artists artist1 = new Artists() { ArtistID = 1, Name = "Tyler, The Creator", Birthday = new DateTime(1991,03,06), Nationality = "United States",GrammyWinner=true };
+            Artists artist2 = new Artists() { ArtistID = 2, Name = "Krúbi", Birthday = new DateTime(1994, 11, 17), Nationality = "Hungary", GrammyWinner = false };
+            Artists artist3 = new Artists() { ArtistID = 3, Name = "Doja Cat", Birthday = new DateTime(1995, 10, 21), Nationality = "United States", GrammyWinner = false };
+            Artists artist4 = new Artists() { ArtistID = 4, Name = "Childish Gambino", Birthday = new DateTime(1983, 09, 25), Nationality = "United States", GrammyWinner = true };
+            Artists artist5 = new Artists() { ArtistID = 5, Name = "Kanye West", Birthday = new DateTime(1977, 06, 08), Nationality = "United States", GrammyWinner = true };
+            Artists artist6 = new Artists() { ArtistID = 6, Name = "Joji", Birthday = new DateTime(1992, 09, 18), Nationality = "Japan", GrammyWinner = false };
+            Artists artist7 = new Artists() { ArtistID = 7, Name = "Radiohead", Birthday = new DateTime(1968, 11, 07), Nationality = "England", GrammyWinner = true };
 
             Tracks track1 = new Tracks() { TrackID = 1, Title = "WUSYANAME", AlbumID = 1, Genre = "R&B", Plays= 92452833,Duration=new TimeSpan(00,02,01), ArtistID = 1 };
             Tracks track2 = new Tracks() { TrackID = 2, Title = "JÉGHIDEG", AlbumID = 2, Genre = "Experimental", Plays = 728261, Duration = new TimeSpan(00, 07, 11), ArtistID = 2 };
