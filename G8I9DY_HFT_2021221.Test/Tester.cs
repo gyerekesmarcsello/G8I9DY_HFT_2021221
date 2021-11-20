@@ -1,7 +1,6 @@
 ﻿using G8I9DY_HFT_2021221.Logic;
 using G8I9DY_HFT_2021221.Models;
 using G8I9DY_HFT_2021221.Repository;
-using G8I9DY_HFT_2021221.Data;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -61,21 +60,17 @@ namespace G8I9DY_HFT_2021221.Test
             trackLogic = new TrackLogic(mockTrackRepository.Object);
         }
         #region Független tesztek
-        [Test]
-        public void TrackTableTest()
+        [TestCase(1)]
+        public void AlbumDeleteExceptionTest(int id)
         {
-            TracksDbContext ctx = new TracksDbContext();
-            Assert.That(ctx.Tracks, Is.Not.Null);
+            Assert.That(() => albumLogic.DeleteAlbum(id), Throws.TypeOf<KeyNotFoundException>());
+
         }
-        public void ArtistTableTest()
+        [TestCase(78,"ValamiTitle",32,"ValamiLabel",null,null)]
+        public void AlbumUpdateExceptionTest(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
         {
-            TracksDbContext ctx = new TracksDbContext();
-            Assert.That(ctx.Artist, Is.Not.Null);
-        }
-        public void AlbumTableTest()
-        {
-            TracksDbContext ctx = new TracksDbContext();
-            Assert.That(ctx.Albums, Is.Not.Null);
+            Assert.That(() => albumLogic.UpdateAlbum(albumID,Title,ArtistID,Label,length,releasedate), Throws.TypeOf<KeyNotFoundException>());
+
         }
         #endregion
         #region CRUD tesztek
