@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Data
 {
-    class TracksDbContext : DbContext
+    public class TracksDbContext : DbContext
     {
         public virtual DbSet<Albums> Albums { get; set; }
 

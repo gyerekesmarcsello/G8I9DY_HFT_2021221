@@ -1,6 +1,7 @@
 ﻿using G8I9DY_HFT_2021221.Logic;
 using G8I9DY_HFT_2021221.Models;
 using G8I9DY_HFT_2021221.Repository;
+using G8I9DY_HFT_2021221.Data;
 using Moq;
 using NUnit.Framework;
 using System;
@@ -59,6 +60,25 @@ namespace G8I9DY_HFT_2021221.Test
             artistLogic = new ArtistLogic(mockArtistRepository.Object);
             trackLogic = new TrackLogic(mockTrackRepository.Object);
         }
+        #region Független tesztek
+        [Test]
+        public void TrackTableTest()
+        {
+            TracksDbContext ctx = new TracksDbContext();
+            Assert.That(ctx.Tracks, Is.Not.Null);
+        }
+        public void ArtistTableTest()
+        {
+            TracksDbContext ctx = new TracksDbContext();
+            Assert.That(ctx.Artist, Is.Not.Null);
+        }
+        public void AlbumTableTest()
+        {
+            TracksDbContext ctx = new TracksDbContext();
+            Assert.That(ctx.Albums, Is.Not.Null);
+        }
+        #endregion
+        #region CRUD tesztek
         [TestCase(1,"Álomkép",1,"Universal Music", null,null)]
         public void AlbumCreateTest(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
         {
@@ -76,6 +96,8 @@ namespace G8I9DY_HFT_2021221.Test
         {
             Assert.That(() => trackLogic.CreateTrack(TrackID, Title, AlbumID, Genre, plays, duration, ArtistID), Throws.TypeOf<ArgumentException>());
         }
+        #endregion
+        //NON-CRUD tesztek
 
 
 
