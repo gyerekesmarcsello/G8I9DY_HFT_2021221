@@ -10,13 +10,13 @@ namespace G8I9DY_HFT_2021221.Logic
     public interface IAlbumLogic
     {
         //create
-        void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate);
+        void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre);
         //read
         Albums ReadAlbum(int albumID);
         //readall
         IEnumerable<Albums> ReadAllAlbums();
         //update
-        void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate);
+        void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre);
         //delete
         void DeleteAlbum(int albumID);
     }

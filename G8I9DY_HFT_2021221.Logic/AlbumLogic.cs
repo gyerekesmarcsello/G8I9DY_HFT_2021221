@@ -16,9 +16,9 @@ namespace G8I9DY_HFT_2021221.Logic
         {
             this.albumRepo = albumRepo;
         }
-        public void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
+        public void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
-            albumRepo.CreateAlbum(albumID, Title, ArtistID, Label, length, releasedate);
+            albumRepo.CreateAlbum(albumID, Title, ArtistID, Label, length, releasedate,Genre);
         }
         public void DeleteAlbum(int albumID)
         {
@@ -41,9 +41,9 @@ namespace G8I9DY_HFT_2021221.Logic
         {
             return albumRepo.ReadAllAlbums();
         }
-        public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
+        public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
-            albumRepo.UpdateAlbum(albumID, Title, ArtistID, Label, length, releasedate);
+            albumRepo.UpdateAlbum(albumID, Title, ArtistID, Label, length, releasedate,Genre);
         }
     }
 }

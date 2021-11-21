@@ -10,13 +10,13 @@ namespace G8I9DY_HFT_2021221.Repository
     public interface ITrackRepository: IRepository<Tracks>
     {
         //create
-        void CreateTrack(int TrackID, string Title, int AlbumID, string Genre, int plays, TimeSpan duration, int ArtistID);
+        void CreateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit);
         //read
         Tracks ReadTrack(int TrackID);
         //readall
         HashSet<Tracks> ReadAllTracks();
         //update
-        void UpdateTrack(int TrackID, string Title, int AlbumID, string Genre, int plays, TimeSpan duration, int ArtistID);
+        void UpdateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit);
         //delete
         void DeleteTrack(int TrackID);
     }

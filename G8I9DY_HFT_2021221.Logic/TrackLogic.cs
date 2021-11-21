@@ -15,9 +15,9 @@ namespace G8I9DY_HFT_2021221.Logic
         {
             this.trackRepo = trackRepo;
         }
-        public void CreateTrack(int TrackID, string Title, int AlbumID, string Genre, int plays, TimeSpan duration, int ArtistID)
+        public void CreateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit)
         {
-            trackRepo.CreateTrack(TrackID, Title, AlbumID, Genre,plays,duration,ArtistID);   
+            trackRepo.CreateTrack(TrackID, Title, AlbumID,plays,duration,ArtistID,IsExplicit);   
         }
         public void DeleteTrack(int TrackID)
         {
@@ -31,9 +31,9 @@ namespace G8I9DY_HFT_2021221.Logic
         {
             return trackRepo.ReadTrack(TrackID);
         }
-        public void UpdateTrack(int TrackID, string Title, int AlbumID, string Genre, int plays, TimeSpan duration, int ArtistID)
+        public void UpdateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit)
         {
-            trackRepo.UpdateTrack(TrackID, Title, AlbumID, Genre, plays, duration, ArtistID);
+            trackRepo.UpdateTrack(TrackID, Title, AlbumID,plays, duration, ArtistID,IsExplicit);
         }
     }
 }

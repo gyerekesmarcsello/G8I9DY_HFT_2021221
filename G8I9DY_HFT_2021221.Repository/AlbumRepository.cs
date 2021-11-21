@@ -14,9 +14,9 @@ namespace G8I9DY_HFT_2021221.Repository
         {
 
         }
-        public void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length,DateTime releasedate)
+        public void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
-            Albums album = new Albums() { AlbumID = albumID, Title = Title, ArtistID = ArtistID, Label = Label, Length=length,ReleaseDate=releasedate};
+            Albums album = new Albums() { AlbumID = albumID, Title = Title, ArtistID = ArtistID, Label = Label, Length=length,ReleaseDate=releasedate,Genre=Genre};
             context.SaveChanges();
         }
 
@@ -40,10 +40,10 @@ namespace G8I9DY_HFT_2021221.Repository
             return (HashSet<Albums>)GetAll();
         }
 
-        public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
+        public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
             DeleteAlbum(albumID);
-            CreateAlbum(albumID,Title,ArtistID,Label,length,releasedate);
+            CreateAlbum(albumID,Title,ArtistID,Label,length,releasedate,Genre);
             context.SaveChanges();
         }
     }

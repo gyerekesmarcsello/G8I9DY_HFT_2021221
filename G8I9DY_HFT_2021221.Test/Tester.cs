@@ -22,29 +22,39 @@ namespace G8I9DY_HFT_2021221.Test
             var mockAlbumRepository = new Mock<IAlbumRepository>();
             var mockArtistRepository = new Mock<IArtistRepository>();
             var mockTrackRepository= new Mock<ITrackRepository>();
-            Albums fakealbum = new Albums() { AlbumID = 1, Title = "Call Me If You Get Lost", ArtistID = 1, Label = "Columbia Records", Length = new TimeSpan(00, 52, 41), ReleaseDate = new DateTime(2020, 06, 25) };
-            Artists fakeartist= new Artists() { ArtistID = 1, Name = "Tyler, The Creator", Birthday = new DateTime(1991, 03, 06), Nationality = "United States", GrammyWinner = true };
+            Albums fakealbum = new Albums() { AlbumID = 1, Title = "Álomkép", ArtistID = 1, Label = "Universal Music", Length = new TimeSpan(00, 42, 55), ReleaseDate = new DateTime(2010, 01, 01),Genre="Hungarian Pop" };
+            Artists fakeartist= new Artists() { ArtistID = 1, Name = "Bereczki Zoltán", Birthday = new DateTime(1976, 05, 02), Nationality = "Hungary", GrammyWinner = false };
             var tracks = new List<Tracks>()
             {
                 new Tracks()
                 {
                     TrackID = 1,
-                    Title = "WUSYANAME",
+                    Title = "Kerek Egész",
                     AlbumID = 1,
-                    Genre = "R&B",
-                    Plays= 92452833,
-                    Duration=new TimeSpan(00,02,01),
-                    ArtistID = 1
+                    Plays= 525401,
+                    Duration=new TimeSpan(00,02,53),
+                    ArtistID = 1,
+                    IsExplicit = false
                 },
                 new Tracks()
                 {
                     TrackID = 2,
-                    Title = "LUMBERJACK",
+                    Title = "Szállj velem!",
                     AlbumID = 1,
-                    Genre = "Hip-hop",
-                    Plays= 53477915,
+                    Plays= 103094,
                     Duration=new TimeSpan(00,02,18),
-                    ArtistID = 1
+                    ArtistID = 1,
+                    IsExplicit = false
+                },
+                new Tracks()
+                {
+                    TrackID = 3,
+                    Title = "1001 Éjjel",
+                    AlbumID = 1,
+                    Plays= 19098,
+                    Duration=new TimeSpan(00,04,02),
+                    ArtistID = 1,
+                    IsExplicit = false
                 }
             }.AsQueryable();
             var albums = new List<Albums> { fakealbum}.AsQueryable();
@@ -66,30 +76,30 @@ namespace G8I9DY_HFT_2021221.Test
             Assert.That(() => albumLogic.DeleteAlbum(id), Throws.TypeOf<KeyNotFoundException>());
 
         }
-        [TestCase(78,"ValamiTitle",32,"ValamiLabel",null,null)]
-        public void AlbumUpdateExceptionTest(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
+        [TestCase(78,"ValamiTitle",32,"ValamiLabel",null,null,"Trash")]
+        public void AlbumUpdateExceptionTest(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
-            Assert.That(() => albumLogic.UpdateAlbum(albumID,Title,ArtistID,Label,length,releasedate), Throws.TypeOf<KeyNotFoundException>());
+            Assert.That(() => albumLogic.UpdateAlbum(albumID,Title,ArtistID,Label,length,releasedate,Genre), Throws.TypeOf<KeyNotFoundException>());
 
         }
         #endregion
         #region CRUD tesztek
-        [TestCase(1,"Álomkép",1,"Universal Music", null,null)]
-        public void AlbumCreateTest(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate)
+        [TestCase(1,"Álomkép",1,"Universal Music", null,null,"Trash")]
+        public void AlbumCreateTest(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate,string Genre)
         {
-            Assert.That(() => albumLogic.CreateAlbum(albumID, Title, ArtistID,Label, length, releasedate),Throws.TypeOf<ArgumentException>());
+            Assert.That(() => albumLogic.CreateAlbum(albumID, Title, ArtistID,Label, length, releasedate,Genre),Throws.TypeOf<ArgumentException>());
 
         }
-        [TestCase(1,"Bereczki Zoltán",null,"Magyarország", false)]
+        [TestCase(1,"Bereczki Zoltán",null,"Hungary", false)]
         public void ArtistCreateTest(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
         {
             Assert.That(() => artistLogic.CreateArtist(ArtistID, Name, Birthday, nationality, grammywinner), Throws.TypeOf<ArgumentException>());
         }
 
         [TestCase(1, "Kerek Egész", 1, "Hungarian Pop", 525401,null,1)]
-        public void TrackCreateTest(int TrackID, string Title, int AlbumID, string Genre, int plays, TimeSpan duration, int ArtistID)
+        public void TrackCreateTest(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID,bool IsExplicit)
         {
-            Assert.That(() => trackLogic.CreateTrack(TrackID, Title, AlbumID, Genre, plays, duration, ArtistID), Throws.TypeOf<ArgumentException>());
+            Assert.That(() => trackLogic.CreateTrack(TrackID, Title, AlbumID, plays, duration, ArtistID,IsExplicit), Throws.TypeOf<ArgumentException>());
         }
         #endregion
         //NON-CRUD tesztek

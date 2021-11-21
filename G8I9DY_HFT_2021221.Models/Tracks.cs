@@ -20,8 +20,6 @@ namespace G8I9DY_HFT_2021221.Models
         [ForeignKey(nameof(Albums))]
         public int AlbumID { get; set; }
 
-        [Required]
-        public string Genre { get; set; }
 
         [ForeignKey(nameof(Artists))]
         public int ArtistID { get; set; }
@@ -31,6 +29,9 @@ namespace G8I9DY_HFT_2021221.Models
 
         [Required]
         public TimeSpan Duration { get; set; }
+
+        [Required]
+        public bool IsExplicit { get; set; }
 
         [NotMapped]
         public virtual Albums Album { get; set; }
