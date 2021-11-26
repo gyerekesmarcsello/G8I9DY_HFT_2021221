@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using G8I9DY_HFT_2021221.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace G8I9DY_HFT_2021221.Repository
 {
     public abstract class Repository<T> : IRepository<T> where T : class
     {
-        protected DbContext context;
-        public Repository(DbContext context)
+        protected TracksDbContext context;
+        public Repository(TracksDbContext context)
         {
             this.context = context;
         }

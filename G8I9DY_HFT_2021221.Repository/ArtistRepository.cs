@@ -1,4 +1,5 @@
-﻿using G8I9DY_HFT_2021221.Models;
+﻿using G8I9DY_HFT_2021221.Data;
+using G8I9DY_HFT_2021221.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace G8I9DY_HFT_2021221.Repository
 {
     public class ArtistRepository : Repository<Artists>, IArtistRepository
     {
-        public ArtistRepository(DbContext context) : base(context)
+        public ArtistRepository(TracksDbContext context) : base(context)
         {
 
         }
