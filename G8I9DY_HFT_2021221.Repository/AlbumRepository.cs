@@ -18,6 +18,7 @@ namespace G8I9DY_HFT_2021221.Repository
         public void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
             Albums album = new Albums() { AlbumID = albumID, Title = Title, ArtistID = ArtistID, Label = Label, Length=length,ReleaseDate=releasedate,Genre=Genre};
+            Create(album);
             context.SaveChanges();
         }
 

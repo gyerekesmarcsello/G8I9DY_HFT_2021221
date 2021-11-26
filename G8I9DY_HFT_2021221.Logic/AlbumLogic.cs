@@ -48,14 +48,6 @@ namespace G8I9DY_HFT_2021221.Logic
                 throw new KeyNotFoundException();
             }
         }
-        public IEnumerable<Albums> GetAll()
-        {
-            return albumRepo.GetAll();
-        }
-        public Albums GetOne(int id)
-        {
-            return albumRepo.GetOne(id);
-        }
         public Albums ReadAlbum(int albumID)
         {
             var temp = from albums in albumRepo.GetAll() where albums.AlbumID == albumID select albums.AlbumID;

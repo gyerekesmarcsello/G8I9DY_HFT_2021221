@@ -18,6 +18,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
             this.artistLogic = artistLogic;
         }
 
+        [HttpGet]
         //GET:/artists
         public IEnumerable<Artists> Get()
         {
@@ -44,7 +45,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
         }
 
         //DELETE /artists/5
-        [HttpGet("{id}")]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
             artistLogic.DeleteArtist(id);

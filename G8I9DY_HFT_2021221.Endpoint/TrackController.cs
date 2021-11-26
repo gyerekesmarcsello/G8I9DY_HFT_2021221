@@ -18,6 +18,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
             this.trackLogic = trackLogic;
         }
 
+        [HttpGet]
         //GET:/tracks
         public IEnumerable<Tracks> Get()
         {
@@ -45,7 +46,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
         }
 
         //DELETE /track/5
-        [HttpGet("{id}")]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
             trackLogic.DeleteTrack(id);

@@ -18,6 +18,7 @@ namespace G8I9DY_HFT_2021221.Repository
         public void CreateArtist(int ArtistID, string Name, DateTime Birthday, string nationality,bool grammywinner)
         {
             Artists artist = new Artists() { ArtistID = ArtistID, Name = Name, Birthday = Birthday, Nationality = nationality,GrammyWinner=grammywinner };
+            Create(artist);
             context.SaveChanges();
         }
 

@@ -64,7 +64,8 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void UpdateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit)
         {
-            trackRepo.UpdateTrack(TrackID, Title, AlbumID,plays, duration, ArtistID,IsExplicit);
+            DeleteTrack(TrackID);
+            UpdateTrack(TrackID, Title, AlbumID,plays, duration, ArtistID,IsExplicit);
         }
     }
 }

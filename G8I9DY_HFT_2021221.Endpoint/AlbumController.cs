@@ -18,7 +18,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
             this.albumLogic = albumLogic;
         }
 
-        //GET:/albums
+        [HttpGet]
         public IEnumerable<Albums> Get()
         {
             return albumLogic.ReadAllAlbums();

@@ -26,7 +26,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
             services.AddTransient<IAlbumRepository, AlbumRepository>();
             services.AddTransient<IArtistRepository, ArtistRepository>();
             services.AddTransient<ITrackRepository, TrackRepository>();
-            services.AddDbContext<TracksDbContext>();
+            services.AddTransient<TracksDbContext,TracksDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

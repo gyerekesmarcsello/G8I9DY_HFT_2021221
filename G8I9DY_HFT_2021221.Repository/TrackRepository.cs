@@ -17,7 +17,8 @@ namespace G8I9DY_HFT_2021221.Repository
         }
         public void CreateTrack(int TrackID, string Title, int AlbumID,int plays,TimeSpan duration, int ArtistID, bool IsExplicit)
         {
-            Tracks artist = new Tracks() { TrackID = TrackID, Title = Title, AlbumID = AlbumID,Plays=plays,Duration=duration,ArtistID=ArtistID, IsExplicit= IsExplicit};
+            Tracks tracks = new Tracks() { TrackID = TrackID, Title = Title, AlbumID = AlbumID,Plays=plays,Duration=duration,ArtistID=ArtistID, IsExplicit= IsExplicit};
+            Create(tracks);
             context.SaveChanges();
         }
 

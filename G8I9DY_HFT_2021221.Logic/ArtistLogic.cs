@@ -63,7 +63,8 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void UpdateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
         {
-            artistRepo.UpdateArtist(ArtistID, Name, Birthday, nationality,grammywinner);
+            DeleteArtist(ArtistID);
+            UpdateArtist(ArtistID, Name, Birthday, nationality,grammywinner);
         }
     }
 }
