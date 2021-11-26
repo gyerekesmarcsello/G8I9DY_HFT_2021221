@@ -17,7 +17,7 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void CreateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
         {
-            if (String.IsNullOrEmpty(ArtistID.ToString()) || Name == null || nationality == null)
+            if (String.IsNullOrEmpty(ArtistID.ToString()) || Name == null || String.IsNullOrEmpty(Birthday.ToString()) || nationality == null || String.IsNullOrEmpty(grammywinner.ToString()))
             {
                 throw new ArgumentException("Value cannot be null!");
             }
