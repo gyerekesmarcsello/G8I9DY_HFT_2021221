@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Models
@@ -34,9 +35,11 @@ namespace G8I9DY_HFT_2021221.Models
         public bool IsExplicit { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Albums Album { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
         public virtual Artists Artist { get; set; }
 
 
