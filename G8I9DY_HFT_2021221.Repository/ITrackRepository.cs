@@ -14,7 +14,7 @@ namespace G8I9DY_HFT_2021221.Repository
         //read
         Tracks ReadTrack(int TrackID);
         //readall
-        HashSet<Tracks> ReadAllTracks();
+        IQueryable<Tracks> ReadAllTracks();
         //update
         void UpdateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit);
         //delete

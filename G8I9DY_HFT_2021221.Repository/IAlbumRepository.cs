@@ -14,7 +14,7 @@ namespace G8I9DY_HFT_2021221.Repository
         //read
         Albums ReadAlbum(int albumID);
         //readall
-        HashSet<Albums> ReadAllAlbums();
+        IQueryable<Albums> ReadAllAlbums();
         //update
         void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre);
         //delete

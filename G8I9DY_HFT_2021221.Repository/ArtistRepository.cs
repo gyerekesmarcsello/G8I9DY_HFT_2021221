@@ -32,9 +32,9 @@ namespace G8I9DY_HFT_2021221.Repository
             return GetAll().SingleOrDefault(x => x.ArtistID == id);
         }
 
-        public HashSet<Artists> ReadAllArtist()
+        public IQueryable<Artists> ReadAllArtist()
         {
-            return (HashSet<Artists>)GetAll();
+            return (IQueryable<Artists>)GetAll();
         }
 
         public Artists ReadArtist(int ArtistID)

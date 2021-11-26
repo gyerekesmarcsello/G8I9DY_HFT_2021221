@@ -32,9 +32,9 @@ namespace G8I9DY_HFT_2021221.Repository
             return GetAll().SingleOrDefault(x => x.TrackID == id);
         }
 
-        public HashSet<Tracks> ReadAllTracks()
+        public IQueryable<Tracks> ReadAllTracks()
         {
-            return (HashSet<Tracks>)GetAll();
+            return (IQueryable<Tracks>)GetAll();
         }
 
         public Tracks ReadTrack(int TrackID)

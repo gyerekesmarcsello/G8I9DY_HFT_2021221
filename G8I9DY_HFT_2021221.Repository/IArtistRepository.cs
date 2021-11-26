@@ -14,7 +14,7 @@ namespace G8I9DY_HFT_2021221.Repository
         //read
         Artists ReadArtist(int ArtistID);
         //readall
-        HashSet<Artists> ReadAllArtist();
+        IQueryable<Artists> ReadAllArtist();
         //update
         void UpdateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner);
         //delete

@@ -36,9 +36,9 @@ namespace G8I9DY_HFT_2021221.Repository
             return GetOne(albumID);
         }
 
-        public HashSet<Albums> ReadAllAlbums()
+        public IQueryable<Albums> ReadAllAlbums()
         {
-            return (HashSet<Albums>)GetAll();
+            return (IQueryable<Albums>)GetAll();
         }
 
         public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
