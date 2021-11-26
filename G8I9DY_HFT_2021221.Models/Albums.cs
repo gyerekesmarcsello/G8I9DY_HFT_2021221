@@ -13,6 +13,7 @@ namespace G8I9DY_HFT_2021221.Models
     public class Albums
     {
         [Key]
+        [Required]
         public int AlbumID { get; set; }
 
         [Required]
