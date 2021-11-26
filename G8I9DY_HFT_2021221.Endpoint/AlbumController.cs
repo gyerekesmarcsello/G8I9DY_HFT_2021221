@@ -33,9 +33,15 @@ namespace G8I9DY_HFT_2021221.Endpoint
 
         //POST /albums
         [HttpPost]
-        public void Post([FromBody] int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
+        public void Post([FromBody] Albums albums)
         {
-            albumLogic.CreateAlbum(albumID, Title, ArtistID, Label, length, releasedate, Genre);
+            albumLogic.CreateAlbum(albums.AlbumID, albums.Title, albums.ArtistID, albums.Label, albums.Length, albums.ReleaseDate, albums.Genre);
+        }
+
+        [HttpPut]
+        public void Put([FromBody] Albums albums)
+        {
+            albumLogic.UpdateAlbum(albums.AlbumID, albums.Title, albums.ArtistID, albums.Label, albums.Length, albums.ReleaseDate, albums.Genre);
         }
 
         //DELETE /albums/5

@@ -33,9 +33,15 @@ namespace G8I9DY_HFT_2021221.Endpoint
 
         //POST /tracks
         [HttpPost]
-        public void Post([FromBody] int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit)
+        public void Post([FromBody] Tracks tracks)
         {
-            trackLogic.CreateTrack(TrackID, Title, AlbumID,plays, duration, ArtistID, IsExplicit);
+            trackLogic.CreateTrack(tracks.TrackID, tracks.Title, tracks.AlbumID, tracks.Plays, tracks.Duration, tracks.ArtistID, tracks.IsExplicit);
+        }
+
+        [HttpPut]
+        public void Put([FromBody] Tracks tracks)
+        {
+            trackLogic.UpdateTrack(tracks.TrackID,tracks.Title,tracks.AlbumID,tracks.Plays,tracks.Duration,tracks.ArtistID,tracks.IsExplicit);
         }
 
         //DELETE /track/5

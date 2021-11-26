@@ -33,9 +33,14 @@ namespace G8I9DY_HFT_2021221.Endpoint
 
         //POST /artists
         [HttpPost]
-        public void Post([FromBody] int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
+        public void Post([FromBody] Artists artists)
         {
-            artistLogic.CreateArtist(ArtistID,Name,Birthday,nationality,grammywinner);
+            artistLogic.CreateArtist(artists.ArtistID, artists.Name, artists.Birthday, artists.Nationality, artists.GrammyWinner);
+        }
+        [HttpPut]
+        public void Put([FromBody] Artists artists)
+        {
+            artistLogic.UpdateArtist(artists.ArtistID, artists.Name, artists.Birthday, artists.Nationality, artists.GrammyWinner);
         }
 
         //DELETE /artists/5
