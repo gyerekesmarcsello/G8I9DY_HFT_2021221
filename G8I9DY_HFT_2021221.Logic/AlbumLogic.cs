@@ -18,11 +18,35 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
-            albumRepo.CreateAlbum(albumID, Title, ArtistID, Label, length, releasedate,Genre);
+            if (String.IsNullOrEmpty(albumID.ToString()) || Title == null ||  Label == null ||  String.IsNullOrEmpty(ArtistID.ToString()))
+            {
+                throw new ArgumentException("Value cannot be null!");
+            }
+            else
+            {
+                var temp = from albums in albumRepo.GetAll() where albums.AlbumID == albumID select albums.AlbumID;
+                if (temp.Count() > 0)
+                {
+                    throw new ArgumentException("Already exists!");
+                }
+                else
+                {
+                    albumRepo.CreateAlbum(albumID, Title, ArtistID, Label, length, releasedate, Genre);
+                }
+
+            }
         }
         public void DeleteAlbum(int albumID)
         {
-            albumRepo.DeleteAlbum(albumID);
+            try
+            {
+                ReadAlbum(albumID);
+                albumRepo.DeleteAlbum(albumID);
+            }
+            catch (Exception)
+            {
+                throw new KeyNotFoundException();
+            }
         }
         public IEnumerable<Albums> GetAll()
         {
@@ -34,7 +58,15 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public Albums ReadAlbum(int albumID)
         {
-            return albumRepo.ReadAlbum(albumID);
+            var temp = from albums in albumRepo.GetAll() where albums.AlbumID == albumID select albums.AlbumID;
+            if (temp.Count() > 0)
+            {
+                return albumRepo.ReadAlbum(albumID);
+            }
+            else
+            {
+                throw new KeyNotFoundException();
+            }
         }
 
         public IEnumerable<Albums> ReadAllAlbums()

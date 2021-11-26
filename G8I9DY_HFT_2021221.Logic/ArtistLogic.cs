@@ -17,11 +17,33 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void CreateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
         {
-           artistRepo.CreateArtist(ArtistID, Name, Birthday, nationality,grammywinner);  
+            if (String.IsNullOrEmpty(ArtistID.ToString()) || Name == null || nationality == null)
+            {
+                throw new ArgumentException("Value cannot be null!");
+            }
+            else {
+                var temp = from artists in artistRepo.GetAll() where artists.ArtistID == ArtistID select artists.ArtistID;
+                if (temp.Count() > 0)
+                {
+                    throw new ArgumentException("Already exists!");
+                }
+                else
+                {
+                    artistRepo.CreateArtist(ArtistID, Name, Birthday, nationality, grammywinner);
+                }
+            }
         }
         public void DeleteArtist(int ArtistID)
         {
-            artistRepo.DeleteArtist(ArtistID);
+            try
+            {
+                ReadArtist(ArtistID);
+                artistRepo.DeleteArtist(ArtistID);
+            }
+            catch (Exception)
+            {
+                throw new KeyNotFoundException();
+            }
         }
         public IEnumerable<Artists> ReadAllArtist()
         {
@@ -29,7 +51,15 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public Artists ReadArtist(int ArtistID)
         {
-            return artistRepo.ReadArtist(ArtistID);
+            var temp = from artists in artistRepo.GetAll() where artists.ArtistID == ArtistID select artists.ArtistID;
+            if (temp.Count() > 0)
+            {
+                return artistRepo.ReadArtist(ArtistID);
+            }
+            else
+            {
+                throw new KeyNotFoundException();
+            }
         }
         public void UpdateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
         {
