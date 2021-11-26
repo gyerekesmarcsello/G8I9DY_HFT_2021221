@@ -39,7 +39,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
         }
 
         //DELETE /albums/5
-        [HttpGet("{id}")]
+        [HttpDelete("{id}")]
         public void Delete(int id)
         {
             albumLogic.DeleteAlbum(id);
