@@ -64,8 +64,23 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void UpdateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit)
         {
-            DeleteTrack(TrackID);
-            UpdateTrack(TrackID, Title, AlbumID,plays, duration, ArtistID,IsExplicit);
+            if (String.IsNullOrEmpty(TrackID.ToString()) || Title == null || String.IsNullOrEmpty(AlbumID.ToString()) || String.IsNullOrEmpty(plays.ToString()) || String.IsNullOrEmpty(duration.ToString()) || String.IsNullOrEmpty(ArtistID.ToString()) || String.IsNullOrEmpty(IsExplicit.ToString()))
+            {
+                throw new ArgumentException("Value cannot be null!");
+            }
+            else
+            {
+                var temp = from tracks in trackRepo.GetAll() where tracks.TrackID == TrackID select tracks.TrackID;
+                if (temp.Count() > 0)
+                {
+                    throw new ArgumentException("Already exists!");
+                }
+                else
+                {
+                    trackRepo.UpdateTrack(TrackID, Title, AlbumID, plays, duration, ArtistID, IsExplicit);
+                }
+            }
+
         }
     }
 }

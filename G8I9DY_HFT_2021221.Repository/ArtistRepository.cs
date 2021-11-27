@@ -45,8 +45,11 @@ namespace G8I9DY_HFT_2021221.Repository
 
         public void UpdateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
         {
-            DeleteArtist(ArtistID);
-            CreateArtist(ArtistID, Name, Birthday, nationality,grammywinner);
+            var toUpdate = GetOne(ArtistID);
+            toUpdate.Name = Name;
+            toUpdate.Birthday = Birthday;
+            toUpdate.Nationality = nationality;
+            toUpdate.GrammyWinner = grammywinner;
             context.SaveChanges();
         }
     }

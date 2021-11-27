@@ -45,8 +45,13 @@ namespace G8I9DY_HFT_2021221.Repository
 
         public void UpdateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit)
         {
-            DeleteTrack(ArtistID);
-            CreateTrack(TrackID, Title, AlbumID,plays,duration, ArtistID,IsExplicit);
+            var toUpdate = GetOne(TrackID);
+            toUpdate.Title=Title;
+            toUpdate.AlbumID=AlbumID;
+            toUpdate.Plays=plays;
+            toUpdate.Duration=duration;
+            toUpdate.ArtistID=ArtistID;
+            toUpdate.IsExplicit=IsExplicit;
             context.SaveChanges();
         }
     }

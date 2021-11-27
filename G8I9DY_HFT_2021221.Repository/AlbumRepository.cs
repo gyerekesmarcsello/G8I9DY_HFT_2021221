@@ -44,8 +44,13 @@ namespace G8I9DY_HFT_2021221.Repository
 
         public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
-            DeleteAlbum(albumID);
-            CreateAlbum(albumID,Title,ArtistID,Label,length,releasedate,Genre);
+            var toUpdate = GetOne(albumID);
+            toUpdate.Title=Title;
+            toUpdate.ArtistID=ArtistID;
+            toUpdate.Label=Label;
+            toUpdate.Length=length;
+            toUpdate.ReleaseDate=releasedate;
+            toUpdate.Genre=Genre;
             context.SaveChanges();
         }
     }

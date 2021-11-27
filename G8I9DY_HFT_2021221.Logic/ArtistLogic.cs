@@ -63,8 +63,22 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void UpdateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner)
         {
-            DeleteArtist(ArtistID);
-            UpdateArtist(ArtistID, Name, Birthday, nationality,grammywinner);
+            if (String.IsNullOrEmpty(ArtistID.ToString()) || Name == null || String.IsNullOrEmpty(Birthday.ToString()) || nationality == null || String.IsNullOrEmpty(grammywinner.ToString()))
+            {
+                throw new ArgumentException("Value cannot be null!");
+            }
+            else
+            {
+                var temp = from artists in artistRepo.GetAll() where artists.ArtistID == ArtistID select artists.ArtistID;
+                if (temp.Count() > 0)
+                {
+                    throw new ArgumentException("Already exists!");
+                }
+                else
+                {
+                    artistRepo.UpdateArtist(ArtistID, Name, Birthday, nationality, grammywinner);
+                }
+            }
         }
     }
 }

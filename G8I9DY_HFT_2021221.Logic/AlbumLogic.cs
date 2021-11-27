@@ -67,7 +67,23 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
-            albumRepo.UpdateAlbum(albumID, Title, ArtistID, Label, length, releasedate,Genre);
+            if (String.IsNullOrEmpty(albumID.ToString()) || Title == null || String.IsNullOrEmpty(length.ToString()) || Label == null || String.IsNullOrEmpty(ArtistID.ToString()) || String.IsNullOrEmpty(releasedate.ToString()))
+            {
+                throw new ArgumentException("Value cannot be null!");
+            }
+            else
+            {
+                var temp = from albums in albumRepo.GetAll() where albums.AlbumID == albumID select albums.AlbumID;
+                if (temp.Count() > 0)
+                {
+                    throw new ArgumentException("Already exists!");
+                }
+                else
+                {
+                    albumRepo.UpdateAlbum(albumID, Title, ArtistID, Label, length, releasedate, Genre);
+                }
+
+            }
         }
     }
 }
