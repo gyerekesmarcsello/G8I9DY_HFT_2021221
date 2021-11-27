@@ -82,8 +82,8 @@ namespace G8I9DY_HFT_2021221.Data
             Albums album14 = new Albums() { AlbumID = 14, Title = "In Rainbows", ArtistID = 7, Label = "Self-released", Length = new TimeSpan(00, 42, 39), ReleaseDate = new DateTime(2007, 10, 10), Genre="Indie"};
 
             //TODO
-            Albums album15 = new Albums() { AlbumID = 15, Title = "WILLBEDELETED", ArtistID = 1, Label = "WILLBEDELETED", Length = new TimeSpan(00, 04, 20), ReleaseDate = new DateTime(2069, 04, 20), Genre = "WILLBEDELETED" };
-            Albums album16 = new Albums() { AlbumID = 16, Title = "WILLBEUPDATED", ArtistID = 1, Label = "WILLBEUPDATED", Length = new TimeSpan(00, 04, 20), ReleaseDate = new DateTime(2069, 04, 20), Genre = "WILLBEUPDATED" };
+            Albums album15 = new Albums() { AlbumID = 15, Title = "WILLBEDELETED", ArtistID = 9, Label = "WILLBEDELETED", Length = new TimeSpan(00, 04, 20), ReleaseDate = new DateTime(2069, 04, 20), Genre = "WILLBEDELETED" };
+            Albums album16 = new Albums() { AlbumID = 16, Title = "WILLBEUPDATED", ArtistID = 9, Label = "WILLBEUPDATED", Length = new TimeSpan(00, 04, 20), ReleaseDate = new DateTime(2069, 04, 20), Genre = "WILLBEUPDATED" };
             #endregion
             #region Artists
             Artists artist1 = new Artists() { ArtistID = 1, Name = "Tyler, The Creator", Birthday = new DateTime(1991,03,06), Nationality = "United States",GrammyWinner=true };
@@ -158,8 +158,8 @@ namespace G8I9DY_HFT_2021221.Data
             Tracks track42 = new Tracks() { TrackID = 42, Title = "Reckoner", AlbumID = 14, Plays = 50375856, Duration = new TimeSpan(00, 04, 50), ArtistID = 7, IsExplicit = false };
 
             //WILLBE
-            Tracks track43 = new Tracks() { TrackID = 43, Title = "WILLBEDELETED", AlbumID = 1, Plays = 69420, Duration = new TimeSpan(00, 04, 20), ArtistID = 1, IsExplicit = false };
-            Tracks track44 = new Tracks() { TrackID = 44, Title = "WILLBEUPDATED", AlbumID = 1, Plays = 69420, Duration = new TimeSpan(00, 04, 20), ArtistID = 1, IsExplicit = false };
+            Tracks track43 = new Tracks() { TrackID = 43, Title = "WILLBEDELETED", AlbumID = 9, Plays = 69420, Duration = new TimeSpan(00, 04, 20), ArtistID = 1, IsExplicit = false };
+            Tracks track44 = new Tracks() { TrackID = 44, Title = "WILLBEUPDATED", AlbumID = 9, Plays = 69420, Duration = new TimeSpan(00, 04, 20), ArtistID = 1, IsExplicit = false };
             #endregion
 
             modelBuilder.Entity<Albums>().HasData(album1, album2, album3, album4, album5, album6, album7, album8, album9, album10, album11, album12, album13, album14,album15,album16);

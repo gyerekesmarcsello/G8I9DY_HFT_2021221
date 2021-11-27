@@ -77,10 +77,10 @@ namespace G8I9DY_HFT_2021221.Client
 
             rest.Put(new Tracks()
             {
-                TrackID = 43,
+                TrackID = 44,
                 Title = "PUTTRACK",
-                AlbumID = 1,
-                ArtistID = 1,
+                AlbumID = 16,
+                ArtistID = 9,
                 Plays = 42069,
                 Duration = new TimeSpan(00, 40, 20),
                 IsExplicit = true,
