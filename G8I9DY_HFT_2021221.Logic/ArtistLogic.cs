@@ -37,7 +37,7 @@ namespace G8I9DY_HFT_2021221.Logic
         {
             try
             {
-                ReadArtist(ArtistID);
+                ReadArtist(ArtistID);          
                 artistRepo.DeleteArtist(ArtistID);
             }
             catch (Exception)
@@ -72,11 +72,11 @@ namespace G8I9DY_HFT_2021221.Logic
                 var temp = from artists in artistRepo.GetAll() where artists.ArtistID == ArtistID select artists.ArtistID;
                 if (temp.Count() > 0)
                 {
-                    throw new ArgumentException("Already exists!");
+                    artistRepo.UpdateArtist(ArtistID, Name, Birthday, nationality, grammywinner);
                 }
                 else
                 {
-                    artistRepo.UpdateArtist(ArtistID, Name, Birthday, nationality, grammywinner);
+                    throw new KeyNotFoundException();
                 }
             }
         }

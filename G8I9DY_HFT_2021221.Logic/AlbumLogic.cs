@@ -76,11 +76,11 @@ namespace G8I9DY_HFT_2021221.Logic
                 var temp = from albums in albumRepo.GetAll() where albums.AlbumID == albumID select albums.AlbumID;
                 if (temp.Count() > 0)
                 {
-                    throw new ArgumentException("Already exists!");
+                    albumRepo.UpdateAlbum(albumID, Title, ArtistID, Label, length, releasedate, Genre);
                 }
                 else
                 {
-                    albumRepo.UpdateAlbum(albumID, Title, ArtistID, Label, length, releasedate, Genre);
+                    throw new KeyNotFoundException();
                 }
 
             }

@@ -81,6 +81,9 @@ namespace G8I9DY_HFT_2021221.Data
             Albums album13 = new Albums() { AlbumID = 13, Title = "OK Computer", ArtistID = 7, Label = "Parlophone", Length = new TimeSpan(00, 53, 27), ReleaseDate = new DateTime(1997, 05, 21), Genre = "Rock"};
             Albums album14 = new Albums() { AlbumID = 14, Title = "In Rainbows", ArtistID = 7, Label = "Self-released", Length = new TimeSpan(00, 42, 39), ReleaseDate = new DateTime(2007, 10, 10), Genre="Indie"};
 
+            //TODO
+            Albums album15 = new Albums() { AlbumID = 15, Title = "WILLBEDELETED", ArtistID = 1, Label = "WILLBEDELETED", Length = new TimeSpan(00, 04, 20), ReleaseDate = new DateTime(2069, 04, 20), Genre = "WILLBEDELETED" };
+            Albums album16 = new Albums() { AlbumID = 16, Title = "WILLBEUPDATED", ArtistID = 1, Label = "WILLBEUPDATED", Length = new TimeSpan(00, 04, 20), ReleaseDate = new DateTime(2069, 04, 20), Genre = "WILLBEUPDATED" };
             #endregion
             #region Artists
             Artists artist1 = new Artists() { ArtistID = 1, Name = "Tyler, The Creator", Birthday = new DateTime(1991,03,06), Nationality = "United States",GrammyWinner=true };
@@ -90,6 +93,10 @@ namespace G8I9DY_HFT_2021221.Data
             Artists artist5 = new Artists() { ArtistID = 5, Name = "Kanye West", Birthday = new DateTime(1977, 06, 08), Nationality = "United States", GrammyWinner = true };
             Artists artist6 = new Artists() { ArtistID = 6, Name = "Joji", Birthday = new DateTime(1992, 09, 18), Nationality = "Japan", GrammyWinner = false };
             Artists artist7 = new Artists() { ArtistID = 7, Name = "Radiohead", Birthday = new DateTime(1968, 11, 07), Nationality = "England", GrammyWinner = true };
+            //TODO
+            Artists artist8 = new Artists() { ArtistID = 8, Name = "WILLBEDELETED", Birthday = new DateTime(1969, 04, 20), Nationality = "WILLBEDELETED", GrammyWinner = true };
+            Artists artist9 = new Artists() { ArtistID = 9, Name = "WILLBEUPDATED", Birthday = new DateTime(1969, 04, 20), Nationality = "WILLBEUPDATED", GrammyWinner = true };
+
             #endregion
             #region Számok
             //TYLER
@@ -149,16 +156,20 @@ namespace G8I9DY_HFT_2021221.Data
             Tracks track40 = new Tracks() { TrackID = 40, Title = "Nude", AlbumID = 14, Plays = 300834753, Duration = new TimeSpan(00, 04, 24), ArtistID = 7, IsExplicit = false };
             Tracks track41 = new Tracks() { TrackID = 41, Title = "House Of Cards", AlbumID = 14, Plays = 45572524, Duration = new TimeSpan(00, 05, 28), ArtistID = 7, IsExplicit = false };
             Tracks track42 = new Tracks() { TrackID = 42, Title = "Reckoner", AlbumID = 14, Plays = 50375856, Duration = new TimeSpan(00, 04, 50), ArtistID = 7, IsExplicit = false };
+
+            //WILLBE
+            Tracks track43 = new Tracks() { TrackID = 43, Title = "WILLBEDELETED", AlbumID = 1, Plays = 69420, Duration = new TimeSpan(00, 04, 20), ArtistID = 1, IsExplicit = false };
+            Tracks track44 = new Tracks() { TrackID = 44, Title = "WILLBEUPDATED", AlbumID = 1, Plays = 69420, Duration = new TimeSpan(00, 04, 20), ArtistID = 1, IsExplicit = false };
             #endregion
 
-            modelBuilder.Entity<Albums>().HasData(album1, album2, album3, album4, album5, album6, album7, album8, album9, album10, album11, album12, album13, album14);
-            modelBuilder.Entity<Artists>().HasData(artist1, artist2, artist3, artist4, artist5, artist6, artist7);
+            modelBuilder.Entity<Albums>().HasData(album1, album2, album3, album4, album5, album6, album7, album8, album9, album10, album11, album12, album13, album14,album15,album16);
+            modelBuilder.Entity<Artists>().HasData(artist1, artist2, artist3, artist4, artist5, artist6, artist7,artist8,artist9);
             modelBuilder.Entity<Tracks>().HasData(track1, track2, track3, track4, track5, track6, track7,
                                                   track8, track9, track10, track11, track12, track13, track14,
                                                   track15, track16, track17, track18, track19, track21, track22,
                                                   track23, track24, track25, track26, track27, track28, track29,
                                                   track30, track31, track32, track33, track34, track35, track36,
-                                                  track37, track38, track39, track40, track41, track42);
+                                                  track37, track38, track39, track40, track41, track42, track43,track44);
 
 
         }

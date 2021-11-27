@@ -73,11 +73,11 @@ namespace G8I9DY_HFT_2021221.Logic
                 var temp = from tracks in trackRepo.GetAll() where tracks.TrackID == TrackID select tracks.TrackID;
                 if (temp.Count() > 0)
                 {
-                    throw new ArgumentException("Already exists!");
+                   trackRepo.UpdateTrack(TrackID, Title, AlbumID, plays, duration, ArtistID, IsExplicit);
                 }
                 else
                 {
-                    trackRepo.UpdateTrack(TrackID, Title, AlbumID, plays, duration, ArtistID, IsExplicit);
+                    throw new KeyNotFoundException();
                 }
             }
 
