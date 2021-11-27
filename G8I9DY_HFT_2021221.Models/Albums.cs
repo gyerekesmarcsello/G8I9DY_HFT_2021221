@@ -26,14 +26,15 @@ namespace G8I9DY_HFT_2021221.Models
         public string Label { get; set; }
 
         [Required]
+        [JsonIgnore]
         public TimeSpan Length { get; set; }
+
 
         [Required]
         public DateTime ReleaseDate { get; set; }
 
         [Required]
         public string Genre { get; set; }
-
 
 
         [NotMapped]
@@ -44,7 +45,18 @@ namespace G8I9DY_HFT_2021221.Models
         [JsonIgnore]
         public virtual ICollection<Tracks> Tracks { get; set; }
 
-
+        [NotMapped]
+        public long LengthTicks
+        {
+            get
+            {
+                return Length.Ticks;
+            }
+            set
+            {
+                Length = TimeSpan.FromTicks(value);
+            }
+        }
         public Albums()
         {
             Tracks = new HashSet<Tracks>();

@@ -30,10 +30,24 @@ namespace G8I9DY_HFT_2021221.Models
         public int Plays { get; set; }
 
         [Required]
+        [JsonIgnore]
         public TimeSpan Duration { get; set; }
 
         [Required]
         public bool IsExplicit { get; set; }
+
+        [NotMapped]
+        public long DurationTicks
+        {
+            get
+            {
+                return Duration.Ticks;
+            }
+            set
+            {
+                Duration = TimeSpan.FromTicks(value);
+            }
+        }
 
         [NotMapped]
         [JsonIgnore]
