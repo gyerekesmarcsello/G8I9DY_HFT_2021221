@@ -18,7 +18,7 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
-            if (String.IsNullOrEmpty(albumID.ToString()) || Title == null || String.IsNullOrEmpty(length.ToString()) || Label == null ||  String.IsNullOrEmpty(ArtistID.ToString()) || String.IsNullOrEmpty(releasedate.ToString()))
+            if (String.IsNullOrEmpty(albumID.ToString()) || Title == null || String.IsNullOrEmpty(ArtistID.ToString()) || Label == null || String.IsNullOrEmpty(length.ToString()) || String.IsNullOrEmpty(releasedate.ToString()) || String.IsNullOrEmpty(Genre.ToString()))
             {
                 throw new ArgumentException("Value cannot be null!");
             }
@@ -67,7 +67,7 @@ namespace G8I9DY_HFT_2021221.Logic
         }
         public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
-            if (String.IsNullOrEmpty(albumID.ToString()) || Title == null || String.IsNullOrEmpty(length.ToString()) || Label == null || String.IsNullOrEmpty(ArtistID.ToString()) || String.IsNullOrEmpty(releasedate.ToString()))
+            if (String.IsNullOrEmpty(albumID.ToString()) || Title == null || String.IsNullOrEmpty(ArtistID.ToString()) || Label == null ||  String.IsNullOrEmpty(length.ToString()) || String.IsNullOrEmpty(releasedate.ToString()) || String.IsNullOrEmpty(Genre.ToString()))
             {
                 throw new ArgumentException("Value cannot be null!");
             }
