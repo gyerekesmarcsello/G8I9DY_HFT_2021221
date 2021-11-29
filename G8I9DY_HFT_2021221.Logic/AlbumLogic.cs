@@ -60,7 +60,6 @@ namespace G8I9DY_HFT_2021221.Logic
                 throw new KeyNotFoundException();
             }
         }
-
         public IEnumerable<Albums> ReadAllAlbums()
         {
             return albumRepo.ReadAllAlbums();

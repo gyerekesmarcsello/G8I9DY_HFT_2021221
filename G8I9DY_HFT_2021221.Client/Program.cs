@@ -248,7 +248,7 @@ namespace G8I9DY_HFT_2021221.Client
                         DateTime releasedate = DateTime.Parse(Console.ReadLine());
                         Console.WriteLine("What is the album genre ? ");
                         string genre = Console.ReadLine();
-                        rest.Post(new Albums()
+                        rest.Put(new Albums()
                         {
                             AlbumID = albumid1,
                             Title = title,
@@ -278,7 +278,7 @@ namespace G8I9DY_HFT_2021221.Client
                         Console.WriteLine("Is the Track suitable ?");
                         bool excplicit = bool.Parse(Console.ReadLine());
                         Console.WriteLine("Item successfully added!");
-                        rest.Post(new Tracks()
+                        rest.Put(new Tracks()
                         {
                             TrackID = trackid,
                             Title = tracktitle,
