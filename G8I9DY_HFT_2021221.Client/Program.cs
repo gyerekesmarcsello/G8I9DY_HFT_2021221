@@ -8,88 +8,299 @@ namespace G8I9DY_HFT_2021221.Client
         static void Main(string[] args)
         {
             System.Threading.Thread.Sleep(8000);
-            RestService rest = new RestService("http://localhost:2509");
-
-            //CRUDs(Artist)
-            rest.Post(new Artists()
+            bool showMenu = true;
+            while (showMenu)
             {
-                Name = "POSTARTIST",
-                Birthday = new DateTime(2001, 11, 23),
-                Nationality = ("Hungary"),
-                GrammyWinner = false,
+                showMenu = MainMenu();
+            }
 
-            }, "artist");
-
-            var tempArtist = rest.Get<Artists>("artist");
-            ;
-            rest.Put(new Artists()
-            {
-                ArtistID = 9,
-                Name = "PUTARTIST",
-                Birthday = new DateTime(2001, 11, 23),
-                Nationality = ("PUTNATIONALITY"),
-                GrammyWinner = true,
-
-            }, "artist");
-
-            rest.Delete(8, "artist");
-
-            //CRUDs(Albums)
-            rest.Post(new Albums()
-            {
-                Title = "POSTALBUM",
-                ArtistID = 10,
-                Label = "POSTLABEL",
-                Length = new TimeSpan(00, 40, 20),
-                ReleaseDate = new DateTime(2021, 11, 27),
-                Genre = "POSTGENRE"
-            }, "album");
-
-            var temparAlbum = rest.Get<Albums>("album");
-
-            rest.Put(new Albums()
-            {
-                AlbumID = 16,
-                Title = "PUTALBUM",
-                ArtistID = 9,
-                Label = "PUTLABEL",
-                Length = new TimeSpan(00, 40, 20),
-                ReleaseDate = new DateTime(2021, 11, 27),
-                Genre = "PUTUPDATE"
-
-            }, "album"); ;
-
-            rest.Delete(15, "album");
-
-            //CRUDs(Tracks)
-            rest.Post(new Tracks()
-            {
-                Title="POSTTRACK",
-                AlbumID = 17,
-                ArtistID = 10,
-                Plays=42069,
-                Duration= new TimeSpan(00,04,20),
-                IsExplicit = true,
-
-            }, "track");
-
-            var tempTrack = rest.Get<Tracks>("track");
-
-            rest.Put(new Tracks()
-            {
-                TrackID = 44,
-                Title = "PUTTRACK",
-                AlbumID = 16,
-                ArtistID = 9,
-                Plays = 42069,
-                Duration = new TimeSpan(00, 40, 20),
-                IsExplicit = true,
-
-            }, "track") ;
-
-            rest.Delete(43, "track");
-            ;
         }
+        private static bool MainMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Choose an option:");
+            Console.WriteLine("1) C-CREATE (album,artist,tracks)...");
+            Console.WriteLine("2) R-READ (FROM albums,artists,tracks)...");
+            Console.WriteLine("3) U-UPDATE (FROM existing database data)...");
+            Console.WriteLine("4) D-DELETE (FROM existing database data)...");
+            Console.WriteLine("5) Exit");
+            Console.Write("\r\nSelect an option: ");
 
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    Create();
+                    return true;
+                case "2":
+                    Read();
+                    return true;
+                case "3":
+                    Update();
+                    return true;
+                case "4":
+                    Delete();
+                    return true;
+                case "5":
+                    return false;
+                default:
+                    MainMenu();
+                    return true;
+            }
+        }
+        private static void Delete()
+        {
+            Console.Clear();
+            RestService rest = new RestService("http://localhost:2509");
+            Console.WriteLine("Which table you want me to delete from ? (album,track,artist)");
+            string table = Console.ReadLine();
+            Console.WriteLine("Which value with which ID do you want to delete ?");
+            int id = int.Parse(Console.ReadLine());
+            rest.Delete(id, table);
+            Console.WriteLine("The item has been successfully deleted!");
+            Console.ReadKey();
+            MainMenu();
+        }
+        private static void Create()
+        {
+            Console.Clear();
+            RestService rest = new RestService("http://localhost:2509");
+            Console.WriteLine("What type of element do you want me to insert ? (artist,track,album)");
+            string table = Console.ReadLine();
+            if (table == "artist" || table == "track"|| table == "album")
+            {
+                switch(table)
+                {
+                    case "artist":
+                        Console.WriteLine("Name of the artist: ");
+                        string name = Console.ReadLine();
+                        Console.WriteLine("Birthday of the artist ");
+                        DateTime birthday = DateTime.Parse(Console.ReadLine());
+                        Console.WriteLine("Where were they born ? ");
+                        string nationality = Console.ReadLine();
+                        Console.WriteLine("Do they have a Grammy award ? (true/false)");
+                        bool grammy = bool.Parse(Console.ReadLine());
+                        rest.Post(new Artists()
+                        {
+                            Name = name,
+                            Birthday = birthday,
+                            Nationality = nationality,
+                            GrammyWinner = grammy,
+
+                        }, "artist");
+                        Console.WriteLine("Item successfully added!");
+                        Console.ReadKey();
+                        MainMenu();
+                        break;
+                    case "album":
+                        Console.WriteLine("Name of the Album: ");
+                        string title = Console.ReadLine();
+                        Console.WriteLine("Please enter the ID of the Artist: ");
+                        int id = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Who published the album ?");
+                        string label = Console.ReadLine();
+                        Console.WriteLine("How long is the track ? ");
+                        TimeSpan length = TimeSpan.Parse(Console.ReadLine());
+                        Console.WriteLine("When was the album released ?");
+                        DateTime releasedate = DateTime.Parse(Console.ReadLine());
+                        Console.WriteLine("What is the album genre ? ");
+                        string genre = Console.ReadLine();
+                        rest.Post(new Albums()
+                        {
+                            Title = title,
+                            ArtistID = id,
+                            Label = label,
+                            Length = length,
+                            ReleaseDate = releasedate,
+                            Genre =  genre
+                        }, "album");
+                        Console.WriteLine("Item successfully added!");
+                        Console.ReadKey();
+                        MainMenu();
+                        break;
+                    case "track":
+                        Console.WriteLine("What is the title of the track ?");
+                        string tracktitle = Console.ReadLine();
+                        Console.WriteLine("Please enter the ID of the Album: ");
+                        int albumid = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Please enter the ID of the Artist: ");
+                        int artistid = int.Parse(Console.ReadLine());
+                        Console.WriteLine("How many times was the song played ?");
+                        int plays = int.Parse(Console.ReadLine());
+                        Console.WriteLine("How long is the Track ?");
+                        TimeSpan duration = TimeSpan.Parse(Console.ReadLine());
+                        Console.WriteLine("Is the Track suitable ?");
+                        bool excplicit = bool.Parse(Console.ReadLine());
+                        Console.WriteLine("Item successfully added!");
+                        rest.Post(new Tracks()
+                        {
+                            Title = tracktitle,
+                            AlbumID = albumid,
+                            ArtistID = artistid,
+                            Plays = plays,
+                            Duration = duration,
+                            IsExplicit = excplicit,
+
+                        }, "track");
+                        Console.ReadKey();
+                        MainMenu();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Incorrect table name!");
+                Console.ReadKey();
+                MainMenu();
+            }
+        }
+        private static void Read()
+        {
+            Console.Clear();
+            RestService rest = new RestService("http://localhost:2509");
+            Console.WriteLine("Which table should I display ? (artist,track,album)");
+            string table = Console.ReadLine();
+            if (table == "artist" || table == "track" || table == "album")
+            {
+                switch (table)
+                {
+                    case "artist":
+                        var tempArtist = rest.Get<Artists>("artist");
+                        foreach (var item in tempArtist)
+                        {
+                            Console.WriteLine("ID: {0}, Name: {1}, Birthday: {2}, Nationality: {3}, Do they have a grammy ?: {4}",item.ArtistID,item.Name,item.Birthday,item.Nationality,item.GrammyWinner);
+                        }
+                        Console.ReadKey();
+                        MainMenu();
+                        break;
+                    case "album":
+                        var temparAlbum = rest.Get<Albums>("album");
+                        foreach (var item in temparAlbum)
+                        {
+                            Console.WriteLine("AlbumID: {0}, Title: {1}, ArtistID: {2}, Label: {3}, Length: {4}, ReleaseData: {5}, Genre: {6}", item.AlbumID, item.Title, item.ArtistID, item.Label, item.Length, item.ReleaseDate, item.Genre);
+                        }
+                        Console.ReadKey();
+                        MainMenu();
+                        break;
+                    case "track":
+                        var tempTrack = rest.Get<Tracks>("track");
+                        foreach (var item in tempTrack)
+                        {
+                            Console.WriteLine("TrackID: {0}, Title: {1}, AlbumID: {2}, ArtistID: {3}, Plays: {4}, Duration: {5}, Is it suitable for children ?: {6}", item.TrackID, item.Title, item.AlbumID, item.ArtistID, item.Plays, item.Duration, item.IsExplicit);
+                        }
+                        Console.ReadKey();
+                        MainMenu();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Incorrect table name!");
+                Console.ReadKey();
+                MainMenu();
+            }
+        }
+        private static void Update()
+        {
+            Console.Clear();
+            RestService rest = new RestService("http://localhost:2509");
+            Console.WriteLine("What type of element do you want me to update ? (artist,track,album");
+            string table = Console.ReadLine();
+            if (table == "artist" || table == "track" || table == "album")
+            {
+                switch (table)
+                {
+                    case "artist":
+                        Console.WriteLine("Please enter the ID of the Artist: ");
+                        int artistid1 = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Name of the artist: ");
+                        string name = Console.ReadLine();
+                        Console.WriteLine("Birthday of the artist ");
+                        DateTime birthday = DateTime.Parse(Console.ReadLine());
+                        Console.WriteLine("Where were they born ? ");
+                        string nationality = Console.ReadLine();
+                        Console.WriteLine("Do they have a Grammy award ? (true/false)");
+                        bool grammy = bool.Parse(Console.ReadLine());
+                        rest.Put(new Artists()
+                        {
+                            ArtistID = artistid1,
+                            Name = name,
+                            Birthday = birthday,
+                            Nationality = nationality,
+                            GrammyWinner = grammy,
+
+                        }, "artist");
+                        Console.WriteLine("Item successfully added!");
+                        Console.ReadKey();
+                        MainMenu();
+                        break;
+                    case "album":
+                        Console.WriteLine("Please enter the ID of the Album: ");
+                        int albumid1 = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Name of the Album: ");
+                        string title = Console.ReadLine();
+                        Console.WriteLine("Please enter the ID of the Artist: ");
+                        int id = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Who published the album ?");
+                        string label = Console.ReadLine();
+                        Console.WriteLine("How long is the track ? ");
+                        TimeSpan length = TimeSpan.Parse(Console.ReadLine());
+                        Console.WriteLine("When was the album released ?");
+                        DateTime releasedate = DateTime.Parse(Console.ReadLine());
+                        Console.WriteLine("What is the album genre ? ");
+                        string genre = Console.ReadLine();
+                        rest.Post(new Albums()
+                        {
+                            AlbumID = albumid1,
+                            Title = title,
+                            ArtistID = id,
+                            Label = label,
+                            Length = length,
+                            ReleaseDate = releasedate,
+                            Genre = genre
+                        }, "album");
+                        Console.WriteLine("Item successfully added!");
+                        Console.ReadKey();
+                        MainMenu();
+                        break;
+                    case "track":
+                        Console.WriteLine("Please enter the ID of the Track: ");
+                        int trackid = int.Parse(Console.ReadLine());
+                        Console.WriteLine("What is the title of the track ?");
+                        string tracktitle = Console.ReadLine();
+                        Console.WriteLine("Please enter the ID of the Album: ");
+                        int albumid = int.Parse(Console.ReadLine());
+                        Console.WriteLine("Please enter the ID of the Artist: ");
+                        int artistid = int.Parse(Console.ReadLine());
+                        Console.WriteLine("How many times was the song played ?");
+                        int plays = int.Parse(Console.ReadLine());
+                        Console.WriteLine("How long is the Track ?");
+                        TimeSpan duration = TimeSpan.Parse(Console.ReadLine());
+                        Console.WriteLine("Is the Track suitable ?");
+                        bool excplicit = bool.Parse(Console.ReadLine());
+                        Console.WriteLine("Item successfully added!");
+                        rest.Post(new Tracks()
+                        {
+                            TrackID = trackid,
+                            Title = tracktitle,
+                            AlbumID = albumid,
+                            ArtistID = artistid,
+                            Plays = plays,
+                            Duration = duration,
+                            IsExplicit = excplicit,
+
+                        }, "track");
+                        Console.ReadKey();
+                        MainMenu();
+                        break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Incorrect table name!");
+                Console.ReadKey();
+                MainMenu();
+            }
+
+        }
     }
 }
