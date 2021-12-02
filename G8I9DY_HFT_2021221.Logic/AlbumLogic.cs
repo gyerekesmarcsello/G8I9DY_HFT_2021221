@@ -12,6 +12,8 @@ namespace G8I9DY_HFT_2021221.Logic
     public class AlbumLogic : IAlbumLogic
     {
         IAlbumRepository albumRepo;
+        ITrackRepository trackRepo;
+        IAlbumRepository artistRepo;
         public AlbumLogic(IAlbumRepository albumRepo)
         {
             this.albumRepo = albumRepo;
@@ -83,6 +85,30 @@ namespace G8I9DY_HFT_2021221.Logic
                 }
 
             }
+        }
+        public IEnumerable<string> AlbumsWhereArtistName(string name) //DONE
+        {
+            var q1 = from x in artistRepo.GetAll()
+                     where x.Artist.Name == name
+                     select x.AlbumID;
+            List<int> helper = q1.ToList();
+            var q2 = from x in albumRepo.GetAll()
+                     where helper.Contains(x.AlbumID)
+                     select x.Title;
+            List<string> albums = new List<string>();
+            foreach (var item in q2)
+            {
+                albums.Add(item);
+            }
+            return albums;
+        }
+
+        public IEnumerable<KeyValuePair<string, double>> AVGPlaysByArtists()
+        {
+            return from x in trackRepo.GetAll()
+                   group x by x.Artist.Name into g
+                   select new KeyValuePair<string, double>
+                   (g.Key, g.Average(t => t.Plays));
         }
     }
 }

@@ -19,5 +19,8 @@ namespace G8I9DY_HFT_2021221.Logic
         void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre);
         //delete
         void DeleteAlbum(int albumID);
+
+        public IEnumerable<string> AlbumsWhereArtistName(string name);
+        public IEnumerable<KeyValuePair<string, double>> AVGPlaysByArtists();
     }
 }

@@ -40,7 +40,8 @@ namespace G8I9DY_HFT_2021221.Client
                 case "4":
                     Delete();
                     return true;
-                case "5":
+                case "E":
+                    Environment.Exit(0);
                     return false;
                 default:
                     MainMenu();
@@ -203,7 +204,7 @@ namespace G8I9DY_HFT_2021221.Client
         {
             Console.Clear();
             RestService rest = new RestService("http://localhost:2509");
-            Console.WriteLine("What type of element do you want me to update ? (artist,track,album");
+            Console.WriteLine("What type of element do you want me to update ? (artist,track,album)");
             string table = Console.ReadLine();
             if (table == "artist" || table == "track" || table == "album")
             {

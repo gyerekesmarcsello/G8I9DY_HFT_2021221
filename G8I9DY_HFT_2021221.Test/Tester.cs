@@ -22,8 +22,20 @@ namespace G8I9DY_HFT_2021221.Test
             var mockAlbumRepository = new Mock<IAlbumRepository>();
             var mockArtistRepository = new Mock<IArtistRepository>();
             var mockTrackRepository= new Mock<ITrackRepository>();
-            Albums fakealbum = new Albums() { AlbumID = 1, Title = "Álomkép", ArtistID = 1, Label = "Universal Music", Length = new TimeSpan(00, 42, 55), ReleaseDate = new DateTime(2010, 01, 01),Genre="Hungarian Pop" };
-            Artists fakeartist= new Artists() { ArtistID = 1, Name = "Bereczki Zoltán", Birthday = new DateTime(1976, 05, 02), Nationality = "Hungary", GrammyWinner = false };
+            Albums fakealbum = new Albums() { 
+                AlbumID = 1,
+                Title = "Álomkép", 
+                ArtistID = 1, 
+                Label = "Universal Music", 
+                Length = new TimeSpan(00, 42, 55), 
+                ReleaseDate = new DateTime(2010, 01, 01),
+                Genre="Hungarian Pop" };
+            Artists fakeartist= new Artists(){ 
+                ArtistID = 1,
+                Name = "Bereczki Zoltán", 
+                Birthday = new DateTime(1976, 05, 02), 
+                Nationality = "Hungary", 
+                GrammyWinner = false };
             var tracks = new List<Tracks>()
             {
                 new Tracks()
@@ -51,26 +63,23 @@ namespace G8I9DY_HFT_2021221.Test
                     TrackID = 3,
                     Title = "1001 Éjjel",
                     AlbumID = 1,
-                    Plays= 19098,
-                    Duration=new TimeSpan(00,04,02),
+                    Plays= 19100,
+                    Duration=new TimeSpan(00,04,04),
                     ArtistID = 1,
                     IsExplicit = false
                 }
             }.AsQueryable();
             var albums = new List<Albums> { fakealbum}.AsQueryable();
             var artists = new List<Artists> { fakeartist }.AsQueryable();
-            mockAlbumRepository.Setup((t) => t.GetAll())
-                .Returns(albums);
-            mockArtistRepository.Setup((t) => t.GetAll())
-                .Returns(artists);
-            mockTrackRepository.Setup((t) => t.GetAll())
-                .Returns(tracks);
+            mockAlbumRepository.Setup((t) => t.GetAll()).Returns(albums);
+            mockArtistRepository.Setup((t) => t.GetAll()).Returns(artists);
+            mockTrackRepository.Setup((t) => t.GetAll()).Returns(tracks);
             albumLogic = new AlbumLogic(mockAlbumRepository.Object);
             artistLogic = new ArtistLogic(mockArtistRepository.Object);
             trackLogic = new TrackLogic(mockTrackRepository.Object);
         }
         #region Független tesztek
-        [TestCase(1)]
+        [TestCase(2)]
         public void AlbumDeleteExceptionTest(int id)
         {
             Assert.That(() => albumLogic.DeleteAlbum(id), Throws.TypeOf<KeyNotFoundException>());
@@ -84,7 +93,7 @@ namespace G8I9DY_HFT_2021221.Test
         }
         #endregion
         #region CRUD tesztek
-        [TestCase(1,"Álomkép",1,"Universal Music", null,null,"Trash")]
+        [TestCase(1,"Álomkép",1,"Universal Music",null, null, "Hungarian Pop")]
         public void AlbumCreateTest(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate,string Genre)
         {
             Assert.That(() => albumLogic.CreateAlbum(albumID, Title, ArtistID,Label, length, releasedate,Genre),Throws.TypeOf<ArgumentException>());
@@ -96,16 +105,66 @@ namespace G8I9DY_HFT_2021221.Test
             Assert.That(() => artistLogic.CreateArtist(ArtistID, Name, Birthday, nationality, grammywinner), Throws.TypeOf<ArgumentException>());
         }
 
-        [TestCase(1, "Kerek Egész", 1, "Hungarian Pop", 525401,null,1)]
+        [TestCase(1,"Kerek Egész", 1,525401,null,1,false)]
         public void TrackCreateTest(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID,bool IsExplicit)
         {
             Assert.That(() => trackLogic.CreateTrack(TrackID, Title, AlbumID, plays, duration, ArtistID,IsExplicit), Throws.TypeOf<ArgumentException>());
         }
         #endregion
         //NON-CRUD tesztek
+        [TestCase("Bereczki Zoltán")]
+        public void AlbumsWhereArtistName(string name)
+        {
+            var exp = new List<string>()
+            {
+                "Álomkép"
+            };
+            Assert.That(albumLogic.AlbumsWhereArtistName(name), Is.EqualTo(exp));
+        }
 
+        [Test]
+        public void AVGPlaysByArtists()
+        {
+            var result = albumLogic.AVGPlaysByArtists();
+            var expected = new List<KeyValuePair<string, double>>()
+            {
+                new KeyValuePair<string, double>("Bereczki Zoltán", 215865)
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
 
+        [Test]
+        public void AVGTrackDurationByArtist()
+        {
+            var result = artistLogic.AVGTrackDurationByArtists();
+            var expected = new List<KeyValuePair<string, double>>()
+            {
+                new KeyValuePair<string, double>("Bereczki Zoltán", 3700)
+            };
+            Assert.That(result, Is.EqualTo(expected));
+        }
 
+        [TestCase("Hungarian Pop")]
+        public void TracksWhereGenreIs(string genre)
+        {
+            var exp = new List<string>()
+            {
+                "Kerek Egész","Szállj velem!","1001 Éjjel"
+            };
+            Assert.That(trackLogic.TracksWhereGenreIs(genre), Is.EqualTo(exp));
+
+        }
+
+        [TestCase("Álomkép")]
+        public void LongestTrackByAlbum(string title)
+        {
+            var exp = new List<string>()
+            {
+                "1001 Éjjel",
+            };
+            Assert.That(trackLogic.LongestTrackByAlbum(title), Is.EqualTo(exp));
+
+        }
 
     }
 }

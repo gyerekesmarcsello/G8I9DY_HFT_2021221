@@ -19,5 +19,9 @@ namespace G8I9DY_HFT_2021221.Logic
         void UpdateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit);
         //delete
         void DeleteTrack(int TrackID);
+
+        //NON CRUDS
+        public IEnumerable<string> TracksWhereGenreIs(string name);
+        public IEnumerable<string> LongestTrackByAlbum(string title);
     }
 }

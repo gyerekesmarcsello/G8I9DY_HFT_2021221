@@ -11,6 +11,7 @@ namespace G8I9DY_HFT_2021221.Logic
     public class ArtistLogic : IArtistLogic
     {
         IArtistRepository artistRepo;
+        ITrackRepository trackRepo;
         public ArtistLogic(IArtistRepository artistRepo)
         {
             this.artistRepo = artistRepo;
@@ -79,6 +80,14 @@ namespace G8I9DY_HFT_2021221.Logic
                     throw new KeyNotFoundException();
                 }
             }
+        }
+
+        public IEnumerable<KeyValuePair<string,double>>AVGTrackDurationByArtists()
+        {
+            return from x in trackRepo.GetAll()
+                   group x by x.Artist.Name into g
+                   select new KeyValuePair<string, double>
+                   (g.Key, g.Average(t => t.DurationTicks));
         }
     }
 }

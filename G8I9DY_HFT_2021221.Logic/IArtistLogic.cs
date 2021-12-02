@@ -13,11 +13,14 @@ namespace G8I9DY_HFT_2021221.Logic
         void CreateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner);
         //read
         Artists ReadArtist(int ArtistID);
-        //readall
+        //read all
         IEnumerable<Artists> ReadAllArtist();
         //update
         void UpdateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner);
         //delete
         void DeleteArtist(int ArtistID);
+        //NON CRUDS
+        public IEnumerable<KeyValuePair<string, double>> AVGTrackDurationByArtists();
+
     }
 }
