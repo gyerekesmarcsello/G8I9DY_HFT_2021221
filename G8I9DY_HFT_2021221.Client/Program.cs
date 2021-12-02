@@ -80,7 +80,7 @@ namespace G8I9DY_HFT_2021221.Client
                     TracksWhereGenreIs();
                     break;
                 case "5":
-                    Delete();
+                    LongestTrackByAlbum();
                     break;
                 case "B":
                     MainMenu();

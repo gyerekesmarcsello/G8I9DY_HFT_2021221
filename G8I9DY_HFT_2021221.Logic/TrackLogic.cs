@@ -107,6 +107,7 @@ namespace G8I9DY_HFT_2021221.Logic
                      select x.TrackID;
             var q2 = from x in trackRepo.GetAll()
                      where q1.Contains(x.TrackID)
+                     orderby x.Duration descending
                      select x.Title;
             List<string> track = new List<string>();
             foreach(var item in q2)
