@@ -1,5 +1,6 @@
 ﻿using G8I9DY_HFT_2021221.Models;
 using System;
+using System.Collections.Generic;
 
 namespace G8I9DY_HFT_2021221.Client
 {
@@ -23,7 +24,8 @@ namespace G8I9DY_HFT_2021221.Client
             Console.WriteLine("2) R-READ (FROM albums,artists,tracks)...");
             Console.WriteLine("3) U-UPDATE (FROM existing database data)...");
             Console.WriteLine("4) D-DELETE (FROM existing database data)...");
-            Console.WriteLine("5) Exit");
+            Console.WriteLine("5) NON CRUD METHODS");
+            Console.WriteLine("E) EXIT");
             Console.Write("\r\nSelect an option: ");
 
             switch (Console.ReadLine())
@@ -40,6 +42,9 @@ namespace G8I9DY_HFT_2021221.Client
                 case "4":
                     Delete();
                     return true;
+                case "5":
+                    NonCrudMenu();
+                    return false;
                 case "E":
                     Environment.Exit(0);
                     return false;
@@ -47,6 +52,105 @@ namespace G8I9DY_HFT_2021221.Client
                     MainMenu();
                     return true;
             }
+        }
+
+        private static void NonCrudMenu()
+        {
+            Console.Clear();
+            Console.WriteLine("Choose an option:");
+            Console.WriteLine("1) AlbumsWhereArtistName");
+            Console.WriteLine("2) AVGPlaysByArtists");
+            Console.WriteLine("3) AVGTrackDurationByArtist");
+            Console.WriteLine("4) TracksWhereGenreIs");
+            Console.WriteLine("5) LongestTrackByAlbum");
+            Console.WriteLine("B) Exit Non Crud");
+            Console.Write("\r\nSelect an option: ");
+            switch (Console.ReadLine())
+            {
+                case "1":
+                    AlbumsWhereArtistName();
+                    break;
+                case "2":
+                    AVGPlaysByArtists();
+                    break;
+                case "3":
+                    AVGTrackDurationByArtist();
+                    break;
+                case "4":
+                    TracksWhereGenreIs();
+                    break;
+                case "5":
+                    Delete();
+                    break;
+                case "B":
+                    MainMenu();
+                    break;
+                default:
+                    NonCrudMenu();
+                    break;
+            }
+        }
+
+        private static void AlbumsWhereArtistName()
+        {
+            Console.Clear();
+            RestService rest = new RestService("http://localhost:2509");
+            Console.WriteLine("Enter the name of a Artist :");
+            string artistname =Console.ReadLine();
+            rest.Get<string>("stat/AnimesWhereCharacterName?name=" + artistname);
+            var result = rest.Get<string>("stat/AnimesWhereCharacterName?name=" + artistname);
+            Console.WriteLine(string.Join(",", result));
+            Console.ReadKey();
+            NonCrudMenu();
+        }
+
+        private static void AVGPlaysByArtists()
+        {
+            Console.Clear();
+            RestService rest = new RestService("http://localhost:2509");
+            rest.Get<KeyValuePair<string, double>>("stat/AVGPlaysByArtists");
+            var result = rest.Get<KeyValuePair<string, double>>("stat/AVGPlaysByArtists");
+            Console.WriteLine(string.Join(",", result));
+            Console.ReadKey();
+            NonCrudMenu();
+        }
+
+        private static void AVGTrackDurationByArtist()
+        {
+            Console.Clear();
+            RestService rest = new RestService("http://localhost:2509");
+            rest.Get<KeyValuePair<string, double>>("stat/AVGTrackDurationByArtist");
+            var result = rest.Get<KeyValuePair<string, double>>("stat/AVGTrackDurationByArtist");
+            Console.WriteLine(string.Join(",", result));
+            Console.ReadKey();
+            NonCrudMenu();
+
+        }
+        private static void TracksWhereGenreIs()
+        {
+            Console.Clear();
+            RestService rest = new RestService("http://localhost:2509");
+            Console.WriteLine("Enter a Genre :");
+            string genre = Console.ReadLine();
+            rest.Get<string>("stat/TracksWhereGenreIs?name=" + genre);
+            var result = rest.Get<string>("stat/TracksWhereGenreIs?name=" + genre);
+            Console.WriteLine(string.Join(",", result));
+            Console.ReadKey();
+            NonCrudMenu();
+        }
+
+        private static void LongestTrackByAlbum()
+        {
+            Console.Clear();
+            RestService rest = new RestService("http://localhost:2509");
+            Console.WriteLine("Enter the title of an album:");
+            string title = Console.ReadLine();
+            rest.Get<string>("stat/LongestTrackByAlbum?title=" + title);
+            var result = rest.Get<string>("stat/LongestTrackByAlbum?title=" + title);
+            Console.WriteLine(string.Join(",", result));
+            Console.ReadKey();
+            NonCrudMenu();
+
         }
         private static void Delete()
         {

@@ -22,6 +22,14 @@ namespace G8I9DY_HFT_2021221.Test
             var mockAlbumRepository = new Mock<IAlbumRepository>();
             var mockArtistRepository = new Mock<IArtistRepository>();
             var mockTrackRepository= new Mock<ITrackRepository>();
+            Artists fakeartist = new Artists()
+            {
+                ArtistID = 1,
+                Name = "Bereczki Zoltán",
+                Birthday = new DateTime(1976, 05, 02),
+                Nationality = "Hungary",
+                GrammyWinner = false
+            };
             Albums fakealbum = new Albums() { 
                 AlbumID = 1,
                 Title = "Álomkép", 
@@ -29,13 +37,10 @@ namespace G8I9DY_HFT_2021221.Test
                 Label = "Universal Music", 
                 Length = new TimeSpan(00, 42, 55), 
                 ReleaseDate = new DateTime(2010, 01, 01),
-                Genre="Hungarian Pop" };
-            Artists fakeartist= new Artists(){ 
-                ArtistID = 1,
-                Name = "Bereczki Zoltán", 
-                Birthday = new DateTime(1976, 05, 02), 
-                Nationality = "Hungary", 
-                GrammyWinner = false };
+                Genre="Hungarian Pop",
+                Artist = fakeartist
+                
+            };        
             var tracks = new List<Tracks>()
             {
                 new Tracks()
@@ -46,7 +51,10 @@ namespace G8I9DY_HFT_2021221.Test
                     Plays= 525401,
                     Duration=new TimeSpan(00,02,53),
                     ArtistID = 1,
-                    IsExplicit = false
+                    IsExplicit = false,
+                    Album=fakealbum,
+                    Artist=fakeartist
+                    
                 },
                 new Tracks()
                 {
@@ -56,7 +64,9 @@ namespace G8I9DY_HFT_2021221.Test
                     Plays= 103094,
                     Duration=new TimeSpan(00,02,18),
                     ArtistID = 1,
-                    IsExplicit = false
+                    IsExplicit = false,
+                    Album=fakealbum,
+                    Artist=fakeartist
                 },
                 new Tracks()
                 {
@@ -66,7 +76,9 @@ namespace G8I9DY_HFT_2021221.Test
                     Plays= 19100,
                     Duration=new TimeSpan(00,04,04),
                     ArtistID = 1,
-                    IsExplicit = false
+                    IsExplicit = false,
+                    Album=fakealbum,
+                    Artist=fakeartist
                 }
             }.AsQueryable();
             var albums = new List<Albums> { fakealbum}.AsQueryable();
