@@ -139,10 +139,7 @@ namespace G8I9DY_HFT_2021221.Client
             string genre = Console.ReadLine();
             rest.Get<string>("stat/TracksWhereGenreIs?name=" + genre);
             var result = rest.Get<string>("stat/TracksWhereGenreIs?name=" + genre);
-            foreach (var item in result)
-            {
-                Console.WriteLine(item);
-            }
+            Console.WriteLine("\n" + string.Join("\n", result));
             Console.ReadKey();
             NonCrudMenu();
         }

@@ -80,9 +80,19 @@ namespace G8I9DY_HFT_2021221.Test
                     Artist=fakeartist.FirstOrDefault(),
                 }
             }.AsQueryable();
+            
             mockArtistRepository.Setup((t) => t.GetAll()).Returns(fakeartist);
             mockAlbumRepository.Setup((t) => t.GetAll()).Returns(fakealbum);
             mockTrackRepository.Setup((t) => t.GetAll()).Returns(tracks);
+            mockArtistRepository.Setup(x => x.ReadArtist(It.IsAny<int>())).Returns(
+             new Artists()
+             {
+                 ArtistID = 1,
+                 Name = "Bereczki Zoltán",
+                 Birthday = new DateTime(1976, 05, 02),
+                 Nationality = "Hungary",
+                 GrammyWinner = false,
+             });
 
             albumLogic = new AlbumLogic(mockAlbumRepository.Object,mockTrackRepository.Object,mockArtistRepository.Object);
             artistLogic = new ArtistLogic(mockArtistRepository.Object,mockTrackRepository.Object);
@@ -122,17 +132,13 @@ namespace G8I9DY_HFT_2021221.Test
             Assert.That(() => trackLogic.CreateTrack(TrackID, Title, AlbumID, plays, duration, ArtistID, IsExplicit), Throws.TypeOf<ArgumentException>());
         }
         #endregion
-        //NON-CRUD tesztek
-        [TestCase("Bereczki Zoltán")]
-        public void AlbumsWhereArtistName(string name)
-        {
-            var exp = new List<string>()
-            {
-                "Álomkép"
-            };
-            Assert.That(albumLogic.AlbumsWhereArtistName(name), Is.EqualTo(exp));
-        }
 
+        [TestCase(1)]
+        public void ReadArtistTest(int id)
+        {
+            Assert.That(artistLogic.ReadArtist(id).Name, Is.EqualTo("Bereczki Zoltán"));
+        }
+        //NON-CRUD tesztek
         [Test]
         public void AVGPlaysByArtists()
         {

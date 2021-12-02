@@ -60,23 +60,23 @@ namespace G8I9DY_HFT_2021221.Data
 
             #region Albumok
             //TYLER THE CREATOR
-            Albums album1 = new Albums() { AlbumID = 1, Title = "Call Me If You Get Lost", ArtistID = 1, Label = "Columbia Records", Length=new TimeSpan(00,52,41),ReleaseDate=new DateTime(2020,06,25), Genre = "Hip-hop" };
-            Albums album2 = new Albums() { AlbumID = 2, Title = "Flower Boy", ArtistID = 1, Label = "Columbia Records", Length = new TimeSpan(00, 46, 33), ReleaseDate = new DateTime(2017, 07, 21), Genre = "Hip - hop" };
+            Albums album1 = new Albums() { AlbumID = 1, Title = "Call Me If You Get Lost", ArtistID = 1, Label = "Columbia Records", Length=new TimeSpan(00,52,41),ReleaseDate=new DateTime(2020,06,25), Genre = "Hip hop" };
+            Albums album2 = new Albums() { AlbumID = 2, Title = "Flower Boy", ArtistID = 1, Label = "Columbia Records", Length = new TimeSpan(00, 46, 33), ReleaseDate = new DateTime(2017, 07, 21), Genre = "Hip Hop" };
             //KRÚBI
-            Albums album3 = new Albums() { AlbumID = 3, Title = "Ösztönlény", ArtistID = 2, Label = "Universal Music Group",Length = new TimeSpan(00, 52, 04), ReleaseDate = new DateTime(2020, 03, 23), Genre= "Hip-Hop" };
-            Albums album4 = new Albums() { AlbumID = 4, Title = "Nehézlábérzés", ArtistID = 2, Label = "Universal Music Group", Length = new TimeSpan(00, 46, 32), ReleaseDate = new DateTime(2018, 05, 11), Genre="Hip-Hop" };
+            Albums album3 = new Albums() { AlbumID = 3, Title = "Ösztönlény", ArtistID = 2, Label = "Universal Music Group",Length = new TimeSpan(00, 52, 04), ReleaseDate = new DateTime(2020, 03, 23), Genre= "Hip Hop" };
+            Albums album4 = new Albums() { AlbumID = 4, Title = "Nehézlábérzés", ArtistID = 2, Label = "Universal Music Group", Length = new TimeSpan(00, 46, 32), ReleaseDate = new DateTime(2018, 05, 11), Genre="Hip Hop" };
             //DOJA CAT
-            Albums album5 = new Albums() { AlbumID = 5, Title = "Hot Pink", ArtistID = 3, Label = "RCA", Length = new TimeSpan(00, 39, 48), ReleaseDate = new DateTime(2019, 11, 07), Genre = "Rock and Blue" };
+            Albums album5 = new Albums() { AlbumID = 5, Title = "Hot Pink", ArtistID = 3, Label = "RCA", Length = new TimeSpan(00, 39, 48), ReleaseDate = new DateTime(2019, 11, 07), Genre = "Soul" };
             Albums album6 = new Albums() { AlbumID = 6, Title = "Planet Her", ArtistID = 3, Label = "RCA", Length = new TimeSpan(00, 44, 06), ReleaseDate = new DateTime(2021, 06, 25),Genre= "Pop" };
             //GAMBINO
-            Albums album7 = new Albums() { AlbumID = 7, Title = "Awaken, My love!", ArtistID = 4, Label = "Glassnote", Length = new TimeSpan(00, 48, 57), ReleaseDate = new DateTime(2020, 12, 02), Genre= "Rock and Blue" };
-            Albums album8 = new Albums() { AlbumID = 8, Title = "Because the Internet", ArtistID = 4, Label = "Glassnote", Length = new TimeSpan(00, 57, 52), ReleaseDate = new DateTime(2013, 12, 10), Genre="Hip-Hop"};
+            Albums album7 = new Albums() { AlbumID = 7, Title = "Awaken, My love!", ArtistID = 4, Label = "Glassnote", Length = new TimeSpan(00, 48, 57), ReleaseDate = new DateTime(2020, 12, 02), Genre= "Soul" };
+            Albums album8 = new Albums() { AlbumID = 8, Title = "Because the Internet", ArtistID = 4, Label = "Glassnote", Length = new TimeSpan(00, 57, 52), ReleaseDate = new DateTime(2013, 12, 10), Genre="Hip Hop"};
             //KANYE
-            Albums album9 = new Albums() { AlbumID = 9, Title = "Graduation", ArtistID = 5, Label = "Def Jam", Length = new TimeSpan(00, 51, 23), ReleaseDate = new DateTime(2007, 09, 11),Genre ="Hip-Hop"};
-            Albums album10 = new Albums() { AlbumID = 10, Title = "Yeezus", ArtistID = 5, Label = "Def Jam", Length = new TimeSpan(00, 40, 01), ReleaseDate = new DateTime(2013, 06, 18),Genre = "Hip-hop" };
+            Albums album9 = new Albums() { AlbumID = 9, Title = "Graduation", ArtistID = 5, Label = "Def Jam", Length = new TimeSpan(00, 51, 23), ReleaseDate = new DateTime(2007, 09, 11),Genre ="Hip Hop"};
+            Albums album10 = new Albums() { AlbumID = 10, Title = "Yeezus", ArtistID = 5, Label = "Def Jam", Length = new TimeSpan(00, 40, 01), ReleaseDate = new DateTime(2013, 06, 18),Genre = "Hip Hop" };
             //JOJI
             Albums album11 = new Albums() { AlbumID = 11, Title = "Nectar", ArtistID = 6, Label = "88rising", Length = new TimeSpan(00, 53, 03), ReleaseDate = new DateTime(2020, 11, 25), Genre="Indie"};
-            Albums album12 = new Albums() { AlbumID = 12, Title = "Ballads 1", ArtistID = 6, Label = "88rising", Length = new TimeSpan(00, 35, 06), ReleaseDate = new DateTime(2018, 10, 26),Genre= "Rock and Blue" };
+            Albums album12 = new Albums() { AlbumID = 12, Title = "Ballads 1", ArtistID = 6, Label = "88rising", Length = new TimeSpan(00, 35, 06), ReleaseDate = new DateTime(2018, 10, 26),Genre= "Soul" };
             //RADIOHEAD
             Albums album13 = new Albums() { AlbumID = 13, Title = "OK Computer", ArtistID = 7, Label = "Parlophone", Length = new TimeSpan(00, 53, 27), ReleaseDate = new DateTime(1997, 05, 21), Genre = "Rock"};
             Albums album14 = new Albums() { AlbumID = 14, Title = "In Rainbows", ArtistID = 7, Label = "Self-released", Length = new TimeSpan(00, 42, 39), ReleaseDate = new DateTime(2007, 10, 10), Genre="Indie"};
@@ -158,15 +158,15 @@ namespace G8I9DY_HFT_2021221.Data
             Tracks track42 = new Tracks() { TrackID = 42, Title = "Reckoner", AlbumID = 14, Plays = 50375856, Duration = new TimeSpan(00, 04, 50), ArtistID = 7, IsExplicit = false };
 
             //WILLBE
-            Tracks track43 = new Tracks() { TrackID = 43, Title = "WILLBEDELETED", AlbumID = 9, Plays = 69420, Duration = new TimeSpan(00, 04, 20), ArtistID = 1, IsExplicit = false };
-            Tracks track44 = new Tracks() { TrackID = 44, Title = "WILLBEUPDATED", AlbumID = 9, Plays = 69420, Duration = new TimeSpan(00, 04, 20), ArtistID = 1, IsExplicit = false };
+            Tracks track43 = new Tracks() { TrackID = 43, Title = "WILLBEDELETED", AlbumID = 15, Plays = 69420, Duration = new TimeSpan(00, 04, 20), ArtistID = 9, IsExplicit = false };
+            Tracks track44 = new Tracks() { TrackID = 44, Title = "WILLBEUPDATED", AlbumID = 16, Plays = 69420, Duration = new TimeSpan(00, 04, 20), ArtistID = 9, IsExplicit = false };
             #endregion
 
             modelBuilder.Entity<Albums>().HasData(album1, album2, album3, album4, album5, album6, album7, album8, album9, album10, album11, album12, album13, album14,album15,album16);
             modelBuilder.Entity<Artists>().HasData(artist1, artist2, artist3, artist4, artist5, artist6, artist7,artist8,artist9);
             modelBuilder.Entity<Tracks>().HasData(track1, track2, track3, track4, track5, track6, track7,
                                                   track8, track9, track10, track11, track12, track13, track14,
-                                                  track15, track16, track17, track18, track19, track21, track22,
+                                                  track15, track16, track17, track18, track19, track20, track21, track22,
                                                   track23, track24, track25, track26, track27, track28, track29,
                                                   track30, track31, track32, track33, track34, track35, track36,
                                                   track37, track38, track39, track40, track41, track42, track43,track44);
