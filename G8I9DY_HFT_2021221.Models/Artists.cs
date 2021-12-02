@@ -27,7 +27,7 @@ namespace G8I9DY_HFT_2021221.Models
 
         [Required]
         public bool GrammyWinner { get; set; }
-
+        /*
         [NotMapped]
         [JsonIgnore]
         public virtual Albums Album { get; set; }
@@ -35,7 +35,7 @@ namespace G8I9DY_HFT_2021221.Models
         [NotMapped]
         [JsonIgnore]
         public virtual Tracks Track { get; set; }
-
+        */
         [NotMapped]
         [JsonIgnore]
         public virtual ICollection<Albums> Albums { get; set; }

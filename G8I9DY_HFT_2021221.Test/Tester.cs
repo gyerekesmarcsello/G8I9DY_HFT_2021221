@@ -29,20 +29,20 @@ namespace G8I9DY_HFT_2021221.Test
                 Name = "Bereczki Zoltán",
                 Birthday = new DateTime(1976, 05, 02),
                 Nationality = "Hungary",
-                GrammyWinner = false
+                GrammyWinner = false,              
          }
          }.AsQueryable();
 
             var fakealbum = new List<Albums>()
         {   new Albums()
             {
-                 AlbumID = 1,
+                AlbumID = 1,
                 Title = "Álomkép",
                 Label = "Universal Music",
                 Length = new TimeSpan(00, 42, 55),
                 ReleaseDate = new DateTime(2010, 01, 01),
                 Genre="Hungarian Pop",
-                Artist = fakeartist.First()
+                Artist = fakeartist.FirstOrDefault()
          }
          }.AsQueryable();
 
@@ -55,8 +55,8 @@ namespace G8I9DY_HFT_2021221.Test
                     Plays= 525401,
                     Duration=new TimeSpan(00,02,53),
                     IsExplicit = false,
-                    Album=fakealbum.First(),
-                    Artist=fakeartist.First()
+                    Album=fakealbum.FirstOrDefault(),
+                    Artist=fakeartist.FirstOrDefault()
 
                 },
                 new Tracks()
@@ -66,8 +66,8 @@ namespace G8I9DY_HFT_2021221.Test
                     Plays= 103094,
                     Duration=new TimeSpan(00,02,18),
                     IsExplicit = false,
-                    Album=fakealbum.First(),
-                    Artist=fakeartist.First()
+                    Album=fakealbum.FirstOrDefault(),
+                    Artist=fakeartist.FirstOrDefault()
                 },
                 new Tracks()
                 {
@@ -76,17 +76,18 @@ namespace G8I9DY_HFT_2021221.Test
                     Plays= 19100,
                     Duration=new TimeSpan(00,04,04),
                     IsExplicit = false,
-                    Album=fakealbum.First(),
-                    Artist=fakeartist.First()
+                    Album=fakealbum.FirstOrDefault(),
+                    Artist=fakeartist.FirstOrDefault(),
                 }
             }.AsQueryable();
             mockArtistRepository.Setup((t) => t.GetAll()).Returns(fakeartist);
             mockAlbumRepository.Setup((t) => t.GetAll()).Returns(fakealbum);
             mockTrackRepository.Setup((t) => t.GetAll()).Returns(tracks);
 
-            albumLogic = new AlbumLogic(mockAlbumRepository.Object);
-            artistLogic = new ArtistLogic(mockArtistRepository.Object);
-            trackLogic = new TrackLogic(mockTrackRepository.Object);
+            albumLogic = new AlbumLogic(mockAlbumRepository.Object,mockTrackRepository.Object,mockArtistRepository.Object);
+            artistLogic = new ArtistLogic(mockArtistRepository.Object,mockTrackRepository.Object);
+            trackLogic = new TrackLogic(mockTrackRepository.Object,mockAlbumRepository.Object);
+            
         }
         #region Független tesztek
         [TestCase(2)]
@@ -149,7 +150,7 @@ namespace G8I9DY_HFT_2021221.Test
             var result = artistLogic.AVGTrackDurationByArtists();
             var expected = new List<KeyValuePair<string, double>>()
             {
-                new KeyValuePair<string, double>("Bereczki Zoltán", 3700)
+                new KeyValuePair<string, double>("Bereczki Zoltán", 1850000000)
             };
             Assert.That(result, Is.EqualTo(expected));
         }
@@ -173,8 +174,6 @@ namespace G8I9DY_HFT_2021221.Test
                 "1001 Éjjel",
             };
             Assert.That(trackLogic.LongestTrackByAlbum(title), Is.EqualTo(exp));
-
         }
-
     }
 }

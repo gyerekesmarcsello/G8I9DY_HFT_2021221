@@ -12,9 +12,10 @@ namespace G8I9DY_HFT_2021221.Logic
     {
         ITrackRepository trackRepo;
         IAlbumRepository albumRepo;
-        public TrackLogic(ITrackRepository trackRepo)
+        public TrackLogic(ITrackRepository trackRepo,IAlbumRepository albumRepo)
         {
             this.trackRepo = trackRepo;
+            this.albumRepo = albumRepo;
         }
         public void CreateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit)
         {
@@ -86,18 +87,15 @@ namespace G8I9DY_HFT_2021221.Logic
 
         public IEnumerable<string> TracksWhereGenreIs(string name) //DONE
         {
-            var q1 = from x in albumRepo.GetAll()
-                     where x.Genre == name
-                     select x.AlbumID;
-            var q2 = from x in trackRepo.GetAll()
-                     where q1.Contains(x.AlbumID)
+            var q3 = from x in trackRepo.GetAll()
+                     where x.Album.Genre==name
                      select x.Title;
-            List<string> tracks = new List<string>();
-            foreach (var item in q2)
+            List<string> Tracks = new List<string>();
+            foreach (var item in q3)
             {
-                tracks.Add(item);
+                Tracks.Add(item);
             }
-            return tracks;
+            return Tracks;
         }
 
         public IEnumerable<string> LongestTrackByAlbum(string title)
@@ -110,11 +108,11 @@ namespace G8I9DY_HFT_2021221.Logic
                      orderby x.Duration descending
                      select x.Title;
             List<string> track = new List<string>();
-            foreach(var item in q2)
+            foreach (var item in q2)
             {
-                track.Add(item);
+                track.Add(item.ToString());
             }
-            return track;
+            return track.Take(1);
         }
 
     }

@@ -14,8 +14,8 @@ namespace G8I9DY_HFT_2021221.Client
             {
                 showMenu = MainMenu();
             }
-
         }
+        #region Menu
         private static bool MainMenu()
         {
             Console.Clear();
@@ -53,7 +53,6 @@ namespace G8I9DY_HFT_2021221.Client
                     return true;
             }
         }
-
         private static void NonCrudMenu()
         {
             Console.Clear();
@@ -90,41 +89,47 @@ namespace G8I9DY_HFT_2021221.Client
                     break;
             }
         }
-
+        #endregion
+        #region NON CRUD
         private static void AlbumsWhereArtistName()
         {
             Console.Clear();
             RestService rest = new RestService("http://localhost:2509");
             Console.WriteLine("Enter the name of a Artist :");
             string artistname =Console.ReadLine();
-            rest.Get<string>("stat/AnimesWhereCharacterName?name=" + artistname);
-            var result = rest.Get<string>("stat/AnimesWhereCharacterName?name=" + artistname);
-            Console.WriteLine(string.Join(",", result));
+            rest.Get<string>("stat/AlbumsWhereArtistName?name=" + artistname);
+            var result = rest.Get<string>("stat/AlbumsWhereArtistName?name=" + artistname);
+            Console.WriteLine("\n"+string.Join("\n", result));
             Console.ReadKey();
             NonCrudMenu();
         }
-
         private static void AVGPlaysByArtists()
         {
             Console.Clear();
             RestService rest = new RestService("http://localhost:2509");
             rest.Get<KeyValuePair<string, double>>("stat/AVGPlaysByArtists");
             var result = rest.Get<KeyValuePair<string, double>>("stat/AVGPlaysByArtists");
-            Console.WriteLine(string.Join(",", result));
+            foreach (var item in result)
+            {
+                Console.WriteLine($"Artist: " + item.Key + "\n" + "Average plays: " + Math.Ceiling(item.Value));
+
+            }
             Console.ReadKey();
             NonCrudMenu();
         }
-
         private static void AVGTrackDurationByArtist()
         {
             Console.Clear();
             RestService rest = new RestService("http://localhost:2509");
-            rest.Get<KeyValuePair<string, double>>("stat/AVGTrackDurationByArtist");
-            var result = rest.Get<KeyValuePair<string, double>>("stat/AVGTrackDurationByArtist");
-            Console.WriteLine(string.Join(",", result));
+            rest.Get<KeyValuePair<string, double>>("stat/AVGTrackDurationByArtists");
+            var result = rest.Get<KeyValuePair<string, double>>("stat/AVGTrackDurationByArtists");
+            foreach (var item in result)
+            {
+                TimeSpan duration = new TimeSpan(Convert.ToInt64(item.Value));
+                Console.WriteLine($"Artist: "+item.Key+"\n"+"Average duration: "+ duration);
+            }
             Console.ReadKey();
             NonCrudMenu();
-
         }
         private static void TracksWhereGenreIs()
         {
@@ -134,11 +139,13 @@ namespace G8I9DY_HFT_2021221.Client
             string genre = Console.ReadLine();
             rest.Get<string>("stat/TracksWhereGenreIs?name=" + genre);
             var result = rest.Get<string>("stat/TracksWhereGenreIs?name=" + genre);
-            Console.WriteLine(string.Join(",", result));
+            foreach (var item in result)
+            {
+                Console.WriteLine(item);
+            }
             Console.ReadKey();
             NonCrudMenu();
         }
-
         private static void LongestTrackByAlbum()
         {
             Console.Clear();
@@ -152,19 +159,8 @@ namespace G8I9DY_HFT_2021221.Client
             NonCrudMenu();
 
         }
-        private static void Delete()
-        {
-            Console.Clear();
-            RestService rest = new RestService("http://localhost:2509");
-            Console.WriteLine("Which table you want me to delete from ? (album,track,artist)");
-            string table = Console.ReadLine();
-            Console.WriteLine("Which value with which ID do you want to delete ?");
-            int id = int.Parse(Console.ReadLine());
-            rest.Delete(id, table);
-            Console.WriteLine("The item has been successfully deleted!");
-            Console.ReadKey();
-            MainMenu();
-        }
+        #endregion
+        #region CRUD
         private static void Create()
         {
             Console.Clear();
@@ -407,5 +403,19 @@ namespace G8I9DY_HFT_2021221.Client
             }
 
         }
+        private static void Delete()
+        {
+            Console.Clear();
+            RestService rest = new RestService("http://localhost:2509");
+            Console.WriteLine("Which table you want me to delete from ? (album,track,artist)");
+            string table = Console.ReadLine();
+            Console.WriteLine("Which value with which ID do you want to delete ?");
+            int id = int.Parse(Console.ReadLine());
+            rest.Delete(id, table);
+            Console.WriteLine("The item has been successfully deleted!");
+            Console.ReadKey();
+            MainMenu();
+        }
+        #endregion
     }
 }

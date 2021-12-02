@@ -13,10 +13,12 @@ namespace G8I9DY_HFT_2021221.Logic
     {
         IAlbumRepository albumRepo;
         ITrackRepository trackRepo;
-        IAlbumRepository artistRepo;
-        public AlbumLogic(IAlbumRepository albumRepo)
+        IArtistRepository artistRepo;
+        public AlbumLogic(IAlbumRepository albumRepo,ITrackRepository trackRepo,IArtistRepository artistRepo)
         {
             this.albumRepo = albumRepo;
+            this.trackRepo = trackRepo;
+            this.artistRepo = artistRepo;
         }
         public void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
@@ -89,11 +91,10 @@ namespace G8I9DY_HFT_2021221.Logic
         public IEnumerable<string> AlbumsWhereArtistName(string name) //DONE
         {
             var q1 = from x in artistRepo.GetAll()
-                     where x.Artist.Name == name
-                     select x.AlbumID;
-            List<int> helper = q1.ToList();
-            var q2 = from x in albumRepo.GetAll()
-                     where helper.Contains(x.AlbumID)
+                     where x.Name == name
+                     select x.ArtistID;
+            var q2 = from x in albumRepo.GetAll().AsEnumerable()
+                     where q1.Contains(x.ArtistID)
                      select x.Title;
             List<string> albums = new List<string>();
             foreach (var item in q2)

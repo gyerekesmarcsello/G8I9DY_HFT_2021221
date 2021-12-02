@@ -38,7 +38,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
         }
 
         [HttpGet]
-        public IEnumerable<string> TrackWhereGenreIs(string name)
+        public IEnumerable<string> TracksWhereGenreIs(string name)
         {
             return trackLogic.TracksWhereGenreIs(name);
         }
