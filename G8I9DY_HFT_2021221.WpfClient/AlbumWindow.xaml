@@ -33,7 +33,7 @@
             <Label Content="Release date" Background="LightGreen" Padding="10" />
             <DatePicker Text="{Binding SelectedAlbum.ReleaseDate}" Padding="10" Background="White"/>
             <Label Content="Genre" Background="LightGreen" Padding="10" />
-            <TextBox Text="{Binding SelectedAlbum.ReleaseDate}" Padding="10"/>
+            <TextBox Text="{Binding SelectedAlbum.Genre}" Padding="10"/>
             <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red"/>
         </StackPanel>
         <StackPanel Background="LightGreen" Grid.Column="2">

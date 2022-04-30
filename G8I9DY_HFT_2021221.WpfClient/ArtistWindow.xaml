@@ -3,11 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:G8I9DY_HFT_2021221.WpfClient" xmlns:local1="clr-namespace:G8I9DY_HFT_2021221.WpfClient.ViewModels"
-        mc:Ignorable="d"
+        xmlns:local="clr-namespace:G8I9DY_HFT_2021221.WpfClient.ViewModels"
         Title="Artist Editor" Height="400" Width="800">
     <Window.DataContext>
-        <local1:ArtistWindowViewModel></local1:ArtistWindowViewModel>
+        <local:ArtistWindowViewModel></local:ArtistWindowViewModel>
     </Window.DataContext>
     <Window.Resources>
         <BitmapImage x:Key="image" UriSource="logo.png"/>
@@ -32,6 +31,8 @@
             <DatePicker Padding="10" Text="{Binding SelectedArtist.Birthday}" Background="White"/>
             <Label Content="Nationality" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedArtist.Nationality}" Padding="10"  x:Name="nationality_field"/>
+            <Label Content="Grammy Winner ?" Background="LightGreen" Padding="10" />
+            <CheckBox Content="Yes" IsChecked="{Binding SelectedArtist.GrammyWinner}"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Background="LightGreen">
             <Image Source="{StaticResource image}"/>

@@ -1,0 +1,53 @@
+﻿﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Spotifi</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body style="background-color:lightgreen;">
+    <p style="text-align:center;"><img src="logo.png" alt="Logo"></p>
+    <div class="container" style="margin-top: 2%">
+        <div id="formdiv" class="d-flex justify-content-between border border-grey text-secondary">
+            <label style="margin: 5px;padding:5px">ADD NEW ARTIST</label>
+            <input placeholder="Name" type="text" id="ArtistName" />
+            <input placeholder="Birthday" type="date" id="ArtistBirthday" />
+            <input placeholder="Nationality" type="text" id="ArtistNationality" />
+            <input placeholder="Nationality" type="checkbox" id="artistGrammyWinner" />
+            <button onclick="create()" type="button">Add Artist</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ArtistID</th>
+                    <th>Name</th>
+                    <th>Delete</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody id="results">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="container">
+        <div id="formdiv" class="d-flex justify-content-between border border-grey text-secondary">
+            <label style="margin: 5px;padding:5px">EDIT ARTISTS</label>
+            <input type="hidden" id="edit-ArtistID" />
+            <input placeholder="Artist Name" type="text" id="edit-Name" />
+            <input placeholder="Artist Birthday" type="date" id="edit-Birthday" />
+            <input placeholder="Artist Nationality" type="text" id="edit-Nationality" />
+            <input placeholder="Artist GrammyWinner" type="checkbox" id="edit-GrammyWinner" />
+            <button onclick="Update()" type="button">Edit Artist</button>
+        </div>
+    </div>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

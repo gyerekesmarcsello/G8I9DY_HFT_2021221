@@ -40,12 +40,6 @@ namespace G8I9DY_HFT_2021221.Endpoint
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(x => x
-                .AllowCredentials()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .WithOrigins("http://localhost:59654"));
-
             app.UseExceptionHandler(c => c.Run(async context =>
             {
                 var exception = context.Features
@@ -56,7 +50,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
             }));
 
             app.UseRouting();
-            app.UseCors(x => x.AllowCredentials().AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:2509/"));
+            app.UseCors(x => x.AllowCredentials().AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:12307/"));
 
             app.UseEndpoints(endpoints =>
             {

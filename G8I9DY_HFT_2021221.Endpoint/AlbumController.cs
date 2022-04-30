@@ -47,7 +47,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
         public void Put([FromBody] Albums albums)
         {
             albumLogic.UpdateAlbum(albums.AlbumID, albums.Title, albums.ArtistID, albums.Label, albums.Length, albums.ReleaseDate, albums.Genre);
-            this.hub.Clients.All.SendAsync("PostUpdated", albums);
+            this.hub.Clients.All.SendAsync("AlbumUpdated", albums);
         }
 
         //DELETE /albums/5
@@ -56,7 +56,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
         {
             var album = albumLogic.ReadAlbum(id);
             albumLogic.DeleteAlbum(id);
-            this.hub.Clients.All.SendAsync("PostDeleted", album);
+            this.hub.Clients.All.SendAsync("AlbumDeleted", album);
         }
     }
 }
