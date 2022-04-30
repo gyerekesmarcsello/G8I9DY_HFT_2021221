@@ -56,6 +56,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
             }));
 
             app.UseRouting();
+            app.UseCors(x => x.AllowCredentials().AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:2509/"));
 
             app.UseEndpoints(endpoints =>
             {
