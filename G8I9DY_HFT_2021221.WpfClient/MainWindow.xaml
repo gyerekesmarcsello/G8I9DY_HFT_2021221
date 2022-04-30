@@ -5,8 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:G8I9DY_HFT_2021221.WpfClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="300" Width="400">
     <Grid>
-
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+            <Button Content="Artists" Margin="10" Padding="10" Click="Button_Click"></Button>
+            <Button Content="Albums" Margin="10" Padding="10" Click="Button_Click_1"></Button>
+            <Button Content="Tracks" Margin="10" Padding="10" Click="Button_Click_2"></Button>
+        </StackPanel>
     </Grid>
 </Window>
