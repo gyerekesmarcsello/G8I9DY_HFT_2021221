@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:G8I9DY_HFT_2021221.WpfClient" xmlns:local1="clr-namespace:G8I9DY_HFT_2021221.WpfClient.ViewModels"
         mc:Ignorable="d"
-        Title="Artist Editor" Height="500" Width="800">
+        Title="Artist Editor" Height="400" Width="800">
     <Window.DataContext>
         <local1:ArtistWindowViewModel></local1:ArtistWindowViewModel>
     </Window.DataContext>
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
@@ -21,17 +22,19 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Column="1">
-            <Label Content="Name" Background="LightBlue" Padding="10" />
+        <StackPanel Grid.Column="1" Background="LightGreen">
+            <Label Content="Name" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedArtist.Name}" Padding="10"  x:Name="name_field"/>
-            <Label Content="Birthday" Background="LightBlue" Padding="10"/>
-            <DatePicker Padding="10" x:Name="birthday_field" Text="{Binding SelectedArtist.Birthday}"/>
-            <Label Content="Nationality" Background="LightBlue" Padding="10" />
+            <Label Content="Birthday" Background="LightGreen" Padding="10"/>
+            <DatePicker Padding="10" Text="{Binding SelectedArtist.Birthday}" Background="White"/>
+            <Label Content="Nationality" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedArtist.Nationality}" Padding="10"  x:Name="nationality_field"/>
-            <Label Content="GrammyWinner" Background="LightBlue" Padding="10" />
-            <Button Content="Create Artist" Command="{Binding CreateArtistCommand}" Margin="10" Padding="10" />
-            <Button Content="Delete Artist" Command="{Binding DeleteArtistCommand}" Margin="10" Padding="10" />
-            <Button Content="Update Artist" Command="{Binding UpdateArtistCommand}" Margin="10" Padding="10" />
+        </StackPanel>
+        <StackPanel Grid.Column="2" Background="LightGreen">
+            <Image Source="logo.png" />
+            <Button Content="Create Artist" Command="{Binding CreateArtistCommand}" Margin="10" Padding="10"/>
+            <Button Content="Delete Artist" Command="{Binding DeleteArtistCommand}" Margin="10" Padding="10"/>
+            <Button Content="Update Artist" Command="{Binding UpdateArtistCommand}" Margin="10" Padding="10"/>
             <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red" HorizontalContentAlignment="Center" />
         </StackPanel>
     </Grid>

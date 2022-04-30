@@ -23,20 +23,21 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <StackPanel Grid.Column="1">
-            <Label Content="Title" Background="LightBlue" Padding="10" />
+        <StackPanel Grid.Column="1" Background="LightGreen">
+            <Label Content="Title" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedAlbum.Title}" Padding="10"/>
-            <Label Content="ArtistID" Background="LightBlue" Padding="10" />
+            <Label Content="ArtistID" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedAlbum.ArtistID}" Padding="10" />
-            <Label Content="Length" Background="LightBlue" Padding="10" />
+            <Label Content="Length" Background="LightGreen" Padding="10" />
             <syncfusion:TimeSpanEdit Text="{Binding SelectedAlbum.Length}" Padding="10"/>
-            <Label Content="Release date" Background="LightBlue" Padding="10" />
-            <DatePicker Text="{Binding SelectedAlbum.ReleaseDate}" Padding="10"/>
-            <Label Content="Genre" Background="LightBlue" Padding="10" />
+            <Label Content="Release date" Background="LightGreen" Padding="10" />
+            <DatePicker Text="{Binding SelectedAlbum.ReleaseDate}" Padding="10" Background="White"/>
+            <Label Content="Genre" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedAlbum.ReleaseDate}" Padding="10"/>
             <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red"/>
         </StackPanel>
-        <StackPanel Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center">
+        <StackPanel Background="LightGreen" Grid.Column="2">
+            <Image Source="logo.png" />
             <Button Content="Create Album" Command="{Binding CreateAlbumCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete Album" Command="{Binding DeleteAlbumCommand}" Margin="10" Padding="10"/>
             <Button Content="Update Album" Command="{Binding UpdateAlbumCommand}" Margin="10" Padding="10" />

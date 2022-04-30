@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:G8I9DY_HFT_2021221.WpfClient"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="400">
+        Background="LightGreen"
+        Title="Budget Spotify" Height="300" Width="400">
     <Grid>
-        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Image Source="logo.png" VerticalAlignment="Center"></Image>
+        
+        <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="1">
             <Button Content="Artists" Margin="10" Padding="10" Click="Button_Click"></Button>
             <Button Content="Albums" Margin="10" Padding="10" Click="Button_Click_1"></Button>
             <Button Content="Tracks" Margin="10" Padding="10" Click="Button_Click_2"></Button>
