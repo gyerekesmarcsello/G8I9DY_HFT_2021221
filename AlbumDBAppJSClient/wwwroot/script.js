@@ -34,6 +34,11 @@ async function start() {
     }
 };
 
+function showupdate(id) {
+    document.getElementById('actornametoupdate').value = actors.find(t => t['actorId'] == id)['actor Name'];
+    document.getElementById('updateformdiv').style.display = 'flex';
+    actorIdToUpdate = id;
+}
 
 async function getData() {
     log('getData');
