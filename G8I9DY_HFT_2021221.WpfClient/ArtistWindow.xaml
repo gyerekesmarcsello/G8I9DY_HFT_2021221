@@ -9,6 +9,9 @@
     <Window.DataContext>
         <local1:ArtistWindowViewModel></local1:ArtistWindowViewModel>
     </Window.DataContext>
+    <Window.Resources>
+        <BitmapImage x:Key="image" UriSource="logo.png"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -31,7 +34,7 @@
             <TextBox Text="{Binding SelectedArtist.Nationality}" Padding="10"  x:Name="nationality_field"/>
         </StackPanel>
         <StackPanel Grid.Column="2" Background="LightGreen">
-            <Image Source="logo.png" />
+            <Image Source="{StaticResource image}"/>
             <Button Content="Create Artist" Command="{Binding CreateArtistCommand}" Margin="10" Padding="10"/>
             <Button Content="Delete Artist" Command="{Binding DeleteArtistCommand}" Margin="10" Padding="10"/>
             <Button Content="Update Artist" Command="{Binding UpdateArtistCommand}" Margin="10" Padding="10"/>

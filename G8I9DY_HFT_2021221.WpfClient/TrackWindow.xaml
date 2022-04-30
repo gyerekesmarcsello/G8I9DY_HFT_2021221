@@ -10,6 +10,9 @@
     <Window.DataContext>
         <local1:TrackWindowViewModel></local1:TrackWindowViewModel>
     </Window.DataContext>
+    <Window.Resources>
+        <BitmapImage x:Key="image" UriSource="logo.png"/>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -39,7 +42,7 @@
             
         </StackPanel>
         <StackPanel Grid.Column="2" Background="LightGreen" >
-            <Image Source="logo.png" />
+            <Image Source="{StaticResource image}"/>
             <Button Content="Create Track" Command="{Binding CreateBlogCommand}" Margin="10" Padding="10" />
             <Button Content="Delete Track" Command="{Binding DeleteBlogCommand}" Margin="10" Padding="10" />
             <Button Content="Update Track" Command="{Binding UpdateBlogCommand}" Margin="10" Padding="10" />

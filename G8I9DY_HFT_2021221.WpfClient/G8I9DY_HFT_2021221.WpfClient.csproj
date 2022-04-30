@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\G8I9DY_HFT_2021221.Models\G8I9DY_HFT_2021221.Models.csproj" />
   </ItemGroup>
 
@@ -16,6 +20,12 @@
 		<PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="6.0.2" />
 		<PackageReference Include="Microsoft.Toolkit.Mvvm" Version="7.1.2" />
 		<PackageReference Include="Syncfusion.Tools.WPF" Version="20.1.0.51" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="logo.png">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Resource>
 	</ItemGroup>
 
 </Project>

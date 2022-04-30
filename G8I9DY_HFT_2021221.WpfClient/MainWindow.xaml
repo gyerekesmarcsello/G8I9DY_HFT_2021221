@@ -7,13 +7,16 @@
         mc:Ignorable="d"
         Background="LightGreen"
         Title="Budget Spotify" Height="300" Width="400">
+    <Window.Resources>
+        <BitmapImage x:Key="image" UriSource="logo.png"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        <Image Source="{StaticResource image}"/>
         <Image Source="logo.png" VerticalAlignment="Center"></Image>
-        
         <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Stretch" Grid.Row="1">
             <Button Content="Artists" Margin="10" Padding="10" Click="Button_Click"></Button>
             <Button Content="Albums" Margin="10" Padding="10" Click="Button_Click_1"></Button>
