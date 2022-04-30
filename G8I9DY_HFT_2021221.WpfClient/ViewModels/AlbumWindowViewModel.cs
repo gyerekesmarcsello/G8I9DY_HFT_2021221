@@ -72,7 +72,7 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Albums = new RestCollection<Albums>("http://localhost:57125/", "album", "hub");
+                Albums = new RestCollection<Albums>("http://localhost:2509/", "album", "hub");
                 CreateAlbumCommand = new RelayCommand(() =>
                 {
                     Albums.Add(new Albums()

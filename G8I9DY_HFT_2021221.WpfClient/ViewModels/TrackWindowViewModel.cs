@@ -72,7 +72,7 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Tracks = new RestCollection<Tracks>("http://localhost:57125/", "track", "hub");
+                Tracks = new RestCollection<Tracks>("http://localhost:2509/", "track", "hub");
                 CreateTrackCommand = new RelayCommand(() =>
                 {
                     Tracks.Add(new Tracks()

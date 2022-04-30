@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using G8I9DY_HFT_2021221.Endpoint;
+using Microsoft.AspNetCore.SignalR;
 
 namespace G8I9DY_HFT_2021221.Endpoint
 {
@@ -12,11 +14,13 @@ namespace G8I9DY_HFT_2021221.Endpoint
         IAlbumLogic albumLogic;
         IArtistLogic artistLogic;
         ITrackLogic trackLogic;
-        public StatController(IAlbumLogic albumLogic, IArtistLogic artistLogic, ITrackLogic trackLogic)
+        IHubContext<SignalRHub> hub;
+        public StatController(IAlbumLogic albumLogic, IArtistLogic artistLogic, ITrackLogic trackLogic, IHubContext<SignalRHub> hub)
         {
             this.artistLogic = artistLogic;
             this.albumLogic = albumLogic;
             this.trackLogic = trackLogic;
+            this.hub = hub;
         }
 
         [HttpGet]

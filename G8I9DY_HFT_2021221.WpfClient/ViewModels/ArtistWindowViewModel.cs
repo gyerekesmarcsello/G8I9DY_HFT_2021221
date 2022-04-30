@@ -68,7 +68,7 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Artists = new RestCollection<Artists>("http://localhost:57125/", "artist", "hub");
+                Artists = new RestCollection<Artists>("http://localhost:2509/", "artist", "hub");
                 CreateArtistCommand = new RelayCommand(() =>
                 {
                     Artists.Add(new Artists()

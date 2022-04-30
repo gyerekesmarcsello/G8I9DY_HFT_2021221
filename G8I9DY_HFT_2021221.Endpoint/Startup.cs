@@ -4,6 +4,8 @@ using G8I9DY_HFT_2021221.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -27,6 +29,7 @@ namespace G8I9DY_HFT_2021221.Endpoint
             services.AddTransient<IArtistRepository, ArtistRepository>();
             services.AddTransient<ITrackRepository, TrackRepository>();
             services.AddTransient<TracksDbContext,TracksDbContext>();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,11 +46,21 @@ namespace G8I9DY_HFT_2021221.Endpoint
                 .AllowAnyHeader()
                 .WithOrigins("http://localhost:59654"));
 
+            app.UseExceptionHandler(c => c.Run(async context =>
+            {
+                var exception = context.Features
+                    .Get<IExceptionHandlerPathFeature>()
+                    .Error;
+                var response = new { Msg = exception.Message };
+                await context.Response.WriteAsJsonAsync(response);
+            }));
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<SignalRHub>("/hub");
             });
         }
     }
