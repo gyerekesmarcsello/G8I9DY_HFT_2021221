@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.OpenApi.Models;
 
 namespace G8I9DY_HFT_2021221.Endpoint
 {
@@ -30,6 +31,14 @@ namespace G8I9DY_HFT_2021221.Endpoint
             services.AddTransient<ITrackRepository, TrackRepository>();
             services.AddTransient<TracksDbContext,TracksDbContext>();
             services.AddSignalR();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "G8I9DY_HFT_2021221.Endpoint", Version = "v1" });
+            });
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +57,9 @@ namespace G8I9DY_HFT_2021221.Endpoint
                 var response = new { Msg = exception.Message };
                 await context.Response.WriteAsJsonAsync(response);
             }));
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "G8I9DY_HFT_2021221.Endpoint v1"));
 
             app.UseRouting();
             app.UseCors(x => x.AllowCredentials().AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:12307/"));

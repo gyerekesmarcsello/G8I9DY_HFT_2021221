@@ -16,7 +16,7 @@ namespace G8I9DY_HFT_2021221.WpfClient
     {
         HttpClient client;
 
-        public RestService(string baseurl, string pingableEndpoint = "/artist")
+        public RestService(string baseurl, string pingableEndpoint = "swagger")
         {
             bool isOk = false;
             do
