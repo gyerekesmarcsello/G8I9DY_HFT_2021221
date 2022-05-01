@@ -1,24 +1,32 @@
-﻿let artists = [];
-
+﻿let tracks = [];
 let connection = null;
+let trackIdToUpdate = -1;
 
-getData();
-setup();
+getdata();
+setupSignalR();
 
-function setup() {
+function setupSignalR() {
     connection = new signalR.HubConnectionBuilder()
         .withUrl("http://localhost:2509/hub")
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.on("ArtistCreated", (user, message) => { getData(); });
-    connection.on("ArtistDeleted", (user, message) => { getData(); });
-    connection.on("ArtistUpdated", (user, message) => { getData(); });
+    connection.on("TrackCreated", (user, message) => {
+        getdata();
+    });
 
-    connection.onclose
-        (async () => {
-            await start();
-        });
+    connection.on("TrackDeleted", (user, message) => {
+        getdata();
+    });
+
+    connection.on("TrackUpdated", (user, message) => {
+        getdata();
+    });
+
+    connection.onclose(async () => {
+        await start();
+    });
+
     start();
 }
 
@@ -32,87 +40,118 @@ async function start() {
     }
 };
 
-async function getData() {
-    await fetch("http://localhost:2509/artist")
+async function getdata() {
+    await fetch('http://localhost:2509/track')
         .then(x => x.json())
         .then(y => {
-            blogs = y;
+            shelters = y;
             display();
         });
 }
 
 function display() {
-    document.getElementById("results").innerHTML = "";
-    blogs.forEach(t => {
-        document.getElementById("results").innerHTML += "<tr><td>" + t.ArtistID + " </td><td>" + t.Name + "<td>" + t.ArtistID + " </td>"`</td><td>'<button class="btn btn-danger" onclick="remove(${t.ArtistID})">Delete</button></td><td> <button class="btn btn-success" onclick="setUpdate('${String(t.Name)}', ${t.ArtistID})">Update</button></td></tr>`;
+    document.getElementById('resultarea').innerHTML = "";
+    shelters.forEach(t => {
+        document.getElementById('resultarea').innerHTML +=
+            "<tr><td>"
+            + t.TrackID + "</td><td>"
+            + t.Title + "</td><td>"
+            + t.AlbumID + "</td><td>"
+            + t.Plays + "</td><td>"
+            + t.Duration + "</td><td>"
+            + t.ArtistID + "</td><td>"
+            + t.IsExplicit + "</td><td>"
+            + `<button type="button" onclick="showupdate(${t.TrackID})">Update</button>`
+            + `<button type="button" onclick="remove(${t.TrackID})">Delete</button>` +
+            "</td></tr>";
     });
 }
 
-
 function create() {
-    let name = document.getElementById("artistName").value;
-    let birthday = document.getElementById('artisBirthday').value;
-    let nationality = document.getElementById('artistNationality').value;
-    let grammywinner = document.getElementById('artistGrammyWinner').value;
-    fetch("http://localhost:2509/artist", {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: name }),
+    let name = document.getElementById('trackName').value;
+    let name2 = document.getElementById('trackAlbumID').value;
+    let name3 = document.getElementById('trackPlays').value;
+    let name4 = document.getElementById('trackDuration').value;
+    let name5 = document.getElementById('trackArtistID').value;
+    let name6 = document.getElementById('trackExplicit').value;
+    fetch('http://localhost:2509/track', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            {
+                trackName: name,
+                trackAlbumID: name2,
+                trackPlays: name3,
+                trackDuration: name4,
+                trackArtistID: name5,
+                trackExplicit: name6
+
+            })
     })
         .then(response => response)
         .then(data => {
-            getData();
+            console.log('Success:', data);
+            getdata();
         })
-        .catch((error) => { console.log('Error: ', error) });
-    document.getElementById("artistName").value = "";
-    document.getElementById('artisBirthday').value = "";
-    document.getElementById('artistNationality').value = "";
-    document.getElementById('artistGrammyWinner').value = "";
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+}
+
+function showupdate(id) {
+    document.getElementById('trackNameToUpdate').value = shelter.find(t => t['TrackID'] == id)['Title'];
+    document.getElementById('trackAlbumIDToUpdate').value = shelter.find(t => t['TrackID'] == id)['AlbumID'];
+    document.getElementById('trackPlaysToUpdate').value = shelter.find(t => t['TrackID'] == id)['Plays'];
+    document.getElementById('trackDurationToUpdate').value = shelter.find(t => t['TrackID'] == id)['Duration'];
+    document.getElementById('trackArtistIDToUpdate').value = shelter.find(t => t['TrackID'] == id)['ArtistID'];
+    document.getElementById('trackExplicitToUpdate').value = shelter.find(t => t['TrackID'] == id)['IsExplicit'];
+    document.getElementById('updateformdiv').style.display = 'flex';
+    trackIdToUpdate = id;
+}
+
+function update() {
+    document.getElementById('updateformdiv').style.display = 'none';
+    let name = document.getElementById('trackNameToUpdate').value;
+    let name2 = document.getElementById('trackAlbumIDToUpdate').value;
+    let name3 = document.getElementById('trackPlaysToUpdate').value;
+    let name4 = document.getElementById('trackDurationToUpdate').value;
+    let name5 = document.getElementById('trackArtistIDToUpdate').value;
+    let name6 = document.getElementById('trackExplicitToUpdate').value;
+
+    fetch('http://localhost:2509/track', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', },
+        body: JSON.stringify(
+            {
+                trackID: trackIdToUpdate,
+                trackName: name,
+                trackAlbumID: name2,
+                trackPlays: name3,
+                trackDuration: name4,
+                trackArtistID: name5,
+                trackExplicit: name6
+            })
+    })
+        .then(response => response)
+        .then(data => {
+            console.log('Success:', data);
+            getdata();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
 }
 
 function remove(id) {
-    fetch("http://localhost:2509/artist" + id, {
-        method: "DELETE",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: name }),
+    fetch('http://localhost:2509/track' + id, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json', },
+        body: null
     })
         .then(response => response)
         .then(data => {
-            getData();
+            console.log('Success:', data);
+            getdata();
         })
-        .catch((error) => { console.log('Error: ', error) });
-}
-
-function setUpdate(title, id) {
-    document.getElementById('edit-ArtistID').value = ArtistID;
-    document.getElementById('edit-Name').value = Name;
-    document.getElementById('edit-Birthday').value = Birthday;
-    document.getElementById('edit-Nationality').value = Nationality;
-    document.getElementById('edit-GrammyWinner').value = GrammyWinner;
-}
-
-function Update() {
-    ArtistID = document.getElementById('edit-ArtistID').value;
-    Name = document.getElementById('edit-Name').value;
-    Birthday = document.getElementById('edit-Birthday').value;
-    Nationality = document.getElementById('edit-Nationality').value;
-    GrammyWinner = document.getElementById('edit-GrammyWinner').value;
-
-    fetch("http://localhost:2509/artist", {
-        method: "PUT",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: id, title: title }),
-    })
-        .then(response => response)
-        .then(data => {
-            getData();
-        })
-        .catch((error) => { console.log('Error: ', error) });
-
-    document.getElementById('edit-ArtistID').value = "";
-    document.getElementById('edit-Name').value = "";
-    document.getElementById('edit-Birthday').value = "";
-    document.getElementById('edit-Nationality').value = "";
-    document.getElementById('edit-GrammyWinner').value = "";
-
+        .catch((error) => { console.error('Error:', error); });
 }

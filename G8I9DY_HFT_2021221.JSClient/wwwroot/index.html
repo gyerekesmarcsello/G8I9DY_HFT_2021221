@@ -1,52 +1,60 @@
-﻿﻿
-<!DOCTYPE html>
+﻿﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Spotifi</title>
+    <title>Spotifi UI</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body style="background-color:lightgreen;">
     <p style="text-align:center;"><img src="logo.png" alt="Logo"></p>
-    <div class="container" style="margin-top: 2%">
-        <div id="formdiv" class="d-flex justify-content-between border border-grey text-secondary">
-            <label style="margin: 5px;padding:5px">ADD NEW ARTIST</label>
-            <input placeholder="Name" type="text" id="ArtistName" />
-            <input placeholder="Birthday" type="date" id="ArtistBirthday" />
-            <input placeholder="Nationality" type="text" id="ArtistNationality" />
-            <input placeholder="Nationality" type="checkbox" id="artistGrammyWinner" />
-            <button onclick="create()" type="button">Add Artist</button>
-        </div>
+    <h1>List of Available Tracks</h1>
+    <div id="formdiv">
+        <label>Track Title</label>
+        <input type="text" id="trackName" />
+        <label>AlbumID</label>
+        <input type="number" id="trackAlbumID" />
+        <label>Plays</label>
+        <input type="number" id="trackPlays" />
+        <label>Duration</label>
+        <input type="text" id="trackDuration" />
+        <label>ArtistID</label>
+        <input type="number" id="trackArtistID" />
+        <label>Is the track explicit ?</label>
+        <input type="checkbox" id="trackExplicit" />
+        <button type="button" onclick="create()">Add Track</button>
+    </div>
+    <div id="updateformdiv">
+        <label>Track Title</label>
+        <input type="text" id="trackNameToUpdate" />
+        <label>AlbumID</label>
+        <input type="number" id="trackAlbumIDToUpdate" />
+        <label>Plays</label>
+        <input type="number" id="trackPlaysToUpdate" />
+        <label>Duration</label>
+        <input type="text" id="trackDurationToUpdate" />
+        <label>ArtistID</label>
+        <input type="number" id="trackArtistIDToUpdate" />
+        <label>Is the track explicit ?</label>
+        <input type="checkbox" id="trackExplicitToUpdate" />
+        <button type="button" onclick="update()">Update Animal Shelter</button>
     </div>
 
-    <div class="container">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>ArtistID</th>
-                    <th>Name</th>
-                    <th>Delete</th>
-                    <th>Update</th>
-                </tr>
-            </thead>
-            <tbody id="results">
-            </tbody>
-        </table>
-    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Track Title</th>
+                <th>AlbumID</th>
+                <th>Plays</th>
+                <th>Duration</th>
+                <th>ArtistID</th>
+                <th>IsExplicit</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="resultarea"></tbody>
+    </table>
 
-    <div class="container">
-        <div id="formdiv" class="d-flex justify-content-between border border-grey text-secondary">
-            <label style="margin: 5px;padding:5px">EDIT ARTISTS</label>
-            <input type="hidden" id="edit-ArtistID" />
-            <input placeholder="Artist Name" type="text" id="edit-Name" />
-            <input placeholder="Artist Birthday" type="date" id="edit-Birthday" />
-            <input placeholder="Artist Nationality" type="text" id="edit-Nationality" />
-            <input placeholder="Artist GrammyWinner" type="checkbox" id="edit-GrammyWinner" />
-            <button onclick="Update()" type="button">Edit Artist</button>
-        </div>
-    </div>
-
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
     <script src="script.js"></script>
 </body>
