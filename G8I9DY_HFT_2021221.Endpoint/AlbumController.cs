@@ -23,28 +23,28 @@ namespace G8I9DY_HFT_2021221.Endpoint
         }
 
         [HttpGet]
-        public IEnumerable<Albums> Get()
+        public IEnumerable<Album> Get()
         {
             return albumLogic.ReadAllAlbums();
         }
 
         //GET/albums/5
         [HttpGet("{id}")]
-        public Albums Get (int id)
+        public Album Get (int id)
         {
             return albumLogic.ReadAlbum(id);
         }
 
         //POST /albums
         [HttpPost]
-        public void Post([FromBody] Albums albums)
+        public void Post([FromBody] Album albums)
         {
             albumLogic.CreateAlbum(albums.AlbumID, albums.Title, albums.ArtistID, albums.Label, albums.Length, albums.ReleaseDate, albums.Genre);
             this.hub.Clients.All.SendAsync("AlbumCreated", albums);
         }
 
         [HttpPut]
-        public void Put([FromBody] Albums albums)
+        public void Put([FromBody] Album albums)
         {
             albumLogic.UpdateAlbum(albums.AlbumID, albums.Title, albums.ArtistID, albums.Label, albums.Length, albums.ReleaseDate, albums.Genre);
             this.hub.Clients.All.SendAsync("AlbumUpdated", albums);

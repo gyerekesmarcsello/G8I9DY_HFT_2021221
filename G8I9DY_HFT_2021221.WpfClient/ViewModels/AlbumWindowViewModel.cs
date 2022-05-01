@@ -23,10 +23,10 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
             set { SetProperty(ref errorMessage, value); }
         }
 
-        public RestCollection<Albums> Albums { get; set; }
+        public RestCollection<Album> Albums { get; set; }
 
 
-        private Albums selectedAlbum;
+        private Album selectedAlbum;
 
         public static bool IsInDesignMode
         {
@@ -37,14 +37,14 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
             }
         }
 
-        public Albums SelectedAlbum
+        public Album SelectedAlbum
         {
             get { return selectedAlbum; }
             set
             {
                 if (value != null)
                 {
-                    selectedAlbum = new Albums()
+                    selectedAlbum = new Album()
                     {
                         AlbumID = value.AlbumID,
                         Title = value.Title,
@@ -72,10 +72,10 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Albums = new RestCollection<Albums>("http://localhost:2509/", "album", "hub");
+                Albums = new RestCollection<Album>("http://localhost:2509/", "album", "hub");
                 CreateAlbumCommand = new RelayCommand(() =>
                 {
-                    Albums.Add(new Albums()
+                    Albums.Add(new Album()
                     {
                         Title = selectedAlbum.Title,
                         ArtistID = selectedAlbum.ArtistID,
@@ -107,7 +107,7 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
                 {
                     return selectedAlbum != null;
                 });
-                selectedAlbum = new Albums();
+                selectedAlbum = new Album();
             }
 
         }

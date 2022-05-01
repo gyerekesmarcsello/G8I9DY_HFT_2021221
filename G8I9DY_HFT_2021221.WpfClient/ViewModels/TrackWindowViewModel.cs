@@ -22,10 +22,10 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
             set { SetProperty(ref errorMessage, value); }
         }
 
-        public RestCollection<Tracks> Tracks { get; set; }
+        public RestCollection<Track> Tracks { get; set; }
 
 
-        private Tracks selectedTrack;
+        private Track selectedTrack;
 
         public static bool IsInDesignMode
         {
@@ -36,14 +36,14 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
             }
         }
 
-        public Tracks SelectedTrack
+        public Track SelectedTrack
         {
             get { return selectedTrack; }
             set
             {
                 if (value != null)
                 {
-                    selectedTrack = new Tracks()
+                    selectedTrack = new Track()
                     {
                         TrackID = value.TrackID,
                         Title = value.Title,
@@ -72,10 +72,10 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Tracks = new RestCollection<Tracks>("http://localhost:2509/", "track", "hub");
+                Tracks = new RestCollection<Track>("http://localhost:2509/", "track", "hub");
                 CreateTrackCommand = new RelayCommand(() =>
                 {
-                    Tracks.Add(new Tracks()
+                    Tracks.Add(new Track()
                     {
                         Title = selectedTrack.Title,
                         AlbumID = selectedTrack.AlbumID,
@@ -107,7 +107,7 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
                 {
                     return selectedTrack != null;
                 });
-                selectedTrack = new Tracks();
+                selectedTrack = new Track();
             }
 
         }

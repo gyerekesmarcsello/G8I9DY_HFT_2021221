@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace G8I9DY_HFT_2021221.Models
 {
     [Table("Albums")]
-    public class Albums
+    public class Album
     {
         [Key]
         [Required]
@@ -19,7 +19,7 @@ namespace G8I9DY_HFT_2021221.Models
         [Required]
         public string Title { get; set; }
 
-        [ForeignKey(nameof(Artists))]
+        [ForeignKey(nameof(Models.Artist))]
         public int ArtistID { get; set; }
 
         [Required]
@@ -39,11 +39,11 @@ namespace G8I9DY_HFT_2021221.Models
 
         [NotMapped]
         [JsonIgnore]
-        public virtual Artists Artist { get; set; }
+        public virtual Artist Artist { get; set; }
 
         [NotMapped]
         [JsonIgnore]
-        public virtual ICollection<Tracks> Tracks { get; set; }
+        public virtual ICollection<Track> Tracks { get; set; }
 
         [NotMapped]
         public long LengthTicks
@@ -57,9 +57,9 @@ namespace G8I9DY_HFT_2021221.Models
                 Length = TimeSpan.FromTicks(value);
             }
         }
-        public Albums()
+        public Album()
         {
-            Tracks = new HashSet<Tracks>();
+            Tracks = new HashSet<Track>();
         }
 
 

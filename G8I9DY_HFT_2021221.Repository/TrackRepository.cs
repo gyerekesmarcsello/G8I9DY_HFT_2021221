@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Repository
 {
-    public class TrackRepository : Repository<Tracks>, ITrackRepository
+    public class TrackRepository : Repository<Track>, ITrackRepository
     {
         public TrackRepository(TracksDbContext context) : base(context)
         {
@@ -17,7 +17,7 @@ namespace G8I9DY_HFT_2021221.Repository
         }
         public void CreateTrack(int TrackID, string Title, int AlbumID,int plays,TimeSpan duration, int ArtistID, bool IsExplicit)
         {
-            Tracks tracks = new Tracks() { TrackID = TrackID, Title = Title, AlbumID = AlbumID,Plays=plays,Duration=duration,ArtistID=ArtistID, IsExplicit= IsExplicit};
+            Track tracks = new Track() { TrackID = TrackID, Title = Title, AlbumID = AlbumID,Plays=plays,Duration=duration,ArtistID=ArtistID, IsExplicit= IsExplicit};
             Create(tracks);
             context.SaveChanges();
         }
@@ -28,17 +28,17 @@ namespace G8I9DY_HFT_2021221.Repository
             context.SaveChanges();
         }
 
-        public override Tracks GetOne(int id)
+        public override Track GetOne(int id)
         {
             return GetAll().SingleOrDefault(x => x.TrackID == id);
         }
 
-        public IQueryable<Tracks> ReadAllTracks()
+        public IQueryable<Track> ReadAllTracks()
         {
-            return (IQueryable<Tracks>)GetAll();
+            return (IQueryable<Track>)GetAll();
         }
 
-        public Tracks ReadTrack(int TrackID)
+        public Track ReadTrack(int TrackID)
         {
             return GetOne(TrackID);
         }

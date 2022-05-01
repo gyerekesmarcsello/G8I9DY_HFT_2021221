@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Repository
 {
-    public class AlbumRepository : Repository<Albums>, IAlbumRepository
+    public class AlbumRepository : Repository<Album>, IAlbumRepository
     {
         public AlbumRepository(TracksDbContext context) : base(context)
         {
@@ -17,7 +17,7 @@ namespace G8I9DY_HFT_2021221.Repository
         }
         public void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)
         {
-            Albums album = new Albums() { AlbumID = albumID, Title = Title, ArtistID = ArtistID, Label = Label, Length=length,ReleaseDate=releasedate,Genre=Genre};
+            Album album = new Album() { AlbumID = albumID, Title = Title, ArtistID = ArtistID, Label = Label, Length=length,ReleaseDate=releasedate,Genre=Genre};
             Create(album);
             context.SaveChanges();
         }
@@ -28,18 +28,18 @@ namespace G8I9DY_HFT_2021221.Repository
             context.SaveChanges();
         }
 
-        public override Albums GetOne(int id)
+        public override Album GetOne(int id)
         {
             return GetAll().SingleOrDefault(x => x.AlbumID == id);
         }
-        public Albums ReadAlbum(int albumID)
+        public Album ReadAlbum(int albumID)
         {
             return GetOne(albumID);
         }
 
-        public IQueryable<Albums> ReadAllAlbums()
+        public IQueryable<Album> ReadAllAlbums()
         {
-            return (IQueryable<Albums>)GetAll();
+            return (IQueryable<Album>)GetAll();
         }
 
         public void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre)

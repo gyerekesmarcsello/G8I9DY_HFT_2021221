@@ -23,28 +23,28 @@ namespace G8I9DY_HFT_2021221.Endpoint
 
         [HttpGet]
         //GET:/tracks
-        public IEnumerable<Tracks> Get()
+        public IEnumerable<Track> Get()
         {
             return trackLogic.ReadAllTracks();
         }
 
         //GET/tracks/5
         [HttpGet("{id}")]
-        public Tracks Get(int id)
+        public Track Get(int id)
         {
             return trackLogic.ReadTrack(id);
         }
 
         //POST /tracks
         [HttpPost]
-        public void Post([FromBody] Tracks tracks)
+        public void Post([FromBody] Track tracks)
         {
             trackLogic.CreateTrack(tracks.TrackID, tracks.Title, tracks.AlbumID, tracks.Plays, tracks.Duration, tracks.ArtistID, tracks.IsExplicit);
             this.hub.Clients.All.SendAsync("TrackCreated", tracks);
         }
 
         [HttpPut]
-        public void Put([FromBody] Tracks tracks)
+        public void Put([FromBody] Track tracks)
         {
             trackLogic.UpdateTrack(tracks.TrackID,tracks.Title,tracks.AlbumID,tracks.Plays,tracks.Duration,tracks.ArtistID,tracks.IsExplicit);
             this.hub.Clients.All.SendAsync("TrackUpdated", tracks);

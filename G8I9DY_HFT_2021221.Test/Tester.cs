@@ -22,8 +22,8 @@ namespace G8I9DY_HFT_2021221.Test
             var mockAlbumRepository = new Mock<IAlbumRepository>();
             var mockArtistRepository = new Mock<IArtistRepository>();
             var mockTrackRepository = new Mock<ITrackRepository>();
-            var fakeartist = new List<Artists>()
-        {   new Artists()
+            var fakeartist = new List<Artist>()
+        {   new Artist()
             {
                 ArtistID = 1,
                 Name = "Bereczki Zoltán",
@@ -33,8 +33,8 @@ namespace G8I9DY_HFT_2021221.Test
          }
          }.AsQueryable();
 
-            var fakealbum = new List<Albums>()
-        {   new Albums()
+            var fakealbum = new List<Album>()
+        {   new Album()
             {
                 AlbumID = 1,
                 Title = "Álomkép",
@@ -46,9 +46,9 @@ namespace G8I9DY_HFT_2021221.Test
          }
          }.AsQueryable();
 
-            var tracks = new List<Tracks>()
+            var tracks = new List<Track>()
            {
-                new Tracks()
+                new Track()
                 {
                     TrackID = 1,
                     Title = "Kerek Egész",
@@ -59,7 +59,7 @@ namespace G8I9DY_HFT_2021221.Test
                     Artist=fakeartist.FirstOrDefault()
 
                 },
-                new Tracks()
+                new Track()
                 {
                     TrackID = 2,
                     Title = "Szállj velem!",
@@ -69,7 +69,7 @@ namespace G8I9DY_HFT_2021221.Test
                     Album=fakealbum.FirstOrDefault(),
                     Artist=fakeartist.FirstOrDefault()
                 },
-                new Tracks()
+                new Track()
                 {
                     TrackID = 3,
                     Title = "1001 Éjjel",
@@ -85,7 +85,7 @@ namespace G8I9DY_HFT_2021221.Test
             mockAlbumRepository.Setup((t) => t.GetAll()).Returns(fakealbum);
             mockTrackRepository.Setup((t) => t.GetAll()).Returns(tracks);
             mockArtistRepository.Setup(x => x.ReadArtist(It.IsAny<int>())).Returns(
-             new Artists()
+             new Artist()
              {
                  ArtistID = 1,
                  Name = "Bereczki Zoltán",

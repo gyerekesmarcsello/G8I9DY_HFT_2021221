@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Repository
 {
-    public interface IAlbumRepository: IRepository<Albums>
+    public interface IAlbumRepository: IRepository<Album>
     {
         //create
         void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate,string Genre);
         //read
-        Albums ReadAlbum(int albumID);
+        Album ReadAlbum(int albumID);
         //readall
-        IQueryable<Albums> ReadAllAlbums();
+        IQueryable<Album> ReadAllAlbums();
         //update
         void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre);
         //delete

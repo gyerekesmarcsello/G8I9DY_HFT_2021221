@@ -23,9 +23,9 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
             set { SetProperty(ref errorMessage, value); }
         }
 
-        public RestCollection<Artists> Artists { get; set; }
+        public RestCollection<Artist> Artists { get; set; }
 
-        private Artists selectedArtist;
+        private Artist selectedArtist;
 
         public static bool IsInDesignMode
         {
@@ -35,14 +35,14 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
                 return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement)).Metadata.DefaultValue;
             }
         }
-        public Artists SelectedArtist
+        public Artist SelectedArtist
         {
             get { return selectedArtist; }
             set
             {
                 if (value != null)
                 {
-                    selectedArtist = new Artists()
+                    selectedArtist = new Artist()
                     {
                         ArtistID = value.ArtistID,
                         Name = value.Name,
@@ -68,10 +68,10 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
         {
             if (!IsInDesignMode)
             {
-                Artists = new RestCollection<Artists>("http://localhost:2509/", "artist", "hub");
+                Artists = new RestCollection<Artist>("http://localhost:2509/", "artist", "hub");
                 CreateArtistCommand = new RelayCommand(() =>
                 {
-                    Artists.Add(new Artists()
+                    Artists.Add(new Artist()
                     {
                         Name = selectedArtist.Name,
                         Birthday= selectedArtist.Birthday,
@@ -101,7 +101,7 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
                 {
                     return selectedArtist != null;
                 });
-                selectedArtist = new Artists();
+                selectedArtist = new Artist();
             }
 
         }

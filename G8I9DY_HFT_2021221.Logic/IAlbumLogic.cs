@@ -12,9 +12,9 @@ namespace G8I9DY_HFT_2021221.Logic
         //create
         void CreateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre);
         //read
-        Albums ReadAlbum(int albumID);
+        Album ReadAlbum(int albumID);
         //readall
-        IEnumerable<Albums> ReadAllAlbums();
+        IEnumerable<Album> ReadAllAlbums();
         //update
         void UpdateAlbum(int albumID, string Title, int ArtistID, string Label, TimeSpan length, DateTime releasedate, string Genre);
         //delete

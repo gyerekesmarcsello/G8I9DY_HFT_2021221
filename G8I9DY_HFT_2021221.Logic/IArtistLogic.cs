@@ -12,9 +12,9 @@ namespace G8I9DY_HFT_2021221.Logic
         //create
         void CreateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner);
         //read
-        Artists ReadArtist(int ArtistID);
+        Artist ReadArtist(int ArtistID);
         //read all
-        IEnumerable<Artists> ReadAllArtist();
+        IEnumerable<Artist> ReadAllArtist();
         //update
         void UpdateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner);
         //delete

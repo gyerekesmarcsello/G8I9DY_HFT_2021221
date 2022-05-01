@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Repository
 {
-    public interface IArtistRepository : IRepository<Artists>
+    public interface IArtistRepository : IRepository<Artist>
     {
         //create
         void CreateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner);
         //read
-        Artists ReadArtist(int ArtistID);
+        Artist ReadArtist(int ArtistID);
         //readall
-        IQueryable<Artists> ReadAllArtist();
+        IQueryable<Artist> ReadAllArtist();
         //update
         void UpdateArtist(int ArtistID, string Name, DateTime Birthday, string nationality, bool grammywinner);
         //delete

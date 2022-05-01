@@ -52,7 +52,7 @@ namespace G8I9DY_HFT_2021221.Logic
                 throw new KeyNotFoundException();
             }
         }
-        public Albums ReadAlbum(int albumID)
+        public Album ReadAlbum(int albumID)
         {
             var temp = from albums in albumRepo.GetAll() where albums.AlbumID == albumID select albums.AlbumID;
             if (temp.Count() > 0)
@@ -64,7 +64,7 @@ namespace G8I9DY_HFT_2021221.Logic
                 throw new KeyNotFoundException();
             }
         }
-        public IEnumerable<Albums> ReadAllAlbums()
+        public IEnumerable<Album> ReadAllAlbums()
         {
             return albumRepo.ReadAllAlbums();
         }

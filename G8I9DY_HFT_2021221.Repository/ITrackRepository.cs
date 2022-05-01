@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Repository
 {
-    public interface ITrackRepository: IRepository<Tracks>
+    public interface ITrackRepository: IRepository<Track>
     {
         //create
         void CreateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit);
         //read
-        Tracks ReadTrack(int TrackID);
+        Track ReadTrack(int TrackID);
         //readall
-        IQueryable<Tracks> ReadAllTracks();
+        IQueryable<Track> ReadAllTracks();
         //update
         void UpdateTrack(int TrackID, string Title, int AlbumID, int plays, TimeSpan duration, int ArtistID, bool IsExplicit);
         //delete

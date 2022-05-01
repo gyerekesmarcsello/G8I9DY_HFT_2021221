@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace G8I9DY_HFT_2021221.Repository
 {
-    public class ArtistRepository : Repository<Artists>, IArtistRepository
+    public class ArtistRepository : Repository<Artist>, IArtistRepository
     {
         public ArtistRepository(TracksDbContext context) : base(context)
         {
@@ -17,7 +17,7 @@ namespace G8I9DY_HFT_2021221.Repository
         }
         public void CreateArtist(int ArtistID, string Name, DateTime Birthday, string nationality,bool grammywinner)
         {
-            Artists artist = new Artists() { ArtistID = ArtistID, Name = Name, Birthday = Birthday, Nationality = nationality,GrammyWinner=grammywinner };
+            Artist artist = new Artist() { ArtistID = ArtistID, Name = Name, Birthday = Birthday, Nationality = nationality,GrammyWinner=grammywinner };
             Create(artist);
             context.SaveChanges();
         }
@@ -28,17 +28,17 @@ namespace G8I9DY_HFT_2021221.Repository
             context.SaveChanges();
         }
 
-        public override Artists GetOne(int id)
+        public override Artist GetOne(int id)
         {
             return GetAll().SingleOrDefault(x => x.ArtistID == id);
         }
 
-        public IQueryable<Artists> ReadAllArtist()
+        public IQueryable<Artist> ReadAllArtist()
         {
-            return (IQueryable<Artists>)GetAll();
+            return (IQueryable<Artist>)GetAll();
         }
 
-        public Artists ReadArtist(int ArtistID)
+        public Artist ReadArtist(int ArtistID)
         {
             return GetOne(ArtistID);
         }

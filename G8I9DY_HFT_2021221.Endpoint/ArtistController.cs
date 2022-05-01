@@ -24,27 +24,27 @@ namespace G8I9DY_HFT_2021221.Endpoint
 
         [HttpGet]
         //GET:/artists
-        public IEnumerable<Artists> Get()
+        public IEnumerable<Artist> Get()
         {
             return artistLogic.ReadAllArtist();
         }
 
         //GET/artists/5
         [HttpGet("{id}")]
-        public Artists Get(int id)
+        public Artist Get(int id)
         {
             return artistLogic.ReadArtist(id);
         }
 
         //POST /artists
         [HttpPost]
-        public void Post([FromBody] Artists artists)
+        public void Post([FromBody] Artist artists)
         {
             artistLogic.CreateArtist(artists.ArtistID, artists.Name, artists.Birthday, artists.Nationality, artists.GrammyWinner);
             this.hub.Clients.All.SendAsync("ArtistCreated", artists);
         }
         [HttpPut]
-        public void Put([FromBody] Artists artists)
+        public void Put([FromBody] Artist artists)
         {
             artistLogic.UpdateArtist(artists.ArtistID, artists.Name, artists.Birthday, artists.Nationality, artists.GrammyWinner);
             this.hub.Clients.All.SendAsync("ArtistUpdated", artists);

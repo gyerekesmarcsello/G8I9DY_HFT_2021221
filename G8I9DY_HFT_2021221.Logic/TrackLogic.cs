@@ -48,11 +48,11 @@ namespace G8I9DY_HFT_2021221.Logic
                 throw new KeyNotFoundException();
             }
         }
-        public IEnumerable<Tracks> ReadAllTracks()
+        public IEnumerable<Track> ReadAllTracks()
         {
             return trackRepo.ReadAllTracks();
         }
-        public Tracks ReadTrack(int TrackID)
+        public Track ReadTrack(int TrackID)
         {
             var temp = from tracks in trackRepo.GetAll() where tracks.TrackID == TrackID select tracks.TrackID;
             if (temp.Count() > 0)

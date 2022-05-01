@@ -47,11 +47,11 @@ namespace G8I9DY_HFT_2021221.Logic
                 throw new KeyNotFoundException();
             }
         }
-        public IEnumerable<Artists> ReadAllArtist()
+        public IEnumerable<Artist> ReadAllArtist()
         {
             return artistRepo.ReadAllArtist();
         }
-        public Artists ReadArtist(int ArtistID)
+        public Artist ReadArtist(int ArtistID)
         {
             var temp = from artists in artistRepo.GetAll() where artists.ArtistID == ArtistID select artists.ArtistID;
             if (temp.Count() > 0)

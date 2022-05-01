@@ -177,7 +177,7 @@ namespace G8I9DY_HFT_2021221.Client
                         string nationality = Console.ReadLine();
                         Console.WriteLine("Do they have a Grammy award ? (true/false)");
                         bool grammy = bool.Parse(Console.ReadLine());
-                        rest.Post(new Artists()
+                        rest.Post(new Artist()
                         {
                             Name = name,
                             Birthday = birthday,
@@ -202,7 +202,7 @@ namespace G8I9DY_HFT_2021221.Client
                         DateTime releasedate = DateTime.Parse(Console.ReadLine());
                         Console.WriteLine("What is the album genre ? ");
                         string genre = Console.ReadLine();
-                        rest.Post(new Albums()
+                        rest.Post(new Album()
                         {
                             Title = title,
                             ArtistID = id,
@@ -229,7 +229,7 @@ namespace G8I9DY_HFT_2021221.Client
                         Console.WriteLine("Is the Track suitable ?");
                         bool excplicit = bool.Parse(Console.ReadLine());
                         Console.WriteLine("Item successfully added!");
-                        rest.Post(new Tracks()
+                        rest.Post(new Track()
                         {
                             Title = tracktitle,
                             AlbumID = albumid,
@@ -262,7 +262,7 @@ namespace G8I9DY_HFT_2021221.Client
                 switch (table)
                 {
                     case "artist":
-                        var tempArtist = rest.Get<Artists>("artist");
+                        var tempArtist = rest.Get<Artist>("artist");
                         foreach (var item in tempArtist)
                         {
                             Console.WriteLine("ID: {0}, Name: {1}, Birthday: {2}, Nationality: {3}, Do they have a grammy ?: {4}",item.ArtistID,item.Name,item.Birthday,item.Nationality,item.GrammyWinner);
@@ -271,7 +271,7 @@ namespace G8I9DY_HFT_2021221.Client
                         MainMenu();
                         break;
                     case "album":
-                        var temparAlbum = rest.Get<Albums>("album");
+                        var temparAlbum = rest.Get<Album>("album");
                         foreach (var item in temparAlbum)
                         {
                             Console.WriteLine("AlbumID: {0}, Title: {1}, ArtistID: {2}, Label: {3}, Length: {4}, ReleaseData: {5}, Genre: {6}", item.AlbumID, item.Title, item.ArtistID, item.Label, item.Length, item.ReleaseDate, item.Genre);
@@ -280,7 +280,7 @@ namespace G8I9DY_HFT_2021221.Client
                         MainMenu();
                         break;
                     case "track":
-                        var tempTrack = rest.Get<Tracks>("track");
+                        var tempTrack = rest.Get<Track>("track");
                         foreach (var item in tempTrack)
                         {
                             Console.WriteLine("TrackID: {0}, Title: {1}, AlbumID: {2}, ArtistID: {3}, Plays: {4}, Duration: {5}, Is it suitable for children ?: {6}", item.TrackID, item.Title, item.AlbumID, item.ArtistID, item.Plays, item.Duration, item.IsExplicit);
@@ -318,7 +318,7 @@ namespace G8I9DY_HFT_2021221.Client
                         string nationality = Console.ReadLine();
                         Console.WriteLine("Do they have a Grammy award ? (true/false)");
                         bool grammy = bool.Parse(Console.ReadLine());
-                        rest.Put(new Artists()
+                        rest.Put(new Artist()
                         {
                             ArtistID = artistid1,
                             Name = name,
@@ -346,7 +346,7 @@ namespace G8I9DY_HFT_2021221.Client
                         DateTime releasedate = DateTime.Parse(Console.ReadLine());
                         Console.WriteLine("What is the album genre ? ");
                         string genre = Console.ReadLine();
-                        rest.Put(new Albums()
+                        rest.Put(new Album()
                         {
                             AlbumID = albumid1,
                             Title = title,
@@ -376,7 +376,7 @@ namespace G8I9DY_HFT_2021221.Client
                         Console.WriteLine("Is the Track suitable ?");
                         bool excplicit = bool.Parse(Console.ReadLine());
                         Console.WriteLine("Item successfully added!");
-                        rest.Put(new Tracks()
+                        rest.Put(new Track()
                         {
                             TrackID = trackid,
                             Title = tracktitle,

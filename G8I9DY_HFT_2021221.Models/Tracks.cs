@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace G8I9DY_HFT_2021221.Models
 {
     [Table("Tracks")]
-    public class Tracks
+    public class Track
     {
         [Key]
         [Required]
@@ -19,11 +19,11 @@ namespace G8I9DY_HFT_2021221.Models
         [Required]
         public string Title { get; set; }
 
-        [ForeignKey(nameof(Albums))]
+        [ForeignKey(nameof(Models.Album))]
         public int AlbumID { get; set; }
 
 
-        [ForeignKey(nameof(Artists))]
+        [ForeignKey(nameof(Models.Artist))]
         public int ArtistID { get; set; }
 
         [Required]
@@ -51,11 +51,11 @@ namespace G8I9DY_HFT_2021221.Models
 
         [NotMapped]
         [JsonIgnore]
-        public virtual Albums Album { get; set; }
+        public virtual Album Album { get; set; }
 
         [NotMapped]
         [JsonIgnore]
-        public virtual Artists Artist { get; set; }
+        public virtual Artist Artist { get; set; }
 
 
 

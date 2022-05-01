@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace G8I9DY_HFT_2021221.Models
 {
     [Table("Artists")]
-    public class Artists
+    public class Artist
     {
         [Key]
         [Required]
@@ -38,14 +38,14 @@ namespace G8I9DY_HFT_2021221.Models
         */
         [NotMapped]
         [JsonIgnore]
-        public virtual ICollection<Albums> Albums { get; set; }
+        public virtual ICollection<Album> Albums { get; set; }
         [NotMapped]
         [JsonIgnore]
-        public virtual ICollection<Tracks> Tracks { get; set; }
-        public Artists()
+        public virtual ICollection<Track> Tracks { get; set; }
+        public Artist()
         {
-            Albums = new HashSet<Albums>();
-            Tracks = new HashSet<Tracks>();
+            Albums = new HashSet<Album>();
+            Tracks = new HashSet<Track>();
         }
     }
 }
