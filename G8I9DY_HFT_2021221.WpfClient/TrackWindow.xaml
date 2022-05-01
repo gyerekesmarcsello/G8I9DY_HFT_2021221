@@ -34,7 +34,7 @@
             <Label Content="Plays" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedTrack.Plays}" Padding="10"/>
             <Label Content="Duration" Background="LightGreen" Padding="10" />
-            <syncfusion:TimeSpanEdit Text="{Binding SelectedTrack.Duration}" Padding="10"/>
+            <syncfusion:TimeSpanEdit Value="{Binding SelectedTrack.Duration}" Padding="10"/>
             <Label Content="ArtistID" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedTrack.ArtistID}" Padding="10"/>
             <Label Content="Is it Explicit ?" Background="LightGreen" Padding="10" />

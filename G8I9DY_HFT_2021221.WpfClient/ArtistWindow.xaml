@@ -28,7 +28,7 @@
             <Label Content="Name" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedArtist.Name}" Padding="10"  x:Name="name_field"/>
             <Label Content="Birthday" Background="LightGreen" Padding="10"/>
-            <DatePicker Padding="10" Text="{Binding SelectedArtist.Birthday}" Background="White"/>
+            <DatePicker Padding="10" SelectedDate="{Binding SelectedArtist.Birthday}" Background="White"/>
             <Label Content="Nationality" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedArtist.Nationality}" Padding="10"  x:Name="nationality_field"/>
             <Label Content="Grammy Winner ?" Background="LightGreen" Padding="10" />

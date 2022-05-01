@@ -29,9 +29,9 @@
             <Label Content="ArtistID" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedAlbum.ArtistID}" Padding="10" />
             <Label Content="Length" Background="LightGreen" Padding="10" />
-            <syncfusion:TimeSpanEdit Text="{Binding SelectedAlbum.Length}" Padding="10"/>
+            <syncfusion:TimeSpanEdit Value="{Binding SelectedAlbum.Length}" Padding="10"/>
             <Label Content="Release date" Background="LightGreen" Padding="10" />
-            <DatePicker Text="{Binding SelectedAlbum.ReleaseDate}" Padding="10" Background="White"/>
+            <DatePicker SelectedDate="{Binding SelectedAlbum.ReleaseDate}" Padding="10" Background="White"/>
             <Label Content="Genre" Background="LightGreen" Padding="10" />
             <TextBox Text="{Binding SelectedAlbum.Genre}" Padding="10"/>
             <Label Content="{Binding ErrorMessage}" FontSize="18" Foreground="Red"/>

@@ -7,7 +7,7 @@ setup();
 
 function setup() {
     connection = new signalR.HubConnectionBuilder()
-        .withUrl("http://localhost:2509/")
+        .withUrl("http://localhost:2509/hub")
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
@@ -44,7 +44,7 @@ async function getData() {
 function display() {
     document.getElementById("results").innerHTML = "";
     blogs.forEach(t => {
-        document.getElementById("results").innerHTML += "<tr><td>" + t.ArtistID + " </td><td>" + t.Name + `</td><td> <button class="btn btn-danger" onclick="remove(${t.ArtistID})">Delete</button></td><td> <button class="btn btn-success" onclick="setUpdate('${String(t.Name)}', ${t.ArtistID})">Update</button></td></tr>`;
+        document.getElementById("results").innerHTML += "<tr><td>" + t.ArtistID + " </td><td>" + t.Name + "<td>" + t.ArtistID + " </td>"`</td><td>'<button class="btn btn-danger" onclick="remove(${t.ArtistID})">Delete</button></td><td> <button class="btn btn-success" onclick="setUpdate('${String(t.Name)}', ${t.ArtistID})">Update</button></td></tr>`;
     });
 }
 
