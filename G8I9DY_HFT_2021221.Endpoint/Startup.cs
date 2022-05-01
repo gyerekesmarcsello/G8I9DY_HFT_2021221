@@ -60,9 +60,9 @@ namespace G8I9DY_HFT_2021221.Endpoint
 
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "G8I9DY_HFT_2021221.Endpoint v1"));
-
-            app.UseRouting();
+ 
             app.UseCors(x => x.AllowCredentials().AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:12307/"));
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {

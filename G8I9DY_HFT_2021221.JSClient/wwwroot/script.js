@@ -44,14 +44,14 @@ async function getdata() {
     await fetch('http://localhost:2509/track')
         .then(x => x.json())
         .then(y => {
-            shelters = y;
+            tracks = y;
             display();
         });
 }
 
 function display() {
     document.getElementById('resultarea').innerHTML = "";
-    shelters.forEach(t => {
+    tracks.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
             "<tr><td>"
             + t.TrackID + "</td><td>"
@@ -99,12 +99,12 @@ function create() {
 }
 
 function showupdate(id) {
-    document.getElementById('trackNameToUpdate').value = shelter.find(t => t['TrackID'] == id)['Title'];
-    document.getElementById('trackAlbumIDToUpdate').value = shelter.find(t => t['TrackID'] == id)['AlbumID'];
-    document.getElementById('trackPlaysToUpdate').value = shelter.find(t => t['TrackID'] == id)['Plays'];
-    document.getElementById('trackDurationToUpdate').value = shelter.find(t => t['TrackID'] == id)['Duration'];
-    document.getElementById('trackArtistIDToUpdate').value = shelter.find(t => t['TrackID'] == id)['ArtistID'];
-    document.getElementById('trackExplicitToUpdate').value = shelter.find(t => t['TrackID'] == id)['IsExplicit'];
+    document.getElementById('trackNameToUpdate').value = track.find(t => t['TrackID'] == id)['Title'];
+    document.getElementById('trackAlbumIDToUpdate').value = track.find(t => t['TrackID'] == id)['AlbumID'];
+    document.getElementById('trackPlaysToUpdate').value = track.find(t => t['TrackID'] == id)['Plays'];
+    document.getElementById('trackDurationToUpdate').value = track.find(t => t['TrackID'] == id)['Duration'];
+    document.getElementById('trackArtistIDToUpdate').value = track.find(t => t['TrackID'] == id)['ArtistID'];
+    document.getElementById('trackExplicitToUpdate').value = track.find(t => t['TrackID'] == id)['IsExplicit'];
     document.getElementById('updateformdiv').style.display = 'flex';
     trackIdToUpdate = id;
 }
