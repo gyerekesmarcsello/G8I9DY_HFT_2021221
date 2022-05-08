@@ -71,7 +71,7 @@ function create() {
     let name2 = document.getElementById('birthday').value;
     let name3 = document.getElementById('nationality').value;
     let name4 = document.getElementById('grammyWinner').value;
-    fetch('http://localhost:2509/track', {
+    fetch('http://localhost:2509/artist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
@@ -108,7 +108,7 @@ function update() {
     let name3 = document.getElementById('nationalityToUpdate').value;
     let name4 = document.getElementById('grammyToUpdate').value;
 
-    fetch('http://localhost:2509/track', {
+    fetch('http://localhost:2509/artist', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
@@ -131,7 +131,7 @@ function update() {
 }
 
 function remove(id) {
-    fetch('http://localhost:2509/artist' + id, {
+    fetch('http://localhost:2509/artist/' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
