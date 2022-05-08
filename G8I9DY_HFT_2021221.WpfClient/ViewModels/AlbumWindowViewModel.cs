@@ -84,6 +84,8 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
                         ReleaseDate = selectedAlbum.ReleaseDate,
                         Genre= selectedAlbum.Genre
                     });
+                    System.Threading.Thread.Sleep(150);
+                    Albums.Update(Albums.Last());
                 });
 
                 UpdateAlbumCommand = new RelayCommand(() =>

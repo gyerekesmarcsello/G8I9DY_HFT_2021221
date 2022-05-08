@@ -83,7 +83,9 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
                         Duration = selectedTrack.Duration,
                         IsExplicit= selectedTrack.IsExplicit,
                         ArtistID = selectedTrack.ArtistID,
-                    });
+                     });
+                    System.Threading.Thread.Sleep(150);
+                    Tracks.Update(Tracks.Last());
                 });
 
                 UpdateTrackCommand = new RelayCommand(() =>

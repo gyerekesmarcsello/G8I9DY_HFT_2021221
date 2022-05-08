@@ -39,7 +39,7 @@ namespace G8I9DY_HFT_2021221.Data
                 .HasOne(tracks => tracks.Album)
                 .WithMany(albums => albums.Tracks)
                 .HasForeignKey(tracks => tracks.AlbumID)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.SetNull);
             });
             modelBuilder.Entity<Track>(entity =>
             {
@@ -47,7 +47,7 @@ namespace G8I9DY_HFT_2021221.Data
                 .HasOne(tracks => tracks.Artist)
                 .WithMany(artists => artists.Tracks)
                 .HasForeignKey(tracks => tracks.ArtistID)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.SetNull);
             });
             modelBuilder.Entity<Album>(entity =>
             {
@@ -55,7 +55,7 @@ namespace G8I9DY_HFT_2021221.Data
                 .HasOne(albums => albums.Artist)
                 .WithMany(artists => artists.Albums)
                 .HasForeignKey(albums => albums.ArtistID)
-                .OnDelete(DeleteBehavior.ClientSetNull);
+                .OnDelete(DeleteBehavior.SetNull);
             });
 
             #region Albumok

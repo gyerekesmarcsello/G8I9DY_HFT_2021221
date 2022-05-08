@@ -78,6 +78,8 @@ namespace G8I9DY_HFT_2021221.WpfClient.ViewModels
                         Nationality= selectedArtist.Nationality,
                         GrammyWinner= selectedArtist.GrammyWinner
                     });
+                    System.Threading.Thread.Sleep(150);
+                    Artists.Update(Artists.Last());
                 });
 
                 UpdateArtistCommand = new RelayCommand(() =>

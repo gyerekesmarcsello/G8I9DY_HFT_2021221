@@ -94,7 +94,7 @@ namespace G8I9DY_HFT_2021221.Logic
                      where x.Name == name
                      select x.ArtistID;
             var q2 = from x in albumRepo.GetAll().AsEnumerable()
-                     where q1.Contains(x.ArtistID)
+                     where q1.Contains((int)x.ArtistID)
                      select x.Title;
             List<string> albums = new List<string>();
             foreach (var item in q2)

@@ -39,14 +39,14 @@ namespace G8I9DY_HFT_2021221.Endpoint
         [HttpPost]
         public void Post([FromBody] Album albums)
         {
-            albumLogic.CreateAlbum(albums.AlbumID, albums.Title, albums.ArtistID, albums.Label, albums.Length, albums.ReleaseDate, albums.Genre);
+            albumLogic.CreateAlbum(albums.AlbumID, albums.Title, (int)albums.ArtistID, albums.Label, albums.Length, albums.ReleaseDate, albums.Genre);
             this.hub.Clients.All.SendAsync("AlbumCreated", albums);
         }
 
         [HttpPut]
         public void Put([FromBody] Album albums)
         {
-            albumLogic.UpdateAlbum(albums.AlbumID, albums.Title, albums.ArtistID, albums.Label, albums.Length, albums.ReleaseDate, albums.Genre);
+            albumLogic.UpdateAlbum(albums.AlbumID, albums.Title, (int)albums.ArtistID, albums.Label, albums.Length, albums.ReleaseDate, albums.Genre);
             this.hub.Clients.All.SendAsync("AlbumUpdated", albums);
         }
 

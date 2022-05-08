@@ -39,14 +39,14 @@ namespace G8I9DY_HFT_2021221.Endpoint
         [HttpPost]
         public void Post([FromBody] Track tracks)
         {
-            trackLogic.CreateTrack(tracks.TrackID, tracks.Title, tracks.AlbumID, tracks.Plays, tracks.Duration, tracks.ArtistID, tracks.IsExplicit);
+            trackLogic.CreateTrack(tracks.TrackID, tracks.Title, (int)tracks.AlbumID, tracks.Plays, tracks.Duration, (int)tracks.ArtistID, tracks.IsExplicit);
             this.hub.Clients.All.SendAsync("TrackCreated", tracks);
         }
 
         [HttpPut]
         public void Put([FromBody] Track tracks)
         {
-            trackLogic.UpdateTrack(tracks.TrackID,tracks.Title,tracks.AlbumID,tracks.Plays,tracks.Duration,tracks.ArtistID,tracks.IsExplicit);
+            trackLogic.UpdateTrack(tracks.TrackID,tracks.Title, (int)tracks.AlbumID,tracks.Plays,tracks.Duration, (int)tracks.ArtistID,tracks.IsExplicit);
             this.hub.Clients.All.SendAsync("TrackUpdated", tracks);
         }
 

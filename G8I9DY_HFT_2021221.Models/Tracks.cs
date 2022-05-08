@@ -20,11 +20,11 @@ namespace G8I9DY_HFT_2021221.Models
         public string Title { get; set; }
 
         [ForeignKey(nameof(Models.Album))]
-        public int AlbumID { get; set; }
+        public int? AlbumID { get; set; }
 
 
         [ForeignKey(nameof(Models.Artist))]
-        public int ArtistID { get; set; }
+        public int? ArtistID { get; set; }
 
         [Required]
         public int Plays { get; set; }
