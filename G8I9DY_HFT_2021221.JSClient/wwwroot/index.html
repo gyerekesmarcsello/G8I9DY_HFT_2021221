@@ -7,48 +7,37 @@
 </head>
 <body style="background-color:lightgreen;">
     <p style="text-align:center;"><img src="logo.png" alt="Logo"></p>
-    <h1>List of Available Tracks</h1>
+    <h1>List of Available Artists</h1>
     <div id="formdiv">
-        <label>Track Title</label>
-        <input type="text" id="trackName" />
-        <label>AlbumID</label>
-        <input type="number" id="trackAlbumID" />
-        <label>Plays</label>
-        <input type="number" id="trackPlays" />
-        <label>Duration</label>
-        <input type="text" id="trackDuration" />
-        <label>ArtistID</label>
-        <input type="number" id="trackArtistID" />
-        <label>Is the track explicit ?</label>
-        <input type="checkbox" id="trackExplicit" />
-        <button type="button" onclick="create()">Add Track</button>
+        <label>Name</label>
+        <input type="text" id="name" />
+        <label>Birthday</label>
+        <input type="date" id="birthday" />
+        <label>Nationality</label>
+        <input type="text" id="nationality" />
+        <label>Do they have a grammy ?</label>
+        <input type="checkbox" id="grammyWinner" />
+        <button type="button" onclick="create()">Add Artist</button>
     </div>
     <div id="updateformdiv">
-        <label>Track Title</label>
-        <input type="text" id="trackNameToUpdate" />
-        <label>AlbumID</label>
-        <input type="number" id="trackAlbumIDToUpdate" />
-        <label>Plays</label>
-        <input type="number" id="trackPlaysToUpdate" />
-        <label>Duration</label>
-        <input type="text" id="trackDurationToUpdate" />
-        <label>ArtistID</label>
-        <input type="number" id="trackArtistIDToUpdate" />
-        <label>Is the track explicit ?</label>
-        <input type="checkbox" id="trackExplicitToUpdate" />
-        <button type="button" onclick="update()">Update Track</button>
+        <label>Name</label>
+        <input type="text" id="nameToUpdate" />
+        <label>Birthday</label>
+        <input type="date" id="birthdayToUpdate" />
+        <label>Nationality</label>
+        <input type="text" id="nationalityToUpdate" />
+        <label>Do they have a grammy ?</label>
+        <input type="checkbox" id="grammyToUpdate" />
+        <button type="button" onclick="update()">Update Artist</button>
     </div>
-
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Track Title</th>
-                <th>AlbumID</th>
-                <th>Plays</th>
-                <th>Duration</th>
-                <th>ArtistID</th>
-                <th>IsExplicit</th>
+                <th>Name</th>
+                <th>Birthday</th>
+                <th>Nationality</th>
+                <th>AreGrammy?</th>
                 <th>Actions</th>
             </tr>
         </thead>

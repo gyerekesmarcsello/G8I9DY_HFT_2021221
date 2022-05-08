@@ -1,6 +1,6 @@
-﻿let tracks = [];
+﻿let artists = [];
 let connection = null;
-let trackIdToUpdate = -1;
+let artistIdToUpdate = -1;
 
 getdata();
 setupSignalR();
@@ -11,15 +11,15 @@ function setupSignalR() {
         .configureLogging(signalR.LogLevel.Information)
         .build();
 
-    connection.on("TrackCreated", (user, message) => {
+    connection.on("ArtistCreated", (user, message) => {
         getdata();
     });
 
-    connection.on("TrackDeleted", (user, message) => {
+    connection.on("ArtistDeleted", (user, message) => {
         getdata();
     });
 
-    connection.on("TrackUpdated", (user, message) => {
+    connection.on("ArtistUpdated", (user, message) => {
         getdata();
     });
 
@@ -41,50 +41,45 @@ async function start() {
 };
 
 async function getdata() {
-    await fetch('http://localhost:2509/track')
+    await fetch('http://localhost:2509/artist')
         .then(x => x.json())
         .then(y => {
-            tracks = y;
+            artists = y;
             display();
         });
 }
 
 function display() {
     document.getElementById('resultarea').innerHTML = "";
-    tracks.forEach(t => {
+    artists.forEach(t => {
         document.getElementById('resultarea').innerHTML +=
             "<tr><td>"
-            + t.TrackID + "</td><td>"
-            + t.Title + "</td><td>"
-            + t.AlbumID + "</td><td>"
-            + t.Plays + "</td><td>"
-            + t.Duration + "</td><td>"
-            + t.ArtistID + "</td><td>"
-            + t.IsExplicit + "</td><td>"
-            + `<button type="button" onclick="showupdate(${t.TrackID})">Update</button>`
-            + `<button type="button" onclick="remove(${t.TrackID})">Delete</button>` +
+            + t.artistID + "</td><td>"
+            + t.name + "</td><td>"
+            + t.birthday + "</td><td>"
+            + t.nationality + "</td><td>"
+            + t.grammyWinner + "</td><td>"
+            + `<button type="button" onclick="showupdate(${t.artistID})">Update</button>`
+            + `<button type="button" onclick="remove(${t.artistID})">Delete</button>` +
             "</td></tr>";
     });
 }
 
+
 function create() {
-    let name = document.getElementById('trackName').value;
-    let name2 = document.getElementById('trackAlbumID').value;
-    let name3 = document.getElementById('trackPlays').value;
-    let name4 = document.getElementById('trackDuration').value;
-    let name5 = document.getElementById('trackArtistID').value;
-    let name6 = document.getElementById('trackExplicit').value;
+    let name = document.getElementById('name').value;
+    let name2 = document.getElementById('birthday').value;
+    let name3 = document.getElementById('nationality').value;
+    let name4 = document.getElementById('grammyWinner').value;
     fetch('http://localhost:2509/track', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
             {
-                trackName: name,
-                trackAlbumID: name2,
-                trackPlays: name3,
-                trackDuration: name4,
-                trackArtistID: name5,
-                trackExplicit: name6
+                name: name,
+                birthday: name2,
+                nationality: name3,
+                grammyWinner: name4,
             })
     })
         .then(response => response)
@@ -98,37 +93,31 @@ function create() {
 }
 
 function showupdate(id) {
-    document.getElementById('trackNameToUpdate').value = track.find(t => t['TrackID'] == id)['Title'];
-    document.getElementById('trackAlbumIDToUpdate').value = track.find(t => t['TrackID'] == id)['AlbumID'];
-    document.getElementById('trackPlaysToUpdate').value = track.find(t => t['TrackID'] == id)['Plays'];
-    document.getElementById('trackDurationToUpdate').value = track.find(t => t['TrackID'] == id)['Duration'];
-    document.getElementById('trackArtistIDToUpdate').value = track.find(t => t['TrackID'] == id)['ArtistID'];
-    document.getElementById('trackExplicitToUpdate').value = track.find(t => t['TrackID'] == id)['IsExplicit'];
+    document.getElementById('nameToUpdate').value = track.find(t => t['artistID'] == id)['name'];
+    document.getElementById('birthdayToUpdate').value = track.find(t => t['artistID'] == id)['birthday'];
+    document.getElementById('nationalityToUpdate').value = track.find(t => t['artistID'] == id)['nationality'];
+    document.getElementById('grammyToUpdate').value = track.find(t => t['artistID'] == id)['grammywinner'];
     document.getElementById('updateformdiv').style.display = 'flex';
-    trackIdToUpdate = id;
+    artistIdToUpdate = id;
 }
 
 function update() {
     document.getElementById('updateformdiv').style.display = 'none';
-    let name = document.getElementById('trackNameToUpdate').value;
-    let name2 = document.getElementById('trackAlbumIDToUpdate').value;
-    let name3 = document.getElementById('trackPlaysToUpdate').value;
-    let name4 = document.getElementById('trackDurationToUpdate').value;
-    let name5 = document.getElementById('trackArtistIDToUpdate').value;
-    let name6 = document.getElementById('trackExplicitToUpdate').value;
+    let name = document.getElementById('nameToUpdate').value;
+    let name2 = document.getElementById('birthdayToUpdate').value;
+    let name3 = document.getElementById('nationalityToUpdate').value;
+    let name4 = document.getElementById('grammyToUpdate').value;
 
     fetch('http://localhost:2509/track', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json', },
         body: JSON.stringify(
             {
-                trackID: trackIdToUpdate,
-                trackName: name,
-                trackAlbumID: name2,
-                trackPlays: name3,
-                trackDuration: name4,
-                trackArtistID: name5,
-                trackExplicit: name6
+                artistID: artistIdToUpdate,
+                name: name,
+                birthday: name2,
+                nationality: name3,
+                grammyWinner: name4,
             })
     })
         .then(response => response)
@@ -142,7 +131,7 @@ function update() {
 }
 
 function remove(id) {
-    fetch('http://localhost:2509/track' + id, {
+    fetch('http://localhost:2509/artist' + id, {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json', },
         body: null
