@@ -67,19 +67,19 @@ function display() {
 
 
 function create() {
-    let name = document.getElementById('name').value;
-    let name2 = document.getElementById('birthday').value;
-    let name3 = document.getElementById('nationality').value;
-    let name4 = document.getElementById('grammyWinner').value;
-    fetch('http://localhost:2509/artist', {
+    let name = document.getElementById('nameToCreate').value;
+    let name2 = document.getElementById('birthdayToCreate').value;
+    let name3 = document.getElementById('nationalityToCreate').value;
+    let name4 = Boolean(document.getElementById('grammyWinnerToCreate').value);
+    fetch('http://localhost:2509/artist/', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', },
+        headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(
             {
                 name: name,
                 birthday: name2,
                 nationality: name3,
-                grammyWinner: name4,
+                grammyWinner: name4
             })
     })
         .then(response => response)
@@ -93,10 +93,10 @@ function create() {
 }
 
 function showupdate(id) {
-    document.getElementById('nameToUpdate').value = track.find(t => t['artistID'] == id)['name'];
-    document.getElementById('birthdayToUpdate').value = track.find(t => t['artistID'] == id)['birthday'];
-    document.getElementById('nationalityToUpdate').value = track.find(t => t['artistID'] == id)['nationality'];
-    document.getElementById('grammyToUpdate').value = track.find(t => t['artistID'] == id)['grammywinner'];
+    document.getElementById('nameToUpdate').value = artists.find(t => t['artistID'] == id)['name'];
+    document.getElementById('birthdayToUpdate').value = artists.find(t => t['artistID'] == id)['birthday'];
+    document.getElementById('nationalityToUpdate').value = artists.find(t => t['artistID'] == id)['nationality'];
+    document.getElementById('grammyToUpdate').value = artists.find(t => t['artistID'] == id)['grammyWinner'];
     document.getElementById('updateformdiv').style.display = 'flex';
     artistIdToUpdate = id;
 }
@@ -106,18 +106,18 @@ function update() {
     let name = document.getElementById('nameToUpdate').value;
     let name2 = document.getElementById('birthdayToUpdate').value;
     let name3 = document.getElementById('nationalityToUpdate').value;
-    let name4 = document.getElementById('grammyToUpdate').value;
+    let name4 = Boolean(document.getElementById('grammyToUpdate').value);
 
-    fetch('http://localhost:2509/artist', {
+    fetch('http://localhost:2509/artist/', {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json', },
+        headers: { 'Content-Type': 'application/json'},
         body: JSON.stringify(
             {
                 artistID: artistIdToUpdate,
                 name: name,
                 birthday: name2,
                 nationality: name3,
-                grammyWinner: name4,
+                grammyWinner: name4
             })
     })
         .then(response => response)
