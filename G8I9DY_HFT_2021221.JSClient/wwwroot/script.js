@@ -70,7 +70,8 @@ function create() {
     let name = document.getElementById('nameToCreate').value;
     let name2 = document.getElementById('birthdayToCreate').value;
     let name3 = document.getElementById('nationalityToCreate').value;
-    let name4 = Boolean(document.getElementById('grammyWinnerToCreate').value);
+    let name4 = (document.getElementById('grammyWinnerToCreate').value === 'true');
+    console.log(name4);
     fetch('http://localhost:2509/artist/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json'},
@@ -103,10 +104,11 @@ function showupdate(id) {
 
 function update() {
     document.getElementById('updateformdiv').style.display = 'none';
-    let name = document.getElementById('nameToUpdate').value;
+    let name =  document.getElementById('nameToUpdate').value;
     let name2 = document.getElementById('birthdayToUpdate').value;
     let name3 = document.getElementById('nationalityToUpdate').value;
-    let name4 = Boolean(document.getElementById('grammyToUpdate').value);
+    let name4 = (document.getElementById('grammyToUpdate').value === 'false');
+    console.log(name4);
 
     fetch('http://localhost:2509/artist/', {
         method: 'PUT',
